@@ -6,23 +6,24 @@ import Contact from "./sections/Contact";
 import Resume from "./sections/Resume";
 
 const ORDERED_SECTIONS = [
-  { name: "About", color: "red", Page: About },
-  { name: "Resume", color: "green", Page: Resume },
-  { name: "Code", color: "blue", Page: About },
-  { name: "Art", color: "orange", Page: About },
-  { name: "Contact", color: "purple", Page: Contact },
+  { name: "About", color: "red", Page: About, fullScreen: false },
+  { name: "Resume", color: "green", Page: Resume, fullScreen: true },
+  { name: "Code", color: "blue", Page: About, fullScreen: false },
+  { name: "Art", color: "orange", Page: About, fullScreen: false },
+  { name: "Contact", color: "purple", Page: Contact, fullScreen: false },
 ] as const satisfies ReadonlyArray<{
   name: string;
   color: string;
   Page: React.FC;
+  fullScreen: boolean;
 }>;
+
+type Section = (typeof ORDERED_SECTIONS)[number];
+type SectionName = Section["name"];
 
 const SECTION_NAME_TO_SECTION = Object.fromEntries(
   ORDERED_SECTIONS.map((section) => [section.name, section])
 ) as Record<SectionName, Section>;
-
-type Section = (typeof ORDERED_SECTIONS)[number];
-type SectionName = Section["name"];
 
 export default function App() {
   const [selectedSectionName, setSelectedSectionName] =
@@ -89,10 +90,11 @@ function MainContent({ selectedSection }: { selectedSection: Section }) {
           id={section.name}
           key={section.name}
           className={classNames(
-            "grow-1 bg-white w-full h-fit p-4 rounded-sm shadow-md border-t-4",
+            "grow-1 bg-white w-full h-fit p-4 overflow-auto max-h-full rounded-[4px] shadow-md border-t-4",
             "content-top-border transition-all duration-1000 absolute inset-0",
             section.color,
             selectedSection.name == section.name ? "opacity-100" : "opacity-0",
+            section.fullScreen && "h-full",
             index < selectedSectionIndex
               ? "-translate-y-[100vh]"
               : index > selectedSectionIndex
@@ -103,7 +105,6 @@ function MainContent({ selectedSection }: { selectedSection: Section }) {
           <section.Page />
         </div>
       ))}
-      <div className="h-full shrink-0" />
     </div>
   );
 }
