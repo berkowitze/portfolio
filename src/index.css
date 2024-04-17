@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  height: 100vh;
+  font-family: "Roboto", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-size: 16px;
+  font-weight: 400;
+
+  color: rgb(20, 20, 20);
+
+  background-image: linear-gradient(rgb(211, 217, 255), rgb(251, 235, 230));
+
+  /* font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
+}
+
+body {
+  margin: 20px 24px;
+  max-height: calc(100vh - 40px);
+}
+
+.sliding-u-l-r {
+  position: relative;
+}
+.sliding-u-l-r:after {
+  content: "";
+  display: block;
+  margin: auto;
+  height: 3px;
+  width: 0px;
+  margin: 0;
+  background: transparent;
+  transition: width 0.7s ease, background-color 0.7s ease;
+}
+.sliding-u-l-r:hover:after,
+.sliding-u-l-r.selected:after,
+.sliding-u-l-r-parent:hover .sliding-u-l-r:after {
+  width: 100%;
+}
+
+@property --red-color {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: rgb(255, 51, 51);
+}
+
+@property --green-color {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: rgb(33, 196, 33);
+}
+
+@property --blue-color {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: rgb(0, 102, 255);
+}
+
+@property --orange-color {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: rgb(255, 148, 9);
+}
+
+@property --purple-color {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: rgb(150, 31, 168);
+}
+
+.red.nav-link:after,
+.red.nav-link.selected:after {
+  background-color: var(--red-color);
+}
+
+.green.nav-link:after,
+.green.nav-link.selected:after {
+  background-color: var(--green-color);
+}
+
+.blue.nav-link:after,
+.blue.nav-link.selected:after {
+  background-color: var(--blue-color);
+}
+
+.orange.nav-link:after,
+.orange.nav-link.selected:after {
+  background-color: var(--orange-color);
+}
+
+.purple.nav-link:after,
+.purple.nav-link.selected:after {
+  background-color: var(--purple-color);
+}
+
+.red.content-top-border {
+  border-color: var(--red-color);
+}
+.green.content-top-border {
+  border-color: var(--green-color);
+}
+.blue.content-top-border {
+  border-color: var(--blue-color);
+}
+.orange.content-top-border {
+  border-color: var(--orange-color);
+}
+.purple.content-top-border {
+  border-color: var(--purple-color);
+}
+
+#root {
+  display: grid;
+  row-gap: 24px;
+  column-gap: 36px;
+  grid-template-areas:
+    "title title"
+    "nav content";
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+}
+
+.title {
+  grid-area: title;
+}
+
+.nav {
+  grid-area: nav;
+}
+
+.content {
+  grid-area: content;
+  /* overflow: auto; */
+}
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
