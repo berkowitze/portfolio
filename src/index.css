@@ -43,6 +43,33 @@ body {
   width: 100%;
 }
 
+a {
+  position: relative;
+  display: inline-block;
+  transition: color 0.5s;
+  color: var(--blue-color);
+}
+
+a:hover {
+  color: rgb(20, 20, 20);
+}
+
+a:after {
+  content: "";
+  display: block;
+  margin: auto !important;
+  height: 2px;
+  margin: -2px 0 0 0;
+  background: transparent;
+  transition: width 0.3s ease, background-color 0.3s ease;
+  background-color: black;
+  width: 0px;
+}
+
+a:hover:after {
+  width: 100%;
+}
+
 @property --red-color {
   syntax: "<color>";
   inherits: false;

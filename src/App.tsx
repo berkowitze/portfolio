@@ -3,10 +3,11 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import About from "./sections/About";
 import Contact from "./sections/Contact";
+import Resume from "./sections/Resume";
 
 const ORDERED_SECTIONS = [
   { name: "About", color: "red", Page: About },
-  { name: "Resume", color: "green", Page: About },
+  { name: "Resume", color: "green", Page: Resume },
   { name: "Code", color: "blue", Page: About },
   { name: "Art", color: "orange", Page: About },
   { name: "Contact", color: "purple", Page: Contact },
@@ -84,26 +85,23 @@ function MainContent({ selectedSection }: { selectedSection: Section }) {
   return (
     <div className="content gap-8 flex grow-1 flex-col overflow-hidden no-scrollbar relative">
       {ORDERED_SECTIONS.map((section, index) => (
-        <>
-          <div
-            id={section.name}
-            className={classNames(
-              "grow-1 bg-white w-full h-fit p-4 rounded-sm shadow-md border-t-4",
-              "content-top-border transition-all duration-1000 absolute inset-0",
-              section.color,
-              selectedSection.name == section.name
-                ? "opacity-100"
-                : "opacity-0",
-              index < selectedSectionIndex
-                ? "-translate-y-[100vh]"
-                : index > selectedSectionIndex
-                ? "translate-y-[100vh]"
-                : undefined
-            )}
-          >
-            <section.Page />
-          </div>
-        </>
+        <div
+          id={section.name}
+          key={section.name}
+          className={classNames(
+            "grow-1 bg-white w-full h-fit p-4 rounded-sm shadow-md border-t-4",
+            "content-top-border transition-all duration-1000 absolute inset-0",
+            section.color,
+            selectedSection.name == section.name ? "opacity-100" : "opacity-0",
+            index < selectedSectionIndex
+              ? "-translate-y-[100vh]"
+              : index > selectedSectionIndex
+              ? "translate-y-[100vh]"
+              : undefined
+          )}
+        >
+          <section.Page />
+        </div>
       ))}
       <div className="h-full shrink-0" />
     </div>
