@@ -1,7 +1,7 @@
 export default function About(): JSX.Element {
   return (
-    <div className="text-lg flex gap-6 flex-wrap">
-      <div className="flex flex-col gap-4 shrink-0 basis-96 grow">
+    <div className="flex flex-wrap gap-6 text-lg">
+      <div className="flex grow basis-2/3 flex-col gap-4">
         <p>
           I am a full stack web developer with a passion for making beautiful
           and engaging user experiences. At this stage of my life, I'm exploring
@@ -29,7 +29,7 @@ export default function About(): JSX.Element {
         </ol>
         <p>Please hire me.</p>
       </div>
-      <div className="shrink-0">
+      <div className="grow basis-80">
         <img className="w-96" src="/God.jpg" alt="Picture of me" />
       </div>
     </div>

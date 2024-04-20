@@ -30,6 +30,17 @@ body {
   max-height: calc(100vh - 40px);
 }
 
+@media (max-width: 640px) {
+  body {
+    margin: 20px 12px;
+  }
+
+  :root {
+    background-image: unset;
+    background-color: rgb(230, 233, 255);
+  }
+}
+
 .sliding-u-l-r {
   position: relative;
 }
@@ -126,6 +137,14 @@ a:hover:after {
     "nav content";
   grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr;
+}
+
+@media (max-width: 640px) {
+  #root {
+    grid-template-areas:
+      "title title"
+      "content content";
+  }
 }
 
 .title {
