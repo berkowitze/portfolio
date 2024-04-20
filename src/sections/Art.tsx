@@ -119,51 +119,14 @@ export default function Art() {
   return fullScreenArtPiece == null ? (
     <div className="mb-8 flex flex-wrap justify-between gap-8 gap-y-12">
       {ART_PIECES.map((artPiece) => (
-        <div
-          key={artPiece.id}
-          className="h-[216px] shrink-0 grow-0 basis-[384px]"
-        >
-          {artPiece.artKind === ArtKind.VIDEO ? (
-            <Video piece={artPiece} />
-          ) : artPiece.artKind === ArtKind.GALLERY ? (
-            <Gallery
-              onFullScreen={() => {
-                setFullScreenArtPiece(artPiece);
-              }}
-              piece={artPiece}
-            />
-          ) : artPiece.artKind === ArtKind.PHOTO ? (
-            <div className="relative">
-              <img
-                onClick={() => {
-                  setFullScreenArtPiece(artPiece);
-                }}
-                className="cursor-pointer object-cover"
-                src={artPiece.src}
-              />
-              <div
-                className={
-                  "absolute inset-0 flex size-full cursor-pointer items-center justify-center bg-gradient-to-t from-gray-700/90  to-gray-700/10 text-5xl opacity-0 transition-opacity hover:opacity-100"
-                }
-                onClick={() => {
-                  setFullScreenArtPiece(artPiece);
-                }}
-              >
-                <span className="rounded-md bg-gray-200/20 px-1 font-bold text-white">
-                  ⛶
-                </span>
-              </div>
-            </div>
-          ) : null}
-          <div className="text-center">{artPiece.title}</div>
-        </div>
+        <ArtPiece artPiece={artPiece} />
       ))}
     </div>
   ) : fullScreenArtPiece.artKind === ArtKind.GALLERY ? (
     <Gallery
-      onFullScreen={() => {
-        setFullScreenArtPiece(null);
-      }}
+      // onFullScreen={() => {
+      //   setFullScreenArtPiece(null);
+      // }}
       isFullScreen={true}
       piece={fullScreenArtPiece}
     />
@@ -175,6 +138,56 @@ export default function Art() {
       artPiece={fullScreenArtPiece}
     />
   ) : null;
+}
+
+function ArtPiece({ artPiece }: { artPiece: ArtPiece }) {
+  const ref = useRef<HTMLImageElement>(null);
+
+  function handleFullScreen() {
+    if (ref.current) {
+      ref.current.requestFullscreen();
+    }
+  }
+
+  return (
+    <div key={artPiece.id} className="h-[216px] shrink-0 grow-0 basis-[384px]">
+      {artPiece.artKind === ArtKind.VIDEO ? (
+        <Video piece={artPiece} />
+      ) : artPiece.artKind === ArtKind.GALLERY ? (
+        <Gallery
+          // onFullScreen={() => {
+          // setFullScreenArtPiece(artPiece);
+          // handleFullScreen();
+          // }}
+          piece={artPiece}
+        />
+      ) : artPiece.artKind === ArtKind.PHOTO ? (
+        <div className="relative">
+          <img
+            ref={ref}
+            onClick={() => {
+              handleFullScreen();
+            }}
+            className="cursor-pointer object-cover"
+            src={artPiece.src}
+          />
+          <div
+            className={
+              "absolute inset-0 flex size-full cursor-pointer items-center justify-center bg-gradient-to-t from-gray-700/90  to-gray-700/10 text-5xl opacity-0 transition-opacity hover:opacity-100"
+            }
+            onClick={() => {
+              handleFullScreen();
+            }}
+          >
+            <span className="rounded-md bg-gray-200/20 px-1 font-bold text-white">
+              ⛶
+            </span>
+          </div>
+        </div>
+      ) : null}
+      <div className="text-center">{artPiece.title}</div>
+    </div>
+  );
 }
 
 function FullScreenPhoto({
@@ -218,18 +231,28 @@ function Video({
 
 function Gallery({
   piece,
-  onFullScreen,
   isFullScreen,
 }: {
   piece: Extract<ArtPiece, { artKind: ArtKind.GALLERY }>;
-  onFullScreen: () => void;
   isFullScreen?: boolean;
 }) {
+  const ref = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  function handleFullScreen() {
+    if (ref.current) {
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else {
+        ref.current.requestFullscreen();
+      }
+    }
+  }
 
   return (
     <>
       <div
+        ref={ref}
         className={classNames(
           "relative size-full",
           isFullScreen && "flex flex-col gap-4"
@@ -252,7 +275,7 @@ function Gallery({
           currentIndex={currentIndex}
           onChangeCurrentIndex={setCurrentIndex}
           isFullScreen={isFullScreen}
-          onFullScreen={onFullScreen}
+          onFullScreen={handleFullScreen}
         />
       </div>
     </>
