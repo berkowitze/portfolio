@@ -1,15 +1,15 @@
 import classNames from "classnames";
-import "./App.css";
 import { useEffect, useState } from "react";
 import About from "./sections/About";
 import Contact from "./sections/Contact";
 import Resume from "./sections/Resume";
+import Art from "./sections/Art";
 
 const ORDERED_SECTIONS = [
   { name: "About", color: "red", Page: About, fullScreen: false },
   { name: "Resume", color: "green", Page: Resume, fullScreen: true },
   { name: "Code", color: "blue", Page: About, fullScreen: false },
-  { name: "Art", color: "orange", Page: About, fullScreen: false },
+  { name: "Art", color: "orange", Page: Art, fullScreen: true },
   { name: "Contact", color: "purple", Page: Contact, fullScreen: false },
 ] as const satisfies ReadonlyArray<{
   name: string;
@@ -30,7 +30,7 @@ export default function App() {
     useState<SectionName>("About");
   return (
     <>
-      <div className="text-4xl title flex-grow-0">ELI BERKOWITZ</div>
+      <div className="title grow-0 text-4xl">ELI BERKOWITZ</div>
       <Nav
         selectedSection={SECTION_NAME_TO_SECTION[selectedSectionName]}
         onChangeSelectedSection={setSelectedSectionName}
@@ -84,7 +84,7 @@ function MainContent({ selectedSection }: { selectedSection: Section }) {
   );
 
   return (
-    <div className="content gap-8 flex grow-1 flex-col overflow-hidden no-scrollbar relative">
+    <div className="content no-scrollbar relative flex grow flex-col gap-8 overflow-hidden">
       {ORDERED_SECTIONS.map((section, index) => (
         <div
           id={section.name}
@@ -95,10 +95,11 @@ function MainContent({ selectedSection }: { selectedSection: Section }) {
             section.color,
             selectedSection.name == section.name ? "opacity-100" : "opacity-0",
             section.fullScreen && "h-full",
-            index < selectedSectionIndex
+            index < selectedSectionIndex // if the section is before the selected section, place it above the screen
               ? "-translate-y-[100vh]"
               : index > selectedSectionIndex
-              ? "translate-y-[100vh]"
+              ? // if the section is after the selected section, place it below the screen
+                "translate-y-[100vh]"
               : undefined
           )}
         >

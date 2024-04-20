@@ -1,11 +1,15 @@
 export default function About(): JSX.Element {
   return (
-    <div className="w-full max-h-full text-lg flex gap-6 flex-wrap">
+    <div className="text-lg flex gap-6 flex-wrap">
       <div className="flex flex-col gap-4 shrink-0 basis-96 grow">
         <p>
           I am a full stack web developer with a passion for making beautiful
           and engaging user experiences. At this stage of my life, I'm exploring
           careers in forestry, 3D modeling, and software engineering.
+        </p>
+        <p>
+          I'm currently on a break from software, getting some outside time as
+          an assistant arborist at the Newton Cemetery &amp; Arboretum.
         </p>
         <p>
           I previously worked at <a href="https://benchling.com">Benchling</a>{" "}

@@ -17,6 +17,12 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; */
+
+  --red-color: rgb(255, 51, 51);
+  --green-color: rgb(33, 196, 33);
+  --blue-color: rgb(0, 102, 255);
+  --orange-color: rgb(255, 148, 9);
+  --purple-color: rgb(150, 31, 168);
 }
 
 body {
@@ -70,36 +76,6 @@ a:hover:after {
   width: 100%;
 }
 
-@property --red-color {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: rgb(255, 51, 51);
-}
-
-@property --green-color {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: rgb(33, 196, 33);
-}
-
-@property --blue-color {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: rgb(0, 102, 255);
-}
-
-@property --orange-color {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: rgb(255, 148, 9);
-}
-
-@property --purple-color {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: rgb(150, 31, 168);
-}
-
 .red.nav-link:after,
 .red.nav-link.selected:after {
   background-color: var(--red-color);
@@ -144,7 +120,7 @@ a:hover:after {
 #root {
   display: grid;
   row-gap: 24px;
-  column-gap: 36px;
+  column-gap: 44px;
   grid-template-areas:
     "title title"
     "nav content";
@@ -175,4 +151,44 @@ a:hover:after {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }
+}
+
+@keyframes slider {
+  0% {
+    max-width: 0%;
+  }
+
+  0%,
+  5% {
+    background-color: var(--purple-color);
+  }
+
+  20%,
+  30% {
+    background-color: var(--red-color);
+  }
+
+  45%,
+  55% {
+    background-color: var(--orange-color);
+  }
+
+  70%,
+  80% {
+    background-color: var(--green-color);
+  }
+
+  90%,
+  100% {
+    background-color: var(--blue-color);
+  }
+
+  100% {
+    max-width: 100%;
+  }
+}
+
+.gallery-slider {
+  animation: slider 7s linear;
+  animation-iteration-count: infinite;
 }
