@@ -16,7 +16,7 @@ export default function Resume() {
         className="hidden h-full rounded-md p-2 md:block"
       >
         <Page
-          className="resume-shadow mx-auto h-full w-fit overflow-auto rounded-md"
+          className="resume-shadow mx-auto h-full w-fit overflow-auto rounded-md px-4"
           scale={1.5}
           pageNumber={1}
           renderAnnotationLayer={false}

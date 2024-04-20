@@ -3,15 +3,13 @@
 @tailwind utilities;
 
 :root {
-  height: 100vh;
   font-family: "Roboto", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-size: 16px;
   font-weight: 400;
 
   color: rgb(20, 20, 20);
-
-  background-image: linear-gradient(rgb(211, 217, 255), rgb(251, 235, 230));
+  background-color: rgb(230, 233, 255);
 
   /* font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -26,8 +24,7 @@
 }
 
 body {
-  margin: 20px 24px;
-  max-height: calc(100vh - 40px);
+  margin: 20px 12px;
 }
 
 #root {
@@ -36,25 +33,28 @@ body {
   column-gap: 44px;
   grid-template-areas:
     "title title"
-    "nav content";
+    "content content";
+
   grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr;
 }
 
-@media (max-width: 768px) {
+@media (min-width: theme(screens.md)) {
   body {
-    margin: 20px 12px;
+    margin: 20px 24px;
+    max-height: calc(100vh - 40px);
   }
 
   #root {
     grid-template-areas:
       "title title"
-      "content content" !important;
+      "nav content";
   }
 
   :root {
-    background-image: unset;
-    background-color: rgb(230, 233, 255);
+    background-image: linear-gradient(rgb(211, 217, 255), rgb(251, 235, 230));
+    background-color: unset;
+    height: 100vh;
   }
 }
 
