@@ -166,9 +166,16 @@ function ArtPiece({ artPiece }: { artPiece: ArtPiece }) {
           <img
             ref={ref}
             onClick={() => {
-              handleFullScreen();
+              if (!document.fullscreenElement) {
+                handleFullScreen();
+              }
             }}
-            className="cursor-pointer object-cover"
+            onDoubleClick={() => {
+              if (document.fullscreenElement) {
+                document.exitFullscreen();
+              }
+            }}
+            className="object-cover"
             src={artPiece.src}
           />
           <div
@@ -253,6 +260,7 @@ function Gallery({
     <>
       <div
         ref={ref}
+        onDoubleClick={handleFullScreen}
         className={classNames(
           "relative size-full",
           isFullScreen && "flex flex-col gap-4"
