@@ -32,5 +32,5 @@ function Video({
 }: {
   piece: Extract<ArtPiece, { artKind: ArtKind.VIDEO }>;
 }) {
-  return <video loop={piece.loop} controls src={piece.src} />;
+  return <video preload="auto" loop={piece.loop} controls src={piece.src} />;
 }
