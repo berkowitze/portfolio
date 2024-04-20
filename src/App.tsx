@@ -50,7 +50,7 @@ function Nav({
   onChangeSelectedSection: (newSectionName: SectionName) => void;
 }) {
   return (
-    <div className="nav hidden grow-0 flex-col gap-4 sm:flex">
+    <div className="nav hidden grow-0 flex-col gap-4 md:flex">
       {ORDERED_SECTIONS.map(({ name, color }) => (
         <div
           className="sliding-u-l-r-parent cursor-pointer"
@@ -84,24 +84,24 @@ function MainContent({ selectedSection }: { selectedSection: Section }) {
   );
 
   return (
-    <div className="content sm:no-scrollbar relative flex grow flex-col gap-8 sm:overflow-hidden">
+    <div className="content md:no-scrollbar relative flex grow flex-col gap-8 md:overflow-hidden">
       {ORDERED_SECTIONS.map((section, index) => (
         <div
           id={section.name}
           key={section.name}
           className={classNames(
-            "grow-1 bg-white w-full sm:h-fit p-4 sm:overflow-auto sm:max-h-full rounded-[4px] shadow-md border-t-4",
-            "content-top-border transition-all duration-1000 sm:absolute sm:inset-0",
+            "grow-1 bg-white w-full md:h-fit p-4 md:overflow-auto md:max-h-full rounded-[4px] shadow-md border-t-4",
+            "content-top-border transition-all duration-1000 md:absolute md:inset-0",
             section.color,
             selectedSection.name == section.name
               ? "opacity-100"
-              : "sm:opacity-0",
+              : "md:opacity-0",
             section.fullScreen && "h-full",
             index < selectedSectionIndex // if the section is before the selected section, place it above the screen
-              ? "sm:-translate-y-[100vh]"
+              ? "md:-translate-y-[100vh]"
               : index > selectedSectionIndex
               ? // if the section is after the selected section, place it below the screen
-                "sm:translate-y-[100vh]"
+                "md:translate-y-[100vh]"
               : undefined
           )}
         >

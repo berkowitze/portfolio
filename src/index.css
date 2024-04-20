@@ -30,9 +30,15 @@ body {
   max-height: calc(100vh - 40px);
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   body {
     margin: 20px 12px;
+  }
+
+  #root {
+    grid-template-areas:
+      "title title"
+      "content content";
   }
 
   :root {
@@ -139,14 +145,6 @@ a:hover:after {
   grid-template-rows: auto 1fr;
 }
 
-@media (max-width: 640px) {
-  #root {
-    grid-template-areas:
-      "title title"
-      "content content";
-  }
-}
-
 .title {
   grid-area: title;
 }
@@ -210,4 +208,16 @@ a:hover:after {
 .gallery-slider {
   animation: slider 7s linear;
   animation-iteration-count: infinite;
+}
+
+@media (hover: hover) {
+  .mouse-only-cover:hover {
+    opacity: 100%;
+  }
+}
+
+@media (hover: none) {
+  .hide-without-pointer {
+    display: none;
+  }
 }

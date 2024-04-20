@@ -73,7 +73,7 @@ function Piece({ artPiece }: { artPiece: ArtPiece }) {
           />
           <div
             className={
-              "absolute inset-0 flex size-full cursor-pointer items-center justify-center bg-gradient-to-t from-gray-700/90  to-gray-700/10 text-5xl opacity-0 transition-opacity hover:opacity-100"
+              "mouse-only-cover absolute inset-0 flex size-full cursor-pointer items-center justify-center bg-gradient-to-t  from-gray-700/90 to-gray-700/10 text-5xl opacity-0 transition-opacity"
             }
             onClick={() => {
               handleFullScreen();
@@ -235,11 +235,11 @@ function GalleryControls({
           }}
           className="flex cursor-pointer select-none items-center justify-center text-xl transition-transform hover:scale-125"
         >
-          {isPaused ? "⏵" : "⏸"}
+          {isPaused ? "⏵" : "\u23F8"}
         </div>
         <div
           onClick={onFullScreen}
-          className="flex cursor-pointer select-none items-center text-xl transition-transform hover:scale-125"
+          className="hide-without-pointer flex cursor-pointer select-none items-center text-xl transition-transform hover:scale-125"
         >
           ⛶
         </div>
