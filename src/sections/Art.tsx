@@ -184,8 +184,8 @@ function Gallery({
 }
 
 const PAUSE_ICON = <span>&#x23F8;&#xFE0E;</span>;
-const PLAY_ICON = <span>&#x23F8;&#xFE0E;</span>;
-const FULLSCREEN_ICON = <span>&#x26f6;&#xFE0E;</span>;
+const PLAY_ICON = <span>&#x25B6;&#xFE0E;</span>;
+const FULLSCREEN_ICON = <span>&#x26F6;&#xFE0E;</span>;
 
 function GalleryControls({
   numPieces,
