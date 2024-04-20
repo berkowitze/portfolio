@@ -6,7 +6,7 @@ export default function Art() {
   return (
     <div className="mb-8 flex flex-wrap justify-between gap-8 gap-y-12">
       {ART_PIECES.map((artPiece) => (
-        <Piece artPiece={artPiece} />
+        <Piece key={artPiece.id} artPiece={artPiece} />
       ))}
     </div>
   );

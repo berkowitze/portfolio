@@ -90,13 +90,12 @@ function MainContent({ selectedSection }: { selectedSection: Section }) {
           id={section.name}
           key={section.name}
           className={classNames(
-            "grow-1 bg-white w-full md:h-fit p-4 md:overflow-auto md:max-h-full rounded-[4px] shadow-md border-t-4",
-            "content-top-border transition-all duration-1000 md:absolute md:inset-0",
+            "grow-1 bg-white w-full p-4 md:overflow-auto md:max-h-full rounded-[4px] shadow-md border-t-4 content-top-border transition-all duration-1000 md:absolute md:inset-0",
             section.color,
             selectedSection.name == section.name
               ? "opacity-100"
               : "md:opacity-0",
-            section.fullScreen && "h-full",
+            section.fullScreen ? "h-full" : "md:h-fit",
             index < selectedSectionIndex // if the section is before the selected section, place it above the screen
               ? "md:-translate-y-[100vh]"
               : index > selectedSectionIndex

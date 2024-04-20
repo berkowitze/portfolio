@@ -221,3 +221,11 @@ a:hover:after {
     display: none;
   }
 }
+
+.resume-shadow {
+  box-shadow: theme(boxShadowColor.gray.200) 0px 0px 10px 2px;
+}
+
+.react-pdf__Page__textContent.textLayer {
+  border-radius: theme(borderRadius.md);
+}
