@@ -4,16 +4,48 @@ import About from "./sections/About";
 import Contact from "./sections/Contact";
 import Resume from "./sections/Resume";
 import Art from "./sections/Art";
+import Code from "./sections/Code";
 
 const ORDERED_SECTIONS = [
-  { name: "About", color: "red", Page: About, fullScreen: false },
-  { name: "Resume", color: "green", Page: Resume, fullScreen: true },
-  { name: "Code", color: "blue", Page: About, fullScreen: false },
-  { name: "Art", color: "orange", Page: Art, fullScreen: true },
-  { name: "Contact", color: "purple", Page: Contact, fullScreen: false },
+  {
+    name: "About",
+    color: "red",
+    bg: "bg-my-red",
+    Page: About,
+    fullScreen: false,
+  },
+  {
+    name: "Resume",
+    color: "green",
+    bg: "bg-my-green",
+    Page: Resume,
+    fullScreen: true,
+  },
+  {
+    name: "Code",
+    color: "blue",
+    bg: "bg-my-blue",
+    Page: Code,
+    fullScreen: false,
+  },
+  {
+    name: "Art",
+    color: "orange",
+    bg: "bg-my-orange",
+    Page: Art,
+    fullScreen: true,
+  },
+  {
+    name: "Contact",
+    color: "purple",
+    bg: "bg-my-purple",
+    Page: Contact,
+    fullScreen: false,
+  },
 ] as const satisfies ReadonlyArray<{
   name: string;
   color: string;
+  bg: string;
   Page: React.FC;
   fullScreen: boolean;
 }>;
@@ -84,13 +116,13 @@ function MainContent({ selectedSection }: { selectedSection: Section }) {
   );
 
   return (
-    <div className="content md:no-scrollbar relative flex grow flex-col gap-8 md:overflow-hidden">
+    <div className="content md:no-scrollbar relative flex grow flex-col gap-8 text-lg md:overflow-hidden">
       {ORDERED_SECTIONS.map((section, index) => (
         <div
           id={section.name}
           key={section.name}
           className={classNames(
-            "grow-1 bg-white w-full p-4 md:overflow-auto md:max-h-full rounded-[4px] shadow-md border-t-4 content-top-border transition-all duration-1000 md:absolute md:inset-0",
+            "grow-1 bg-white w-full p-4 md:overflow-auto md:max-h-full rounded-[4px] shadow-md border-t-4 content-top-border transition-all duration-1000 relative md:absolute md:inset-0",
             section.color,
             selectedSection.name == section.name
               ? "opacity-100"
@@ -104,6 +136,14 @@ function MainContent({ selectedSection }: { selectedSection: Section }) {
               : undefined
           )}
         >
+          <div
+            className={classNames(
+              "absolute -translate-y-full top-0 text-white left-0 md:pt-16 text-sm py-1 px-2 rounded-t-md",
+              section.bg
+            )}
+          >
+            {section.name}
+          </div>
           <section.Page />
         </div>
       ))}

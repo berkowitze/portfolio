@@ -1,6 +1,6 @@
 export default function About(): JSX.Element {
   return (
-    <div className="flex flex-wrap gap-6 text-lg">
+    <div className="flex flex-wrap gap-6">
       <div className="flex grow basis-2/3 flex-col gap-4">
         <p>
           I am a full stack web developer with a passion for making beautiful

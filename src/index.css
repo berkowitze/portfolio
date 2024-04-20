@@ -177,27 +177,27 @@ a:hover:after {
 
   0%,
   5% {
-    background-color: var(--purple-color);
+    background-color: theme(colors.my-purple);
   }
 
   20%,
   30% {
-    background-color: var(--red-color);
+    background-color: theme(colors.my-red);
   }
 
   45%,
   55% {
-    background-color: var(--orange-color);
+    background-color: theme(colors.my-orange);
   }
 
   70%,
   80% {
-    background-color: var(--green-color);
+    background-color: theme(colors.my-green);
   }
 
   90%,
   100% {
-    background-color: var(--blue-color);
+    background-color: theme(colors.my-blue);
   }
 
   100% {
