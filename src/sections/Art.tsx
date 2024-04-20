@@ -80,7 +80,7 @@ function Piece({ artPiece }: { artPiece: ArtPiece }) {
             }}
           >
             <span className="rounded-md bg-gray-200/20 px-1 font-bold text-white">
-              ⛶
+              {FULLSCREEN_ICON}
             </span>
           </div>
         </div>
@@ -183,6 +183,10 @@ function Gallery({
   );
 }
 
+const PAUSE_ICON = <span>&#x23F8;&#xFE0E;</span>;
+const PLAY_ICON = <span>&#x23F8;&#xFE0E;</span>;
+const FULLSCREEN_ICON = <span>&#x26f6;&#xFE0E;</span>;
+
 function GalleryControls({
   numPieces,
   currentIndex,
@@ -235,13 +239,13 @@ function GalleryControls({
           }}
           className="flex cursor-pointer select-none items-center justify-center text-xl transition-transform hover:scale-125"
         >
-          {isPaused ? "⏵" : "\u23F8"}
+          {isPaused ? PLAY_ICON : PAUSE_ICON}
         </div>
         <div
           onClick={onFullScreen}
           className="hide-without-pointer flex cursor-pointer select-none items-center text-xl transition-transform hover:scale-125"
         >
-          ⛶
+          {FULLSCREEN_ICON}
         </div>
       </div>
       <div
