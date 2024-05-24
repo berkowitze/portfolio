@@ -33,9 +33,16 @@ export const ART_PIECES: ReadonlyArray<ArtPiece> = [
   },
   {
     artKind: ArtKind.PHOTO,
-    src: "Art/teashop.jpg",
+    src: "/Art/teashop.jpg",
     id: "teashop",
     title: "Teashop",
+  },
+  {
+    artKind: ArtKind.VIDEO,
+    id: "gumball",
+    title: "Gumball Machine",
+    src: "/Art/gumballs.mp4",
+    loop: true,
   },
   {
     artKind: ArtKind.VIDEO,
@@ -46,13 +53,13 @@ export const ART_PIECES: ReadonlyArray<ArtPiece> = [
   },
   {
     artKind: ArtKind.PHOTO,
-    src: "Art/plant.jpg",
+    src: "/Art/plant.jpg",
     id: "plant",
     title: "Plant",
   },
   {
     artKind: ArtKind.PHOTO,
-    src: "Art/headphones.jpg",
+    src: "/Art/headphones.jpg",
     id: "headphones",
     title: "Headphones",
   },
@@ -64,7 +71,7 @@ export const ART_PIECES: ReadonlyArray<ArtPiece> = [
   },
   {
     artKind: ArtKind.PHOTO,
-    src: "Art/puzzle.jpg",
+    src: "/Art/puzzle.jpg",
     id: "puzzle",
     title: "Puzzle",
   },
@@ -76,19 +83,19 @@ export const ART_PIECES: ReadonlyArray<ArtPiece> = [
   },
   {
     artKind: ArtKind.PHOTO,
-    src: "Art/teapot.jpg",
+    src: "/Art/teapot.jpg",
     id: "teapot",
     title: "Teapot",
   },
   {
     artKind: ArtKind.PHOTO,
-    src: "Art/spoon.jpg",
+    src: "/Art/spoon.jpg",
     id: "spoon",
     title: "Spoon",
   },
   {
     artKind: ArtKind.PHOTO,
-    src: "Art/sunglasses.jpg",
+    src: "/Art/sunglasses.jpg",
     id: "sunglasses",
     title: "Sunglasses",
   },
@@ -100,7 +107,7 @@ export const ART_PIECES: ReadonlyArray<ArtPiece> = [
   },
   {
     artKind: ArtKind.PHOTO,
-    src: "Art/snowman funeral.jpg",
+    src: "/Art/snowman funeral.jpg",
     id: "snowman funeral",
     title: "Snowman funeral - my first 3d model!",
   },

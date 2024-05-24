@@ -50,7 +50,7 @@ const ORDERED_SECTIONS = [
   fullScreen: boolean;
 }>;
 
-type Section = (typeof ORDERED_SECTIONS)[number];
+export type Section = (typeof ORDERED_SECTIONS)[number];
 type SectionName = Section["name"];
 
 const SECTION_NAME_TO_SECTION = Object.fromEntries(

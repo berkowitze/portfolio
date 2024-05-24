@@ -77,18 +77,18 @@ body {
   width: 100%;
 }
 
-a {
+a:not(.no-underline-ani) {
   position: relative;
   display: inline-block;
   transition: color 0.5s;
   color: var(--blue-color);
 }
 
-a:hover {
+a:not(.no-underline-ani):hover {
   color: rgb(20, 20, 20);
 }
 
-a:after {
+a:not(.no-underline-ani):after {
   content: "";
   display: block;
   margin: auto !important;
@@ -100,7 +100,7 @@ a:after {
   width: 0px;
 }
 
-a:hover:after {
+a:not(.no-underline-ani):hover:after {
   width: 100%;
 }
 
