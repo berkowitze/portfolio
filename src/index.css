@@ -222,6 +222,12 @@ a:not(.no-underline-ani):hover:after {
   }
 }
 
+@media (hover: hover) {
+  .hide-with-pointer {
+    display: none;
+  }
+}
+
 .resume-shadow {
   box-shadow: theme(boxShadowColor.gray.200) 0px 0px 10px 2px;
 }

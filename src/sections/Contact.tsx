@@ -1,5 +1,6 @@
 const EMAIL = "eliberkowitz@gmail.com";
 const GITHUB = "github.com/berkowitze";
+const ARTSTATION = "artstation.com/eliberkowitz";
 
 export default function Contact() {
   return (
@@ -9,6 +10,9 @@ export default function Contact() {
       </div>
       <div>
         Github: <a href={`https://${GITHUB}`}>{GITHUB}</a>
+      </div>
+      <div>
+        Artstation: <a href={`https://${ARTSTATION}`}>{ARTSTATION}</a>
       </div>
     </div>
   );

@@ -7,8 +7,15 @@ const CODE_PIECES = [
     title: "Downup",
     bgImg: "/Code/downup.gif",
     shortDescription: "Community pushup challenge site",
-    description:
-      "Hobby website for small communities to do goal-oriented challenges together.",
+    description: (
+      <span>
+        Hobby website for small communities to do goal-oriented challenges
+        together.
+        <br />
+        For example, a monthly pushup challenge where everyone chooses a number
+        of pushups to do each day.
+      </span>
+    ),
     stack: "Next.js, Twilio, Redis, Postgres",
   },
   {
@@ -18,7 +25,7 @@ const CODE_PIECES = [
     bgImg: "/Code/loggerlasher.gif",
     shortDescription: "Keep the loggers away",
     description:
-      "My first foray into game development. A simple game where you keep the loggers away from the tree.",
+      "My first foray into game development. A simple game where you keep the loggers away from the tree. Click to play!",
     stack: "React, TypeScript",
   },
   {
@@ -69,21 +76,32 @@ function CodeProject({
   return (
     <div
       key={codePiece.id}
-      className="grow basis-32 cursor-pointer rounded-[2px] border-l-2 border-my-blue/30 p-4 transition-colors duration-300 hover:border-my-blue hover:bg-gray-100"
+      className="grow basis-32 cursor-pointer rounded-[2px] border-my-blue/30 p-4 transition-colors duration-300 hover:border-my-blue hover:bg-gray-100 md:border-l-2"
     >
       <a
         href={codePiece.url}
-        className="no-underline-ani flex items-center justify-between text-left backdrop-blur-[2px]"
+        className="no-underline-ani flex flex-wrap items-center justify-between gap-4 text-left"
       >
-        <div>
-          <h3 className="text-3xl font-bold text-black">{codePiece.title}</h3>
-          <p className="text-black">{codePiece.shortDescription}</p>
+        <div className="basis-[400px]">
+          <h3 className="flex items-center gap-2 text-3xl font-bold text-black">
+            {codePiece.title}
+            <span className="hide-with-pointer translate-y-0.5 text-lg text-my-blue">
+              {" "}
+              &#8599;
+            </span>
+          </h3>
+          {/* <p className="text-black">{codePiece.shortDescription}</p> */}
+          <p className="text-black">{codePiece.description}</p>
           <p>Stack: {codePiece.stack}</p>
         </div>
         {loadImg ? (
-          <img src={codePiece.bgImg} alt={codePiece.title} className="h-56" />
+          <img
+            src={codePiece.bgImg}
+            alt={codePiece.title}
+            className="h-56 grow-0"
+          />
         ) : (
-          <div className="h-56 bg-gray-300" />
+          <div className="size-56 flex-1 bg-gray-300" />
         )}
       </a>
     </div>
