@@ -1,4 +1,5 @@
 import { useInView } from "react-intersection-observer";
+import { Fragment } from "react/jsx-runtime";
 
 interface CodePiece {
   id: string;
@@ -62,7 +63,7 @@ const CODE_PIECES: ReadonlyArray<CodePiece | "professional" | "hobby"> = [
     title: "Analysis Tool",
     video: "/Code/analysis-tool.mp4",
     description: (
-      <span>
+      <div>
         I worked on a new analysis platform for Benchling customers to transform
         and analyze their data without having to write SQL. My work included:
         <ul className="list-disc pl-6">
@@ -76,7 +77,7 @@ const CODE_PIECES: ReadonlyArray<CodePiece | "professional" | "hobby"> = [
           </li>
           <li>Scaffolding for the product</li>
         </ul>
-      </span>
+      </div>
     ),
     stack: "React, TypeScript, Flask, SQLAlchemy, Postgres, Redis, S3",
     company: "Benchling",
@@ -99,14 +100,14 @@ export default function Code() {
     <div ref={ref} className="flex flex-col gap-8">
       {CODE_PIECES.map((codePiece, index) =>
         codePiece === "professional" || codePiece === "hobby" ? (
-          <>
+          <Fragment key={index}>
             {index > 0 && <hr />}
             <h2 className="text-3xl font-bold text-black">
               {codePiece === "professional"
                 ? "Professional work"
                 : "Hobby projects"}
             </h2>
-          </>
+          </Fragment>
         ) : (
           <CodeProject
             key={codePiece.id}
@@ -130,9 +131,9 @@ function CodeProject({
     <a
       key={codePiece.id}
       href={codePiece.url}
-      className="no-underline-ani flex grow basis-32 cursor-pointer flex-wrap items-center justify-between gap-4 rounded-[2px] border-my-blue/30 p-4 text-left transition-colors duration-300 hover:border-my-blue hover:bg-gray-100 md:border-l-2"
+      className="no-underline-ani flex grow basis-32 cursor-pointer flex-wrap items-center justify-between gap-8 rounded-[2px] border-my-blue/30 p-4 text-left transition-colors duration-300 hover:border-my-blue hover:bg-gray-100 md:border-l-2"
     >
-      <div className="basis-[45%]">
+      <div className="grow basis-96">
         <h3 className="flex items-center gap-2 text-2xl font-bold text-black">
           {codePiece.title}
           {codePiece.company && (
@@ -145,7 +146,7 @@ function CodeProject({
             &#8599;
           </span>
         </h3>
-        <p className="text-black">{codePiece.description}</p>
+        <div className="text-black">{codePiece.description}</div>
         {codePiece.stack && <p>Stack: {codePiece.stack}</p>}
       </div>
       {loadImg ? (
