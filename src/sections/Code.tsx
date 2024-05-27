@@ -1,12 +1,22 @@
 import { useInView } from "react-intersection-observer";
 
-const CODE_PIECES = [
+interface CodePiece {
+  id: string;
+  url: string;
+  title: string;
+  video: string;
+  description: string | JSX.Element;
+  stack?: string;
+  company?: "Benchling";
+}
+
+const CODE_PIECES: ReadonlyArray<CodePiece | "professional" | "hobby"> = [
+  "hobby",
   {
     id: "downup",
     url: "https://downup.app",
     title: "Downup",
-    bgImg: "/Code/downup.gif",
-    shortDescription: "Community pushup challenge site",
+    video: "/Code/downup.mp4",
     description: (
       <span>
         Hobby website for small communities to do goal-oriented challenges
@@ -16,14 +26,13 @@ const CODE_PIECES = [
         of pushups to do each day.
       </span>
     ),
-    stack: "Next.js, Twilio, Redis, Postgres",
+    stack: "Next.js, Twilio, Redis, Postgres, Railway, Upstash",
   },
   {
     id: "logger-lasher",
     url: "https://logger-lasher.netlify.app",
     title: "Logger Lasher",
-    bgImg: "/Code/loggerlasher.gif",
-    shortDescription: "Keep the loggers away",
+    video: "/Code/loggerlasher.mp4",
     description:
       "My first foray into game development. A simple game where you keep the loggers away from the tree. Click to play!",
     stack: "React, TypeScript",
@@ -32,36 +41,80 @@ const CODE_PIECES = [
     id: "exosim",
     url: "https://exosim.netlify.app",
     title: "Exosim",
-    bgImg: "/Code/exosim.gif",
-    shortDescription: "Physics-based exoplanet simulator",
-    description: "A physics-based simulator for exoplanet systems.",
+    video: "/Code/exosim.mp4",
+    description:
+      "A physics-based simulator for exoplanet systems. You can create your own system, and see a graph of the star's light intensity over time as planets pass in front of it.",
     stack: "p5.js",
   },
   {
     id: "life",
     url: "https://yourlifepercent.com",
     title: "Life Percent Calculator",
-    bgImg: "/Code/lifepercent.gif",
-    shortDescription:
+    video: "/Code/lifepercent.mp4",
+    description:
       "My first ever website! Shows a ticking estimate of the percentage of your life that has passed.",
-    description: "A physics-based simulator for exoplanet systems.",
     stack: "HTML, CSS, JavaScript",
   },
+  "professional",
+  {
+    id: "analysis-tool",
+    url: "https://help.benchling.com/hc/en-us/articles/15322155422221-Creating-analysis-tables-from-a-Registry-schema",
+    title: "Analysis Tool",
+    video: "/Code/analysis-tool.mp4",
+    description: (
+      <span>
+        I worked on a new analysis platform for Benchling customers to transform
+        and analyze their data without having to write SQL. My work included:
+        <ul className="list-disc pl-6">
+          <li>
+            A tool to create datasets with only checkboxes, building up a
+            GraphQL query under the hood which was then transformed to a dataset
+          </li>
+          <li>
+            Tools for users to add transformations to their data, such as
+            aggregations and filters
+          </li>
+          <li>Scaffolding for the product</li>
+        </ul>
+      </span>
+    ),
+    stack: "React, TypeScript, Flask, SQLAlchemy, Postgres, Redis, S3",
+    company: "Benchling",
+  },
+  {
+    id: "entity-diagram",
+    url: "https://help.benchling.com/hc/en-us/articles/9684226168077-Search-for-schemas-to-use-in-Insights-queries#h_e8f23b880b",
+    title: "Database Diagram",
+    video: "/Code/entity-diagram.mp4",
+    description:
+      "Benchling customers have their own denormalized database schemas that they can query with SQL using the Insights product. This tool helps them understand how their data is structured and interrelated.",
+    stack: "React, TypeScript",
+    company: "Benchling",
+  },
 ];
-
-type CodePiece = (typeof CODE_PIECES)[number];
 
 export default function Code() {
   const { ref, inView } = useInView({ triggerOnce: true });
   return (
     <div ref={ref} className="flex flex-col gap-8">
-      {CODE_PIECES.map((codePiece) => (
-        <CodeProject
-          key={codePiece.id}
-          loadImg={inView}
-          codePiece={codePiece}
-        />
-      ))}
+      {CODE_PIECES.map((codePiece, index) =>
+        codePiece === "professional" || codePiece === "hobby" ? (
+          <>
+            {index > 0 && <hr />}
+            <h2 className="text-3xl font-bold text-black">
+              {codePiece === "professional"
+                ? "Professional work"
+                : "Hobby projects"}
+            </h2>
+          </>
+        ) : (
+          <CodeProject
+            key={codePiece.id}
+            loadImg={inView}
+            codePiece={codePiece}
+          />
+        )
+      )}
     </div>
   );
 }
@@ -74,36 +127,39 @@ function CodeProject({
   loadImg: boolean;
 }) {
   return (
-    <div
+    <a
       key={codePiece.id}
-      className="grow basis-32 cursor-pointer rounded-[2px] border-my-blue/30 p-4 transition-colors duration-300 hover:border-my-blue hover:bg-gray-100 md:border-l-2"
+      href={codePiece.url}
+      className="no-underline-ani flex grow basis-32 cursor-pointer flex-wrap items-center justify-between gap-4 rounded-[2px] border-my-blue/30 p-4 text-left transition-colors duration-300 hover:border-my-blue hover:bg-gray-100 md:border-l-2"
     >
-      <a
-        href={codePiece.url}
-        className="no-underline-ani flex flex-wrap items-center justify-between gap-4 text-left"
-      >
-        <div className="basis-[400px]">
-          <h3 className="flex items-center gap-2 text-3xl font-bold text-black">
-            {codePiece.title}
-            <span className="hide-with-pointer translate-y-0.5 text-lg text-my-blue">
-              {" "}
-              &#8599;
+      <div className="basis-[45%]">
+        <h3 className="flex items-center gap-2 text-2xl font-bold text-black">
+          {codePiece.title}
+          {codePiece.company && (
+            <span className="rounded-full bg-my-blue px-2 py-1 text-sm text-white">
+              {codePiece.company}
             </span>
-          </h3>
-          {/* <p className="text-black">{codePiece.shortDescription}</p> */}
-          <p className="text-black">{codePiece.description}</p>
-          <p>Stack: {codePiece.stack}</p>
-        </div>
-        {loadImg ? (
-          <img
-            src={codePiece.bgImg}
-            alt={codePiece.title}
-            className="h-56 grow-0"
-          />
-        ) : (
-          <div className="size-56 flex-1 bg-gray-300" />
-        )}
-      </a>
-    </div>
+          )}
+          <span className="hide-with-pointer translate-y-0.5 text-lg text-my-blue">
+            {" "}
+            &#8599;
+          </span>
+        </h3>
+        <p className="text-black">{codePiece.description}</p>
+        {codePiece.stack && <p>Stack: {codePiece.stack}</p>}
+      </div>
+      {loadImg ? (
+        <video
+          src={codePiece.video}
+          className="max-h-64 grow-0"
+          loop
+          autoPlay
+          muted
+          controls={false}
+        />
+      ) : (
+        <div className="size-56 flex-1 bg-gray-300" />
+      )}
+    </a>
   );
 }
