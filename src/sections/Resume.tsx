@@ -22,7 +22,7 @@ export default function Resume() {
           renderAnnotationLayer={false}
         >
           <a
-            className="absolute right-3 top-2 z-20 rounded-md bg-white/80"
+            className="!absolute right-3 top-2 z-20 rounded-md bg-white/80"
             href={RESUME_LINK}
           >
             Open in new tab &#8599;
