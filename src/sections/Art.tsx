@@ -32,5 +32,16 @@ function Video({
 }: {
   piece: Extract<ArtPiece, { artKind: ArtKind.VIDEO }>;
 }) {
-  return <video preload="auto" loop={piece.loop} controls src={piece.src} />;
+  return (
+    <video
+      onClick={(e) => {
+        e.stopPropagation();
+      }}
+      muted
+      preload="auto"
+      loop={piece.loop}
+      controls
+      src={`${piece.src}#t=0.000001`}
+    />
+  );
 }

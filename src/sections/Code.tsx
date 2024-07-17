@@ -157,6 +157,11 @@ function CodeProject({
           loop
           autoPlay
           muted
+          playsInline
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
           controls={false}
         />
       ) : (
