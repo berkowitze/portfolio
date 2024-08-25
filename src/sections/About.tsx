@@ -4,12 +4,9 @@ export default function About(): JSX.Element {
       <div className="flex grow basis-2/3 flex-col gap-4">
         <p>
           I am a full stack web developer with a passion for making beautiful
-          and engaging user experiences. At this stage of my life, I'm exploring
-          careers in forestry, 3D modeling, and software engineering.
-        </p>
-        <p>
-          I'm currently on a break from software, getting some outside time as
-          an assistant arborist at the Newton Cemetery &amp; Arboretum.
+          and engaging user experiences. I am starting to explore the field of
+          game development and am excited to be starting a Masters of Fine Arts
+          at Clark University this fall!
         </p>
         <p>
           I previously worked at <a href="https://benchling.com">Benchling</a>{" "}
