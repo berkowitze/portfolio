@@ -9,6 +9,7 @@ export default {
         "my-green": "rgb(33, 196, 33)",
         "my-orange": "rgb(255, 148, 9)",
         "my-purple": "rgb(150, 31, 168)",
+        "my-pink": "rgb(255, 51, 153)",
       },
       backgroundColor: {
         "my-blue": "rgb(0, 102, 255)",

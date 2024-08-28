@@ -21,6 +21,7 @@
   --blue-color: rgb(0, 102, 255);
   --orange-color: rgb(255, 148, 9);
   --purple-color: rgb(150, 31, 168);
+  --pink-color: rgb(255, 51, 153);
 }
 
 body {
@@ -129,6 +130,11 @@ a:not(.no-underline-ani):hover:after {
   background-color: var(--purple-color);
 }
 
+.pink.nav-link:after,
+.pink.nav-link.selected:after {
+  background-color: var(--pink-color);
+}
+
 .red.content-top-border {
   border-color: var(--red-color);
 }
@@ -143,6 +149,9 @@ a:not(.no-underline-ani):hover:after {
 }
 .purple.content-top-border {
   border-color: var(--purple-color);
+}
+.pink.content-top-border {
+  border-color: var(--pink-color);
 }
 
 .title {

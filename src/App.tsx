@@ -5,6 +5,7 @@ import Contact from "./sections/Contact";
 import Resume from "./sections/Resume";
 import Art from "./sections/Art";
 import Code from "./sections/Code";
+import Blog from "./sections/Blog";
 
 const ORDERED_SECTIONS = [
   {
@@ -13,13 +14,6 @@ const ORDERED_SECTIONS = [
     bg: "bg-my-red",
     Page: About,
     fullScreen: false,
-  },
-  {
-    name: "Resume",
-    color: "green",
-    bg: "bg-my-green",
-    Page: Resume,
-    fullScreen: true,
   },
   {
     name: "Code",
@@ -33,6 +27,20 @@ const ORDERED_SECTIONS = [
     color: "orange",
     bg: "bg-my-orange",
     Page: Art,
+    fullScreen: true,
+  },
+  {
+    name: "Blog",
+    color: "pink",
+    bg: "bg-my-pink",
+    Page: Blog,
+    fullScreen: false,
+  },
+  {
+    name: "Resume",
+    color: "green",
+    bg: "bg-my-green",
+    Page: Resume,
     fullScreen: true,
   },
   {
@@ -57,9 +65,15 @@ const SECTION_NAME_TO_SECTION = Object.fromEntries(
   ORDERED_SECTIONS.map((section) => [section.name, section])
 ) as Record<SectionName, Section>;
 
+function capitalize(s: string): string {
+  return (s[0]?.toUpperCase() ?? "") + s.slice(1);
+}
+
 export default function App() {
-  const [selectedSectionName, setSelectedSectionName] =
-    useState<SectionName>("About");
+  const [selectedSectionName, setSelectedSectionName] = useState<SectionName>(
+    (capitalize(window.location.hash.replace("#", "")) as SectionName) ||
+      "About"
+  );
   return (
     <>
       <div className="title grow-0 text-4xl">ELI BERKOWITZ</div>
