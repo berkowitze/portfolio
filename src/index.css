@@ -29,6 +29,10 @@ body {
 }
 
 #root {
+  height: 100%;
+}
+
+#app-root {
   display: grid;
   row-gap: 24px;
   column-gap: 44px;
@@ -46,7 +50,7 @@ body {
     max-height: calc(100vh - 40px);
   }
 
-  #root {
+  #app-root {
     grid-template-areas:
       "title title"
       "nav content";

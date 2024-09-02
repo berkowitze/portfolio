@@ -1,29 +1,13 @@
 import classNames from "classnames";
-import { ReactNode, useState } from "react";
-import Post1 from "./blog-posts/Post1";
+import { useState } from "react";
+import { POSTS, PostProps } from "./posts";
 
 const TAGS = [
   "Coding",
   "Art",
   "Music",
 ] as const satisfies ReadonlyArray<string>;
-type Tag = (typeof TAGS)[number];
-
-interface PostProps {
-  title: ReactNode;
-  Content: React.FC;
-  date: Date;
-  tags: Tag[];
-}
-
-const POSTS = [
-  {
-    title: "Seminar Project",
-    Content: Post1,
-    date: new Date("2024-09-2"),
-    tags: ["Coding"],
-  },
-] as const satisfies ReadonlyArray<PostProps>;
+export type Tag = (typeof TAGS)[number];
 
 export default function Blog() {
   const [filteredTags, setFilteredTags] = useState<Set<string>>(new Set());
@@ -54,24 +38,36 @@ export default function Blog() {
         ))}
       </div>
       <div>
-        {POSTS.map((post) => {
-          if (
-            filteredTags.size === 0 ||
-            post.tags.some((tag) => filteredTags.has(tag))
-          ) {
-            return <Post key={post.title.toString()} {...post} />;
-          } else {
-            return null;
-          }
-        })}
+        {Object.entries(POSTS)
+          .sort((p1, p2) => p2[1].date.getTime() - p1[1].date.getTime())
+          .map(([slug, post]) => {
+            if (
+              filteredTags.size === 0 ||
+              post.tags.some((tag) => filteredTags.has(tag))
+            ) {
+              return <Post key={post.title.toString()} {...post} slug={slug} />;
+            } else {
+              return null;
+            }
+          })}
       </div>
     </>
   );
 }
 
-function Post({ title, Content, tags, date }: PostProps) {
+function Post({
+  title,
+  slug,
+  tags,
+  date,
+  summary,
+}: PostProps & { slug: string }) {
   return (
-    <div className="my-4">
+    <a
+      target="_self"
+      href={`/blog/${slug}`}
+      className="no-underline-ani my-4 block rounded-sm p-4 transition-colors hover:bg-gray-100"
+    >
       <h2 className="text-2xl">{title}</h2>
       <div className="flex items-center gap-4">
         <div className="text-sm text-gray-500">{date.toDateString()}</div>
@@ -81,10 +77,8 @@ function Post({ title, Content, tags, date }: PostProps) {
           ))}
         </div>
       </div>
-      <div>
-        <Content />
-      </div>
-    </div>
+      <div>{summary}</div>
+    </a>
   );
 }
 
@@ -94,9 +88,9 @@ interface TagProps {
   onSelect: () => void;
 }
 
-function Tag({ tag, isSelected, onSelect }: TagProps) {
+export function Tag({ tag, isSelected, onSelect }: TagProps) {
   return (
-    <div
+    <button
       className={classNames(
         "cursor-pointer select-none rounded-full px-2 py-0.5 text-sm text-white transition-colors hover:bg-blue-600",
         isSelected ? "bg-blue-600" : "bg-blue-400"
@@ -104,7 +98,7 @@ function Tag({ tag, isSelected, onSelect }: TagProps) {
       onClick={onSelect}
     >
       {tag}
-    </div>
+    </button>
   );
 }
 

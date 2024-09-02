@@ -75,7 +75,6 @@ function isValidSectionName(s: string): s is SectionName {
 
 export default function App() {
   const initialSectionName = useMemo(() => {
-    console.log("here");
     const hash = capitalize(window.location.hash.replace("#", ""));
     return isValidSectionName(hash) ? hash : "About";
   }, []);
@@ -89,7 +88,7 @@ export default function App() {
   }
 
   return (
-    <>
+    <div id="app-root" className="grid h-full gap-4">
       <div className="title grow-0 text-4xl">ELI BERKOWITZ</div>
       <Nav
         selectedSection={SECTION_NAME_TO_SECTION[selectedSectionName]}
@@ -98,7 +97,7 @@ export default function App() {
       <MainContent
         selectedSection={SECTION_NAME_TO_SECTION[selectedSectionName]}
       />
-    </>
+    </div>
   );
 }
 

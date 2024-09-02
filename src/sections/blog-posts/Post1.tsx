@@ -5,7 +5,7 @@ function OrderedList({
 }: {
   children: Array<ReactNode>;
 }): JSX.Element {
-  return <ol className="mb-4 ml-10 list-decimal">{children}</ol>;
+  return <ol className="mb-4 ml-6 list-decimal sm:ml-10">{children}</ol>;
 }
 
 function UnorderedList({
@@ -13,7 +13,7 @@ function UnorderedList({
 }: {
   children: Array<ReactNode>;
 }): JSX.Element {
-  return <ul className="mb-4 ml-10 list-disc">{children}</ul>;
+  return <ul className="mb-4 ml-6 list-disc sm:ml-10">{children}</ul>;
 }
 
 function Header2({ children }: { children: ReactNode }) {
@@ -109,7 +109,7 @@ export default function Post1() {
             caption={<a href="https://www.tbzbrookline.org/">Image source</a>}
           />
           <Image
-            src="/public/TBZ.png"
+            src="/TBZ.png"
             caption={
               <a href="https://www.youtube.com/watch?v=EzByNbfOD_4">
                 Image source
@@ -135,7 +135,7 @@ export default function Post1() {
       />
       <Header2>Raytracer</Header2>
       <p>Conceptual background videos that I found incredibly instructive:</p>
-      <div className="my-1 flex justify-center gap-8">
+      <div className="my-1 flex flex-wrap justify-center gap-8">
         <iframe
           width="560"
           height="315"
@@ -222,9 +222,9 @@ export default function Post1() {
 
 function Image({ src, caption }: { src: string; caption?: ReactNode }) {
   return (
-    <div className="mb-4 flex flex-col gap-1">
+    <div className="mb-4 flex w-full flex-col gap-1">
       <div className="flex w-full justify-center">
-        <img className="max-w-[400px]" src={src} />
+        <img className="w-full max-w-[400px]" src={src} />
       </div>
       {caption && (
         <div className="text-center text-sm">
@@ -239,7 +239,7 @@ function Video({ url, caption }: { url: string; caption: ReactNode }) {
   return (
     <div className="mb-4 flex w-full justify-center text-center">
       <div className="flex flex-col gap-1">
-        <video src={url} className="max-w-[400px]" controls autoPlay />
+        <video src={url} className="w-full max-w-[400px]" controls autoPlay />
         <div className="text-sm">{caption}</div>
       </div>
     </div>
