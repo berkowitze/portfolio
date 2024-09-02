@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import About from "./sections/About";
 import Contact from "./sections/Contact";
 import Resume from "./sections/Resume";
@@ -69,17 +69,31 @@ function capitalize(s: string): string {
   return (s[0]?.toUpperCase() ?? "") + s.slice(1);
 }
 
+function isValidSectionName(s: string): s is SectionName {
+  return s in SECTION_NAME_TO_SECTION;
+}
+
 export default function App() {
-  const [selectedSectionName, setSelectedSectionName] = useState<SectionName>(
-    (capitalize(window.location.hash.replace("#", "")) as SectionName) ||
-      "About"
-  );
+  const initialSectionName = useMemo(() => {
+    console.log("here");
+    const hash = capitalize(window.location.hash.replace("#", ""));
+    return isValidSectionName(hash) ? hash : "About";
+  }, []);
+
+  const [selectedSectionName, setSelectedSectionName] =
+    useState<SectionName>(initialSectionName);
+
+  function handleChangeSectionName(newSectionName: SectionName): void {
+    setSelectedSectionName(newSectionName);
+    history.replaceState(null, "", `#${newSectionName}`);
+  }
+
   return (
     <>
       <div className="title grow-0 text-4xl">ELI BERKOWITZ</div>
       <Nav
         selectedSection={SECTION_NAME_TO_SECTION[selectedSectionName]}
-        onChangeSelectedSection={setSelectedSectionName}
+        onChangeSelectedSection={handleChangeSectionName}
       />
       <MainContent
         selectedSection={SECTION_NAME_TO_SECTION[selectedSectionName]}
