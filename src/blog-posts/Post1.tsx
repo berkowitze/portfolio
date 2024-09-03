@@ -1,24 +1,11 @@
-import { ReactNode } from "react";
-
-function OrderedList({
-  children,
-}: {
-  children: Array<ReactNode>;
-}): JSX.Element {
-  return <ol className="mb-4 ml-6 list-decimal sm:ml-10">{children}</ol>;
-}
-
-function UnorderedList({
-  children,
-}: {
-  children: Array<ReactNode>;
-}): JSX.Element {
-  return <ul className="mb-4 ml-6 list-disc sm:ml-10">{children}</ul>;
-}
-
-function Header2({ children }: { children: ReactNode }) {
-  return <h2 className="mb-4 text-xl">{children}</h2>;
-}
+import Image from "../Util/blog-components/Image";
+import YoutubeEmbed from "../Util/blog-components/YoutubeEmbed";
+import Video from "../Util/blog-components/Video";
+import {
+  Header2,
+  OrderedList,
+  UnorderedList,
+} from "../Util/blog-components/Markup";
 
 export default function Post1() {
   return (
@@ -71,22 +58,24 @@ export default function Post1() {
             optimization challenge for the raytracer, where the number of light
             sources significantly impacts performance.
           </p>
-          <Image
-            caption={
-              <a href="https://www.paulkipnes.com/do-it-in-the-sukkah-sukkah-activities/">
-                Image source
-              </a>
-            }
-            src="https://www.ou.org/holidays/files/Sukkah-Decorations-e1470737398703.jpg"
-          />
-          <Image
-            caption={
-              <a href="https://www.ou.org/holidays/decorations_of_the_sukkah_noy_sukkah/">
-                Image source
-              </a>
-            }
-            src="https://www.paulkipnes.com/wp-content/uploads/o-SUKKAH-570.jpg"
-          />
+          <div className="flex flex-wrap gap-8">
+            <Image
+              caption={
+                <a href="https://www.paulkipnes.com/do-it-in-the-sukkah-sukkah-activities/">
+                  Image source
+                </a>
+              }
+              src="https://www.ou.org/holidays/files/Sukkah-Decorations-e1470737398703.jpg"
+            />
+            <Image
+              caption={
+                <a href="https://www.ou.org/holidays/decorations_of_the_sukkah_noy_sukkah/">
+                  Image source
+                </a>
+              }
+              src="https://www.paulkipnes.com/wp-content/uploads/o-SUKKAH-570.jpg"
+            />
+          </div>
         </li>
         <li>
           <p>
@@ -136,26 +125,8 @@ export default function Post1() {
       <Header2>Raytracer</Header2>
       <p>Conceptual background videos that I found incredibly instructive:</p>
       <div className="my-1 flex flex-wrap justify-center gap-8">
-        <iframe
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/iOlehM5kNSk?si=3O9D8Pdmyfddoz8E"
-          title="YouTube video player"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-        ></iframe>
-        <iframe
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/C8YtdC8mxTU?si=YL4KV_dcgCj9SUHM"
-          title="YouTube video player"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-        ></iframe>
+        <YoutubeEmbed videoId="iOlehM5kNSk" size="small" />
+        <YoutubeEmbed videoId="C8YtdC8mxTU" size="small" />
       </div>
       <p>Eventually, I want the raytracer to support:</p>
       <UnorderedList>
@@ -190,16 +161,7 @@ export default function Post1() {
           </a>{" "}
           as inspiration.
           <div className="mt-1 flex w-full justify-center">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/C1H4zIiCOaI?si=VACMn-rjX1MRmWTJ"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            ></iframe>
+            <YoutubeEmbed videoId="C1H4zIiCOaI" />
           </div>
         </li>
         <li>Implement raytracing scenes from Maya or Blender</li>
@@ -216,32 +178,6 @@ export default function Post1() {
         </li>
         <p></p>
       </OrderedList>
-    </div>
-  );
-}
-
-function Image({ src, caption }: { src: string; caption?: ReactNode }) {
-  return (
-    <div className="mb-4 flex w-full flex-col gap-1">
-      <div className="flex w-full justify-center">
-        <img className="w-full max-w-[400px]" src={src} />
-      </div>
-      {caption && (
-        <div className="text-center text-sm">
-          <a href={src}>Image source</a>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function Video({ url, caption }: { url: string; caption: ReactNode }) {
-  return (
-    <div className="mb-4 flex w-full justify-center text-center">
-      <div className="flex flex-col gap-1">
-        <video src={url} className="w-full max-w-[400px]" controls autoPlay />
-        <div className="text-sm">{caption}</div>
-      </div>
     </div>
   );
 }
