@@ -12,6 +12,12 @@ export default function BlogApp() {
 
   const post = slug && isValidSlugName(slug) ? POSTS[slug] : null;
 
+  useEffect(() => {
+    if (post) {
+      document.title = `Eli Berkowitz - ${post.title}`;
+    }
+  }, [post]);
+
   return (
     <div className="flex h-full flex-col gap-4">
       <a

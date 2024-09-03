@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Tag } from "./Blog";
-import Post1 from "./blog-posts/Post1";
+import Post1 from "../blog-posts/Post1";
 
 export interface PostProps {
   title: ReactNode;
