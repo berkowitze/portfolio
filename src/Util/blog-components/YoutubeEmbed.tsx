@@ -4,9 +4,11 @@ import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
 
 export default function YoutubeEmbed({
   videoId,
+  title,
   size = "large",
 }: {
   videoId: string;
+  title: string;
   size?: "small" | "large";
 }) {
   return (
@@ -16,7 +18,7 @@ export default function YoutubeEmbed({
         size == "small" ? "max-w-[400px]" : "max-w-[500px]"
       )}
     >
-      <LiteYouTubeEmbed id={videoId} title="hi" />
+      <LiteYouTubeEmbed id={videoId} title={title} />
     </div>
   );
 }

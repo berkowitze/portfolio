@@ -121,12 +121,21 @@ export default function Post1() {
             Jellyfish Shrine by Nina Klos
           </a>
         }
+        poster="https://cdnb.artstation.com/p/assets/images/images/052/460/763/large/nina-klos-1.jpg?1659867841"
       />
       <Header2>Raytracer</Header2>
       <p>Conceptual background videos that I found incredibly instructive:</p>
       <div className="my-1 flex flex-wrap justify-center gap-8">
-        <YoutubeEmbed videoId="iOlehM5kNSk" size="small" />
-        <YoutubeEmbed videoId="C8YtdC8mxTU" size="small" />
+        <YoutubeEmbed
+          videoId="iOlehM5kNSk"
+          size="small"
+          title="How does Ray Tracing Work in Video Games and Movies?"
+        />
+        <YoutubeEmbed
+          videoId="C8YtdC8mxTU"
+          size="small"
+          title="How do Video Game Graphics Work?"
+        />
       </div>
       <p>Eventually, I want the raytracer to support:</p>
       <UnorderedList>
@@ -161,7 +170,10 @@ export default function Post1() {
           </a>{" "}
           as inspiration.
           <div className="mt-1 flex w-full justify-center">
-            <YoutubeEmbed videoId="C1H4zIiCOaI" />
+            <YoutubeEmbed
+              videoId="C1H4zIiCOaI"
+              title="Coding Adventure: Optimizing a Ray Tracer (by building a BVH)"
+            />
           </div>
         </li>
         <li>Implement raytracing scenes from Maya or Blender</li>
