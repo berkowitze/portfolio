@@ -15,8 +15,8 @@ export default function Blog() {
   return (
     <>
       <div>
-        As I start my Masters in Fine Arts at Clark University, I will be
-        posting progress and project updates on this blog, roughly once a week.
+        This is the blog of my progress and projects while at the Clark
+        University MFA program. I add new posts a few times a week.
       </div>
       <hr className="my-4" />
       <div className="flex gap-4">

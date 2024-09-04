@@ -1,6 +1,6 @@
+import Gallery from "../Util/art-components/Gallery";
+import Photo from "../Util/art-components/Photo";
 import { ART_PIECES, ArtKind, type ArtPiece } from "./ArtPieces";
-import Gallery from "./ArtComponents/Gallery";
-import Photo from "./ArtComponents/Photo";
 
 export default function Art() {
   return (
