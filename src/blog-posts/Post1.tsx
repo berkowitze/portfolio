@@ -39,7 +39,7 @@ export default function Post1() {
             about. Somewhat similar to my Teashop project from my first Maya
             class. Use of vibrant colors and patterns.
           </p>
-          <Image src="/Art/teashop.jpg" />
+          <Image src="/Art/teashop.jpg" altText="Rendered image of a teashop" />
         </li>
         <li>
           <p className="mb-4">
@@ -47,7 +47,7 @@ export default function Post1() {
             trippy 3d portal where you can go into the puzzle box and enter a
             world made of mushrooms. Use of darker tones and organic shapes.
           </p>
-          <Image src="/Art/puzzle.jpg" />
+          <Image src="/Art/puzzle.jpg" altText="Rendered image of a puzzle box surrounded by puzzle pieces" />
         </li>
         <li>
           <p>
@@ -65,6 +65,7 @@ export default function Post1() {
                   Image source
                 </a>
               }
+              altText="External image of a decorated Sukkah"
               src="https://www.ou.org/holidays/files/Sukkah-Decorations-e1470737398703.jpg"
             />
             <Image
@@ -73,6 +74,7 @@ export default function Post1() {
                   Image source
                 </a>
               }
+              altText="External image of a decorated Sukkah"
               src="https://www.paulkipnes.com/wp-content/uploads/o-SUKKAH-570.jpg"
             />
           </div>
@@ -92,10 +94,12 @@ export default function Post1() {
           <Image
             src="https://www.tbzbrookline.org/wp-content/uploads/2020/10/12-We-are-TBZ.jpg"
             caption={<a href="https://www.tbzbrookline.org/">Image source</a>}
+            altText="External image of the interior of Temple Beth Zion"
           />
           <Image
             src="https://cdn.jewishboston.com/uploads/2019/08/19274838-729x486.jpg"
             caption={<a href="https://www.tbzbrookline.org/">Image source</a>}
+            altText="External image of the interior of Temple Beth Zion"
           />
           <Image
             src="/TBZ.png"
@@ -104,6 +108,7 @@ export default function Post1() {
                 Image source
               </a>
             }
+            altText="External image of the interior of Temple Beth Zion"
           />
         </li>
         <li>Several of these depending on how quickly they go!</li>
@@ -188,7 +193,6 @@ export default function Post1() {
           </a>
           .
         </li>
-        <p></p>
       </OrderedList>
     </div>
   );
