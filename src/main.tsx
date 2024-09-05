@@ -2,7 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  redirect,
+  RouterProvider,
+} from "react-router-dom";
 import BlogApp from "./BlogApp.tsx";
 
 import { useRouteError } from "react-router-dom";
@@ -31,7 +35,12 @@ const router = createBrowserRouter([
     path: `/blog/:slug`,
     element: <BlogApp />,
   },
-  
+  {
+    path: "/blog",
+    loader: async () => {
+      return redirect("/#blog");
+    },
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
