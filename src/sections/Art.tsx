@@ -4,11 +4,17 @@ import { ART_PIECES, ArtKind, type ArtPiece } from "./ArtPieces";
 
 export default function Art() {
   return (
-    <div className="relative mb-8 flex flex-wrap justify-between gap-8 gap-y-12">
-      {ART_PIECES.map((artPiece) => (
-        <Piece key={artPiece.id} artPiece={artPiece} />
-      ))}
-    </div>
+    <>
+      <div className="mb-2">
+        Check out my{" "}
+        <a href="https://artstation.com/eliberkowitz">Artstation</a>.
+      </div>
+      <div className="relative mb-8 flex flex-wrap justify-between gap-8 gap-y-12">
+        {ART_PIECES.map((artPiece) => (
+          <Piece key={artPiece.id} artPiece={artPiece} />
+        ))}
+      </div>
+    </>
   );
 }
 
