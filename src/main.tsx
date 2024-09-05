@@ -31,6 +31,7 @@ const router = createBrowserRouter([
     path: `/blog/:slug`,
     element: <BlogApp />,
   },
+  
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

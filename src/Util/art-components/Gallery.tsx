@@ -1,8 +1,8 @@
 import classNames from "classnames";
 import { useEffect, useRef, useState } from "react";
 import range from "../../Util/range";
-import { ArtKind, type ArtPiece } from "../ArtPieces";
 import { FULLSCREEN_ICON } from "../../constants";
+import { ArtKind, ArtPiece } from "../../sections/ArtPieces";
 
 export default function Gallery({
   piece,

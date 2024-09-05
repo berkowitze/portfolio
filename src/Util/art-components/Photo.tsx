@@ -1,6 +1,6 @@
 import { useRef } from "react";
-import { ArtKind, type ArtPiece } from "../ArtPieces";
 import { FULLSCREEN_ICON } from "../../constants";
+import { ArtKind, ArtPiece } from "../../sections/ArtPieces";
 
 export default function Photo({
   piece,
