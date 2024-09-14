@@ -5,6 +5,7 @@ import Post1 from "../blog-posts/Post1";
 import Post2 from "../blog-posts/Post2";
 import Song from "../Util/blog-components/Song";
 import Post4 from "../blog-posts/Post4";
+import Post5 from "../blog-posts/Post5";
 
 export interface PostProps {
   title: ReactNode;
@@ -22,6 +23,14 @@ export const POSTS = {
     Content: Post4,
     date: new Date("2024-09-9"),
     tags: ["Coding", "Art"],
+  },
+  "seminar-project-milestone-one": {
+    title: "Seminar project - first milestone",
+    summary:
+      "Finishing the first milestone of my seminar project by writing a functional raytracer with a BVH.",
+    Content: Post5,
+    date: new Date("2024-09-14"),
+    tags: ["Coding"],
   },
   "snowboard-song": {
     title: "Music Composition for Games - Snowboard song",
