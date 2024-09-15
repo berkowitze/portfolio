@@ -21,7 +21,8 @@ export default function Post5() {
         </p>
         <OrderedList>
           <li>
-            Starting point:{" "}
+            Starting point from{" "}
+            <a href="/blog/starting-seminar-project">last week</a>:{" "}
             <Image
               src="/Blog/raytracer/07 - diffuse-good.png"
               altText="Rendered image of sphere with diffuse material"
@@ -122,8 +123,8 @@ export default function Post5() {
             To close out the "Raytracing in One Weekend" book, I created a scene
             with a bunch of spheres with randomly generated positions, radii,
             and materials. With a big reflective metal sphere in the middle of
-            the sphere, it's pretty satisfying to see! I cranked up the render
-            settings and generated a 1920x1080 image.
+            the scene, it's pretty satisfying to see all the reflections! I
+            cranked up the render settings and generated a 1920x1080 image.
             <Image
               large
               src="/Blog/raytracer/15 - book 1 done.png"
