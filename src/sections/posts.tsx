@@ -21,7 +21,7 @@ export const POSTS = {
     summary:
       "Starting off the seminar project with some 3D modeling and raytracing code.",
     Content: Post4,
-    date: new Date("2024-09-9"),
+    date: new Date("2024-9-9"),
     tags: ["Coding", "Art"],
   },
   "seminar-project-milestone-one": {
