@@ -16,6 +16,14 @@ export interface PostProps {
 }
 
 export const POSTS = {
+  "seminar-project-milestone-one": {
+    title: "Seminar project - first milestone",
+    summary:
+      "Finishing the first milestone of my seminar project by writing a functional raytracer with a BVH.",
+    Content: Post5,
+    date: new Date("2024-09-16"),
+    tags: ["Coding"],
+  },
   "starting-seminar-project": {
     title: "Getting started - Seminar project",
     summary:
@@ -23,14 +31,6 @@ export const POSTS = {
     Content: Post4,
     date: new Date("2024-09-09"),
     tags: ["Coding", "Art"],
-  },
-  "seminar-project-milestone-one": {
-    title: "Seminar project - first milestone",
-    summary:
-      "Finishing the first milestone of my seminar project by writing a functional raytracer with a BVH.",
-    Content: Post5,
-    date: new Date("2024-09-14"),
-    tags: ["Coding"],
   },
   "snowboard-song": {
     title: "Music Composition for Games - Snowboard song",
