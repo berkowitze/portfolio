@@ -25,7 +25,7 @@ export const POSTS = {
     tags: ["Coding"],
   },
   "starting-seminar-project": {
-    title: "Getting started - Seminar project",
+    title: "Seminar project - getting started",
     summary:
       "Starting off the seminar project with some 3D modeling and raytracing code.",
     Content: Post4,
