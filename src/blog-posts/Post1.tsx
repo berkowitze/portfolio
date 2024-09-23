@@ -47,7 +47,10 @@ export default function Post1() {
             trippy 3d portal where you can go into the puzzle box and enter a
             world made of mushrooms. Use of darker tones and organic shapes.
           </p>
-          <Image src="/Art/puzzle.jpg" altText="Rendered image of a puzzle box surrounded by puzzle pieces" />
+          <Image
+            src="/Art/puzzle.jpg"
+            altText="Rendered image of a puzzle box surrounded by puzzle pieces"
+          />
         </li>
         <li>
           <p>
@@ -60,20 +63,12 @@ export default function Post1() {
           </p>
           <div className="flex flex-wrap gap-8">
             <Image
-              caption={
-                <a href="https://www.paulkipnes.com/do-it-in-the-sukkah-sukkah-activities/">
-                  Image source
-                </a>
-              }
+              captionSrc="https://www.paulkipnes.com/do-it-in-the-sukkah-sukkah-activities/"
               altText="External image of a decorated Sukkah"
               src="https://www.ou.org/holidays/files/Sukkah-Decorations-e1470737398703.jpg"
             />
             <Image
-              caption={
-                <a href="https://www.ou.org/holidays/decorations_of_the_sukkah_noy_sukkah/">
-                  Image source
-                </a>
-              }
+              captionSrc="https://www.ou.org/holidays/decorations_of_the_sukkah_noy_sukkah/"
               altText="External image of a decorated Sukkah"
               src="https://www.paulkipnes.com/wp-content/uploads/o-SUKKAH-570.jpg"
             />
@@ -93,21 +88,17 @@ export default function Post1() {
           </p>
           <Image
             src="https://www.tbzbrookline.org/wp-content/uploads/2020/10/12-We-are-TBZ.jpg"
-            caption={<a href="https://www.tbzbrookline.org/">Image source</a>}
+            captionSrc="https://www.tbzbrookline.org/"
             altText="External image of the interior of Temple Beth Zion"
           />
           <Image
             src="https://cdn.jewishboston.com/uploads/2019/08/19274838-729x486.jpg"
-            caption={<a href="https://www.tbzbrookline.org/">Image source</a>}
+            captionSrc="https://www.tbzbrookline.org/"
             altText="External image of the interior of Temple Beth Zion"
           />
           <Image
             src="/TBZ.png"
-            caption={
-              <a href="https://www.youtube.com/watch?v=EzByNbfOD_4">
-                Image source
-              </a>
-            }
+            captionSrc="https://www.youtube.com/watch?v=EzByNbfOD_4"
             altText="External image of the interior of Temple Beth Zion"
           />
         </li>

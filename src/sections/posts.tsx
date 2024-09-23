@@ -6,6 +6,7 @@ import Post2 from "../blog-posts/Post2";
 import Song from "../Util/blog-components/Song";
 import Post4 from "../blog-posts/Post4";
 import Post5 from "../blog-posts/Post5";
+import Post6 from "../blog-posts/Post6";
 
 export interface PostProps {
   title: ReactNode;
@@ -16,8 +17,23 @@ export interface PostProps {
 }
 
 export const POSTS = {
+  "seminar-project-week-3": {
+    title: "Seminar Project - Week 3",
+    summary: (
+      <>
+        Finishing up the{" "}
+        <a href="https://raytracing.github.io/books/RayTracingTheNextWeek.html">
+          Ray Tracing - The Next Week
+        </a>{" "}
+        book and getting familiar with Blender's geometry nodes
+      </>
+    ),
+    Content: Post6,
+    date: new Date("2024-09-23"),
+    tags: ["Coding", "Art"],
+  },
   "seminar-project-milestone-one": {
-    title: "Seminar project - first milestone",
+    title: "Seminar Project - Week 2",
     summary:
       "Finishing the first milestone of my seminar project by writing a functional raytracer with a BVH.",
     Content: Post5,
@@ -25,7 +41,7 @@ export const POSTS = {
     tags: ["Coding"],
   },
   "starting-seminar-project": {
-    title: "Seminar project - getting started",
+    title: "Seminar Project - Week 1",
     summary:
       "Starting off the seminar project with some 3D modeling and raytracing code.",
     Content: Post4,
@@ -60,7 +76,7 @@ export const POSTS = {
     tags: ["Music"],
   },
   "seminar-project": {
-    title: "Seminar Project",
+    title: "Seminar Project - Plan",
     summary:
       "Plan for my first semester Seminar project in the MFA program at Clark University. Focus on raytracing and 3D modeling.",
     Content: Post1,

@@ -3,14 +3,16 @@ import { ReactNode } from "react";
 
 export default function Image({
   src,
-  caption,
+  captionSrc,
   altText,
   large,
+  caption,
 }: {
   src: string;
-  caption?: ReactNode;
+  captionSrc?: string;
   altText: string;
   large?: boolean;
+  caption?: ReactNode;
 }) {
   return (
     <div className="mb-4 flex flex-col items-center justify-center gap-1">
@@ -24,9 +26,9 @@ export default function Image({
           src={src}
         />
       </div>
-      {caption && (
+      {(captionSrc || caption) && (
         <div className="text-center text-sm">
-          <a href={src}>Image source</a>
+          {caption != null ? caption : <a href={captionSrc}>Image source</a>}
         </div>
       )}
     </div>
