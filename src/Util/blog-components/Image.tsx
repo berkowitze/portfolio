@@ -7,12 +7,14 @@ export default function Image({
   altText,
   large,
   caption,
+  lazy = false,
 }: {
   src: string;
   captionSrc?: string;
   altText: string;
   large?: boolean;
   caption?: ReactNode;
+  lazy?: boolean;
 }) {
   return (
     <div className="mb-4 flex flex-col items-center justify-center gap-1">
@@ -23,6 +25,7 @@ export default function Image({
             "w-full",
             large ? "max-w-[1000px]" : "max-w-[400px]"
           )}
+          loading={lazy ? "lazy" : "eager"}
           src={src}
         />
       </div>
