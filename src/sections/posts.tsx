@@ -7,6 +7,7 @@ import Song from "../Util/blog-components/Song";
 import Post4 from "../blog-posts/Post4";
 import Post5 from "../blog-posts/Post5";
 import Post6 from "../blog-posts/Post6";
+import Post7 from "../blog-posts/Post7";
 
 export interface PostProps {
   title: ReactNode;
@@ -17,6 +18,14 @@ export interface PostProps {
 }
 
 export const POSTS = {
+  "seminar-project-week-4": {
+    title: "Seminar Project - Week 4",
+    summary:
+      "Going through Ray Tracing - The Rest of Your Life, researching OpenPBR, and looking into how to import FBX files into C++",
+    Content: Post7,
+    date: new Date("2024-09-29"),
+    tags: ["Coding"],
+  },
   "seminar-project-week-3": {
     title: "Seminar Project - Week 3",
     summary: (
