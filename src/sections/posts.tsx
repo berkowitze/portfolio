@@ -8,6 +8,7 @@ import Post4 from "../blog-posts/Post4";
 import Post5 from "../blog-posts/Post5";
 import Post6 from "../blog-posts/Post6";
 import Post7 from "../blog-posts/Post7";
+import Post3 from "../blog-posts/Post3";
 
 export interface PostProps {
   title: ReactNode;
@@ -67,7 +68,7 @@ export const POSTS = {
         <Song src="/Music/Snowboard.mp3" />
       </>
     ),
-    Content: Post2,
+    Content: Post3,
     date: new Date("2024-09-09"),
     tags: ["Music"],
   },
