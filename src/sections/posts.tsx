@@ -68,7 +68,7 @@ export const POSTS = {
       </>
     ),
     Content: Post2,
-    date: new Date("2024-9-9"),
+    date: new Date("2024-09-09"),
     tags: ["Music"],
   },
   "first-song": {
@@ -81,7 +81,7 @@ export const POSTS = {
       </>
     ),
     Content: Post2,
-    date: new Date("2024-09-1"),
+    date: new Date("2024-09-01"),
     tags: ["Music"],
   },
   "seminar-project": {
@@ -89,7 +89,7 @@ export const POSTS = {
     summary:
       "Plan for my first semester Seminar project in the MFA program at Clark University. Focus on raytracing and 3D modeling.",
     Content: Post1,
-    date: new Date("2024-09-2"),
+    date: new Date("2024-09-02"),
     tags: ["Coding", "Art"],
   },
 } as const satisfies Record<string, PostProps>;
