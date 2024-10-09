@@ -10,9 +10,9 @@ export default function Post8() {
         able to make tangible progress though, which I'm happy about.
       </p>
       <p>
-        I somewhat arbitrarily decided to use glTF instead of FBX or OBJ,
-        because FBX is proprietary and OBJ is outdated. I also really like that
-        glTF metadata files are very easily human readable (they're just JSON).
+        I decided to use glTF instead of FBX or OBJ, partially because FBX is
+        proprietary and OBJ is outdated. I also really like that glTF metadata
+        files are very easily human readable (they're just JSON).
       </p>
       <p>
         After this, I spent a while reading about glTF, in particular reading
@@ -41,8 +41,8 @@ export default function Post8() {
         I could properly read in meshes, camera info, and material data.
       </p>
       <p>
-        But eventually I got something working with a very basic scene exported
-        from Blender while applying a default gray lambert within the raytracing
+        Eventually I got something working with a very basic scene exported from
+        Blender while applying a default gray lambert within the raytracing
         code:
       </p>
       <Image
@@ -56,6 +56,11 @@ export default function Post8() {
       <Image
         src="/Blog/raytracer/32 - gltf materials.png"
         altText="Rendered image of two colored spheres"
+      />
+      <p>Here's the Blender scene, for reference:</p>
+      <Image
+        src="/Blog/raytracer/33 - blender scene.png"
+        altText="Blender scene with simply colored spheres"
       />
       <p>Here are some fails along the way:</p>
       <ClickableGallery
