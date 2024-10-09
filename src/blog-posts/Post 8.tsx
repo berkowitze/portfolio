@@ -1,5 +1,6 @@
 import ClickableGallery from "../Util/blog-components/ClickableGallery";
 import Image from "../Util/blog-components/Image";
+import { UnorderedList } from "../Util/blog-components/Markup";
 
 export default function Post8() {
   return (
@@ -68,6 +69,22 @@ export default function Post8() {
         max={4}
         pathTemplate="/Blog/raytracer-fails/fail-{}.png"
       />
+      <p>The largest todos are:</p>
+      <UnorderedList>
+        <li>
+          Support any transforms defined in glTF files. Right now, all
+          transforms are applied in Blender since I don't have support for
+          scaling or most rotations in my raytracer yet. This isn't a robust or
+          scalable solution though, and it doesn't work for the camera.
+        </li>
+        <li>Further PBR material support</li>
+        <li>Textures</li>
+        <li>
+          Remove some hardcoding as needed. My goal isn't to make a fully
+          generic glTF raytracer, so I'll only make things generic as needed for
+          my bookstore scene.
+        </li>
+      </UnorderedList>
     </div>
   );
 }
