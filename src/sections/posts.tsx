@@ -12,6 +12,7 @@ import Post3 from "../blog-posts/Post3";
 import Post8 from "../blog-posts/Post8";
 import Post9 from "../blog-posts/Post9";
 import Post10 from "../blog-posts/Post10";
+import Post11 from "../blog-posts/Post11";
 
 export interface PostProps {
   title: ReactNode;
@@ -22,6 +23,13 @@ export interface PostProps {
 }
 
 export const POSTS = {
+  "seminar-project-week-8": {
+    title: "Seminar Project - Week 8",
+    summary: "More 3D modeling and learning Substance Painter",
+    Content: Post11,
+    date: new Date("2024-10-29"),
+    tags: ["Art"],
+  },
   "seminar-project-week-7": {
     title: "Seminar Project - Week 7",
     summary: "Lamp and Armchair",
@@ -38,7 +46,7 @@ export const POSTS = {
   },
   "seminar-project-week-5": {
     title: "Seminar Project - Week 5",
-    summary: "Starting to implement glTF™️ support in the raytracer",
+    summary: "Starting to implemnt glTF™️ support in the raytracer",
     Content: Post8,
     date: new Date("2024-10-08"),
     tags: ["Coding"],
