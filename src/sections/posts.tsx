@@ -15,6 +15,7 @@ import Post10 from "../blog-posts/Post10";
 import Post11 from "../blog-posts/Post11";
 import Post12 from "../blog-posts/Post12";
 import Post13 from "../blog-posts/Post13";
+import Post14 from "../blog-posts/Post14";
 
 export interface PostProps {
   title: ReactNode;
@@ -25,6 +26,13 @@ export interface PostProps {
 }
 
 export const POSTS = {
+  "seminar-project-reflections": {
+    title: "Seminar Project - Reflections",
+    summary: "Reflecting on the semester project",
+    Content: Post14,
+    date: new Date("2024-12-03"),
+    tags: ["Coding", "Art"],
+  },
   "seminar-project-final": {
     title: "Seminar Project - Wrapping Up",
     summary: "Finishing up the semester project",
