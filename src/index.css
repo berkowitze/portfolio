@@ -248,3 +248,7 @@ a:not(.no-underline-ani):hover:after {
 .react-pdf__Page__textContent.textLayer {
   border-radius: theme(borderRadius.md);
 }
+
+.pixelated {
+  image-rendering: pixelated;
+}

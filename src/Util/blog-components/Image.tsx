@@ -8,6 +8,7 @@ export default function Image({
   large,
   caption,
   lazy = false,
+  pixelated,
 }: {
   src: string;
   captionSrc?: string;
@@ -15,6 +16,7 @@ export default function Image({
   large?: boolean;
   caption?: ReactNode;
   lazy?: boolean;
+  pixelated?: boolean;
 }) {
   return (
     <div className="mb-4 flex flex-col items-center justify-center gap-1">
@@ -23,6 +25,7 @@ export default function Image({
           alt={altText}
           className={classNames(
             "w-full",
+            pixelated && "pixelated",
             large ? "max-w-[1000px]" : "max-w-[400px]"
           )}
           loading={lazy ? "lazy" : "eager"}
