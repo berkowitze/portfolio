@@ -166,12 +166,12 @@ export const POSTS = {
     date: new Date("January 28, 2025"),
     tags: ["Coding"],
   },
-  "TODO: SLUG": {
+  "semester-2-week-3": {
     title: "Software Rasterizer - Part 2",
     summary: "Z-buffer, using UVs for texturing, and projections",
     Content: Post17,
     date: new Date("February 4, 2025"),
-    tags: ["Coding", "Art"],
+    tags: ["Coding"],
   },
 } as const satisfies Record<string, PostProps>;
 
