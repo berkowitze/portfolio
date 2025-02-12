@@ -1,5 +1,4 @@
 import Image from "../Util/blog-components/Image";
-import { Header2, UnorderedList } from "../Util/blog-components/Markup";
 
 export default function Post14() {
   return (
