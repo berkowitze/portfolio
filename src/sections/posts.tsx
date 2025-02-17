@@ -20,6 +20,7 @@ import Post15 from "../blog-posts/Post15";
 import Post16 from "../blog-posts/Post16";
 import Post17 from "../blog-posts/Post17";
 import Post18 from "../blog-posts/Post18";
+import Post19 from "../blog-posts/Post19";
 
 export interface PostProps {
   title: ReactNode;
@@ -179,6 +180,14 @@ export const POSTS = {
     summary: "Smooth-shading and camera transformations",
     Content: Post18,
     date: new Date("February 12, 2025"),
+    tags: ["Coding"],
+  },
+  "semester-2-week-5": {
+    title: "Software Rasterizer - Part 4",
+    summary:
+      "Finishing up the rasterizer and preparing a small linear algebra lesson for my milestone presentation",
+    Content: Post19,
+    date: new Date("February 17, 2025"),
     tags: ["Coding"],
   },
 } as const satisfies Record<string, PostProps>;
