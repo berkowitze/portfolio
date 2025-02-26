@@ -1,4 +1,5 @@
 import Image from "../Util/blog-components/Image";
+import YoutubeEmbed from "../Util/blog-components/YoutubeEmbed";
 
 export default function Post14() {
   return (
@@ -17,13 +18,18 @@ export default function Post14() {
         motivation back, so I made a quick fork in Maya and added some dramatic
         lighting for an Arnold render.
       </p>
+      <Image src="/Blog/fork.jpg" altText="Rendered image of a fork" large />
       <p>
-        <Image src="/Blog/fork.jpg" altText="Rendered image of a fork" large />
+        Next week I might use Houdini to make a simulation/animation of the fork
+        moving through some spaghetti. I watched this Youtube video to start
+        learning about Houdini particle systems.
       </p>
-      <p>
-        Not the most productive week, but I'm hoping spring break will help
-        unclog my creative pores!
-      </p>
+      <div className="flex justify-center">
+        <YoutubeEmbed
+          videoId="L2B6lGp7wBc"
+          title="Houdini Tutorial | Noodle Simulation using Particle System"
+        />
+      </div>
     </div>
   );
 }
