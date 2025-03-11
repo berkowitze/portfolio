@@ -7,20 +7,29 @@ export default function Video({
   poster,
   autoPlay,
   loop,
+  preload,
   large,
+  fullWidth = true,
 }: {
   url: string;
   poster?: string;
   caption: ReactNode;
   autoPlay?: boolean;
+  preload?: boolean;
   loop?: boolean;
   large?: boolean;
+  fullWidth?: boolean;
 }) {
   return (
-    <div className="mb-4 flex w-full justify-center text-center">
+    <div
+      className={classNames(
+        "mb-4 flex justify-center text-center",
+        fullWidth && "w-full"
+      )}
+    >
       <div className="flex flex-col gap-1">
         <video
-          preload="none"
+          preload={preload ? "all" : "none"}
           src={url}
           className={classNames(
             "w-full",

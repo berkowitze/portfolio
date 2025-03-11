@@ -1,7 +1,7 @@
 import Image from "../Util/blog-components/Image";
 import { UnorderedList } from "../Util/blog-components/Markup";
 
-export default function Post14() {
+export default function Post16() {
   return (
     <div className="flex flex-col gap-2">
       <p>

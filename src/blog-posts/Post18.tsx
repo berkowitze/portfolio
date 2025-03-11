@@ -1,6 +1,6 @@
 import Image from "../Util/blog-components/Image";
 
-export default function Post14() {
+export default function Post18() {
   return (
     <div className="flex flex-col gap-2">
       <p>

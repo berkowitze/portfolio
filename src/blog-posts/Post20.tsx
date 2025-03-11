@@ -1,7 +1,7 @@
 import Image from "../Util/blog-components/Image";
 import YoutubeEmbed from "../Util/blog-components/YoutubeEmbed";
 
-export default function Post14() {
+export default function Post20() {
   return (
     <div className="flex flex-col gap-2">
       <p>
