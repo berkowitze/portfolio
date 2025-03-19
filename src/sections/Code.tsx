@@ -169,10 +169,19 @@ function CodeProject({
         <div className="text-black">{codePiece.description}</div>
         {codePiece.stack && <p>Stack: {codePiece.stack}</p>}
       </div>
-      {loadImg ? (
+      <CodeVideo src={codePiece.video} load={loadImg} />
+    </a>
+  );
+}
+
+function CodeVideo({ src, load }: { src: string; load: boolean }) {
+  const { ref, inView } = useInView({ triggerOnce: true });
+  return (
+    <div ref={ref} className="size-56 flex-1">
+      {inView && load ? (
         <video
-          src={codePiece.video}
-          className="max-h-64 grow-0"
+          src={src}
+          className="h-full max-h-64 grow-0"
           loop
           autoPlay
           muted
@@ -184,8 +193,8 @@ function CodeProject({
           controls={false}
         />
       ) : (
-        <div className="size-56 flex-1 bg-gray-300" />
+        <div className="object-cover" />
       )}
-    </a>
+    </div>
   );
 }
