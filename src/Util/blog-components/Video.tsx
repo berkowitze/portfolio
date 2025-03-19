@@ -29,7 +29,7 @@ export default function Video({
     >
       <div className="flex flex-col gap-1">
         <video
-          preload={preload ? "all" : "none"}
+          preload={preload || autoPlay ? "all" : "none"}
           src={url}
           className={classNames(
             "w-full",
