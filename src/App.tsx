@@ -171,7 +171,7 @@ function MainContent({ selectedSection }: { selectedSection: Section }) {
           >
             {section.name}
           </div>
-          <section.Page />
+          {(index === selectedSectionIndex || 1) && <section.Page />}
         </div>
       ))}
     </div>

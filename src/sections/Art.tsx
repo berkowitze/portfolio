@@ -1,6 +1,7 @@
 import Gallery from "../Util/art-components/Gallery";
 import Photo from "../Util/art-components/Photo";
 import { ART_PIECES, ArtKind, type ArtPiece } from "./ArtPieces";
+import { useInView } from "react-intersection-observer";
 
 export default function Art() {
   return (
@@ -38,16 +39,22 @@ function Video({
 }: {
   piece: Extract<ArtPiece, { artKind: ArtKind.VIDEO }>;
 }) {
+  const { ref, inView } = useInView({ triggerOnce: true });
   return (
-    <video
-      onClick={(e) => {
-        e.stopPropagation();
-      }}
-      muted
-      preload="auto"
-      loop={piece.loop}
-      controls
-      src={`${piece.src}#t=0.000001`}
-    />
+    <div ref={ref} className="relative object-cover">
+      {inView && (
+        <video
+          ref={ref}
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+          muted
+          preload="auto"
+          loop={piece.loop}
+          controls
+          src={`${piece.src}#t=0.000001`}
+        />
+      )}
+    </div>
   );
 }

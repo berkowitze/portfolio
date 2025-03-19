@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import range from "../../Util/range";
 import { FULLSCREEN_ICON } from "../../constants";
 import { ArtKind, ArtPiece } from "../../sections/ArtPieces";
+import { useInView } from "react-intersection-observer";
 
 export default function Gallery({
   piece,
@@ -22,6 +23,8 @@ export default function Gallery({
     }
   }
 
+  const { ref: viewRef, inView } = useInView({ triggerOnce: true });
+
   return (
     <>
       <div
@@ -29,17 +32,18 @@ export default function Gallery({
         onDoubleClick={handleFullScreen}
         className="relative size-full"
       >
-        <div className="relative size-full">
-          {piece.photos.map((photo, index) => (
-            <img
-              className={classNames(
-                "top-0 bottom-0 transition-opacity duration-1000 place-self-center absolute inset-0 max-h-full",
-                index === currentIndex ? "opacity-100" : "opacity-0"
-              )}
-              key={photo}
-              src={photo}
-            />
-          ))}
+        <div className="relative size-full" ref={viewRef}>
+          {inView &&
+            piece.photos.map((photo, index) => (
+              <img
+                className={classNames(
+                  "top-0 bottom-0 transition-opacity duration-1000 place-self-center absolute inset-0 max-h-full",
+                  index === currentIndex ? "opacity-100" : "opacity-0"
+                )}
+                key={photo}
+                src={photo}
+              />
+            ))}
         </div>
         <GalleryControls
           numPieces={piece.photos.length}
