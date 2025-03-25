@@ -33,7 +33,7 @@ export default function Video({
           src={url}
           className={classNames(
             "w-full",
-            large ? "max-w-[700px]" : "max-w-[400px]"
+            large ? (fullWidth ? "" : "max-w-[700px]") : "max-w-[400px]"
           )}
           controls
           poster={poster}

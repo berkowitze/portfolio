@@ -54,7 +54,7 @@ const ORDERED_SECTIONS = [
   name: string;
   color: string;
   bg: string;
-  Page: React.FC;
+  Page: React.FC<{ active: boolean }>;
   fullScreen: boolean;
 }>;
 
@@ -171,7 +171,7 @@ function MainContent({ selectedSection }: { selectedSection: Section }) {
           >
             {section.name}
           </div>
-          {(index === selectedSectionIndex || 1) && <section.Page />}
+          {<section.Page active={index === selectedSectionIndex} />}
         </div>
       ))}
     </div>

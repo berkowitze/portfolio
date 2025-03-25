@@ -117,7 +117,7 @@ const CODE_PIECES: ReadonlyArray<CodePiece | "professional" | "hobby"> = [
   // "professional",
 ];
 
-export default function Code() {
+export default function Code({ active }: { active: boolean }) {
   const { ref, inView } = useInView({ triggerOnce: true });
   return (
     <div ref={ref} className="flex flex-col gap-8">
@@ -134,7 +134,7 @@ export default function Code() {
         ) : (
           <CodeProject
             key={codePiece.id}
-            loadImg={inView}
+            loadImg={inView && active}
             codePiece={codePiece}
           />
         )
