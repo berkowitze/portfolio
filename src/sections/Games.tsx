@@ -2,20 +2,24 @@ import { useState } from "react";
 
 interface GameInfo {
   id: string;
+  borderColor: string;
   Content: React.ComponentType;
 }
 
 const GAMES: ReadonlyArray<GameInfo> = [
   {
     id: "ouro",
+    borderColor: "border-my-red",
     Content: Ouroboros,
   },
   {
     id: "ew",
+    borderColor: "border-my-red",
     Content: Elsewhere,
   },
   {
     id: "logger",
+    borderColor: "border-my-red",
     Content: LoggerLasher,
   },
 ];
@@ -25,7 +29,7 @@ export default function Games() {
     <div className="flex flex-col gap-4 p-4">
       {GAMES.map((game) => (
         <div key={game.id} className="">
-          <div className="border-l-2 border-fuchsia-500 pl-2">
+          <div className={`border-l-2 ${game.borderColor} pl-2`}>
             <game.Content />
           </div>
           <hr className="mt-4" />
@@ -138,7 +142,16 @@ function Elsewhere() {
 function LoggerLasher() {
   return (
     <div>
+      <div className="text-2xl font-bold">Logger Lasher</div>
+
       <GameVideo src="/Games/loggerlasher.mp4" />
+      <p>
+        My first ever video game! Built with Unity, with some assets created in
+        Maya.
+      </p>
+      <p>
+        <a href="https://logger-lasher.netlify.app/">Play online</a>
+      </p>
     </div>
   );
 }
@@ -149,23 +162,13 @@ function GameImage({ src }: { src: string }) {
 
 function GameVideo({ src, autoplay }: { src: string; autoplay?: boolean }) {
   return (
-    <div>
-      <div className="text-2xl font-bold">Logger Lasher</div>
-      <div className="mb-2 flex justify-center">
-        <video
-          controls
-          className="w-full max-w-[800px]"
-          src={src}
-          autoPlay={autoplay}
-        />
-      </div>
-      <p>
-        My first ever video game! Built with Unity, with some assets created in
-        Maya.
-      </p>
-      <p>
-        <a href="https://logger-lasher.netlify.app/">Play online</a>
-      </p>
+    <div className="mb-2 flex justify-center">
+      <video
+        controls
+        className="w-full max-w-[800px]"
+        src={src}
+        autoPlay={autoplay}
+      />
     </div>
   );
 }
