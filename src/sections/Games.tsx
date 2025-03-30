@@ -43,7 +43,7 @@ function Ouroboros() {
       <div>
         <i>In progress</i>
       </div>
-      <GameVideo src="/Games/ouroboros.mp4" />
+      <GameVideo src="/Games/ouroboros.mp4" autoplay />
       <p>
         A first-person rogue-like shooter with a focus on fast movement. I'm
         building this game with my studio group at Clark University as part of
@@ -147,12 +147,17 @@ function GameImage({ src }: { src: string }) {
   return <img src={src} className="max-w-[400px]" />;
 }
 
-function GameVideo({ src }: { src: string }) {
+function GameVideo({ src, autoplay }: { src: string; autoplay?: boolean }) {
   return (
     <div>
       <div className="text-2xl font-bold">Logger Lasher</div>
       <div className="mb-2 flex justify-center">
-        <video autoPlay controls className="w-full max-w-[800px]" src={src} />
+        <video
+          controls
+          className="w-full max-w-[800px]"
+          src={src}
+          autoPlay={autoplay}
+        />
       </div>
       <p>
         My first ever video game! Built with Unity, with some assets created in
