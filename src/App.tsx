@@ -1,18 +1,19 @@
 import classNames from "classnames";
 import { useEffect, useMemo, useState } from "react";
 import About from "./sections/About";
-import Contact from "./sections/Contact";
+// import Contact from "./sections/Contact";
 import Resume from "./sections/Resume";
 import Art from "./sections/Art";
 import Code from "./sections/Code";
 import Blog from "./sections/Blog";
+import Games from "./sections/Games";
 
 const ORDERED_SECTIONS = [
   {
-    name: "About",
+    name: "Games",
     color: "red",
     bg: "bg-my-red",
-    Page: About,
+    Page: Games,
     fullScreen: false,
   },
   {
@@ -44,12 +45,19 @@ const ORDERED_SECTIONS = [
     fullScreen: true,
   },
   {
-    name: "Contact",
+    name: "About",
     color: "purple",
     bg: "bg-my-purple",
-    Page: Contact,
+    Page: About,
     fullScreen: false,
   },
+  // {
+  //   name: "Contact",
+  //   color: "purple",
+  //   bg: "bg-my-purple",
+  //   Page: Contact,
+  //   fullScreen: false,
+  // },
 ] as const satisfies ReadonlyArray<{
   name: string;
   color: string;
@@ -76,7 +84,7 @@ function isValidSectionName(s: string): s is SectionName {
 export default function App() {
   const initialSectionName = useMemo(() => {
     const hash = capitalize(window.location.hash.replace("#", ""));
-    return isValidSectionName(hash) ? hash : "About";
+    return isValidSectionName(hash) ? hash : "Games";
   }, []);
 
   const [selectedSectionName, setSelectedSectionName] =
@@ -149,7 +157,7 @@ function MainContent({ selectedSection }: { selectedSection: Section }) {
           id={section.name}
           key={section.name}
           className={classNames(
-            "grow-1 bg-white w-full p-4 md:overflow-auto md:max-h-full rounded-[4px] shadow-md border-t-4 content-top-border transition-all duration-1000 relative md:absolute md:inset-0",
+            "grow-1 bg-white w-full p-4 md:overflow-auto md:max-h-full rounded-[4px] shadow-md border-t-4 content-top-border transition-all duration-[800ms] relative md:absolute md:inset-0",
             section.color,
             selectedSection.name == section.name
               ? "opacity-100"

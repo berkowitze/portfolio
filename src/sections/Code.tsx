@@ -87,15 +87,15 @@ const CODE_PIECES: ReadonlyArray<CodePiece | "professional" | "hobby"> = [
     ),
     stack: "Next.js, Twilio, Redis, Postgres, Railway, Upstash",
   },
-  {
-    id: "logger-lasher",
-    url: "https://logger-lasher.netlify.app",
-    title: "Logger Lasher",
-    video: "/Code/loggerlasher.mp4",
-    description:
-      "My first foray into game development. A simple game where you keep the loggers away from the tree. Click to play!",
-    stack: "React, TypeScript",
-  },
+  // {
+  //   id: "logger-lasher",
+  //   url: "https://logger-lasher.netlify.app",
+  //   title: "Logger Lasher",
+  //   video: "/Code/loggerlasher.mp4",
+  //   description:
+  //     "My first foray into game development. A simple game where you keep the loggers away from the tree. Click to play!",
+  //   stack: "Unity",
+  // },
   {
     id: "exosim",
     url: "https://exosim.netlify.app",

@@ -34,16 +34,20 @@ export default function Gallery({
       >
         <div className="relative size-full" ref={viewRef}>
           {inView &&
-            piece.photos.map((photo, index) => (
-              <img
-                className={classNames(
-                  "top-0 bottom-0 transition-opacity duration-1000 place-self-center absolute inset-0 max-h-full",
-                  index === currentIndex ? "opacity-100" : "opacity-0"
-                )}
-                key={photo}
-                src={photo}
-              />
-            ))}
+            piece.photos.map((photo, index) =>
+              photo.endsWith(".mp4") ? (
+                <GalleryVideo active={index === currentIndex} src={photo} />
+              ) : (
+                <img
+                  className={classNames(
+                    "top-0 bottom-0 transition-opacity duration-1000 place-self-center absolute inset-0 max-h-full",
+                    index === currentIndex ? "opacity-100" : "opacity-0"
+                  )}
+                  key={photo}
+                  src={photo}
+                />
+              )
+            )}
         </div>
         <GalleryControls
           numPieces={piece.photos.length}
@@ -55,6 +59,29 @@ export default function Gallery({
     </>
   );
 }
+
+function GalleryVideo({ active, src }: { active: boolean; src: string }) {
+  const ref = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    if (active) {
+      ref.current?.play();
+    }
+  }, [active]);
+  return (
+    <video
+      ref={ref}
+      className={classNames(
+        "top-0 bottom-0 transition-opacity duration-1000 place-self-center absolute inset-0 max-h-full",
+        active ? "opacity-100" : "opacity-0"
+      )}
+      autoPlay
+      loop
+      key={src}
+      src={src}
+    />
+  );
+}
+
 const PAUSE_ICON = <span>&#x23F8;&#xFE0E;</span>;
 const PLAY_ICON = <span>&#x23F5;&#xFE0E;</span>;
 

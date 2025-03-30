@@ -46,6 +46,13 @@ export const ART_PIECES: ReadonlyArray<ArtPiece> = [
   },
   {
     artKind: ArtKind.VIDEO,
+    id: "ladder",
+    title: "Ladder (Houdini)",
+    src: "/Art/ladder.mp4",
+    loop: true,
+  },
+  {
+    artKind: ArtKind.VIDEO,
     id: "lewis",
     title: "Lewis Chess King",
     src: "/Art/chess.mp4",
@@ -56,6 +63,12 @@ export const ART_PIECES: ReadonlyArray<ArtPiece> = [
     id: "tree",
     title: "Tree",
     src: "/Art/tree.jpg",
+  },
+  {
+    artKind: ArtKind.GALLERY,
+    id: "table",
+    title: "Industrial Table (Houdini)",
+    photos: ["/Art/table2.jpg", "/Art/table1.jpg", "/Art/table-anim.mp4"],
   },
   {
     artKind: ArtKind.PHOTO,

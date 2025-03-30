@@ -1,3 +1,7 @@
+const EMAIL = "eliberkowitz@gmail.com";
+const GITHUB = "github.com/berkowitze";
+const ARTSTATION = "artstation.com/eliberkowitz";
+
 export default function About(): JSX.Element {
   return (
     <div className="flex flex-wrap gap-6">
@@ -23,6 +27,17 @@ export default function About(): JSX.Element {
           <li>I play classical piano and flute.</li>
         </ol>
         <p>Please hire me.</p>
+        <div className="flex flex-col gap-2">
+          <div>
+            Email: <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+          </div>
+          <div>
+            Github: <a href={`https://${GITHUB}`}>{GITHUB}</a>
+          </div>
+          <div>
+            Artstation: <a href={`https://${ARTSTATION}`}>{ARTSTATION}</a>
+          </div>
+        </div>
       </div>
       <div className="grow basis-80">
         <img className="w-96" src="/God.jpg" alt="Picture of me" />
