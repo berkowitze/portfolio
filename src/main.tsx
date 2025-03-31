@@ -17,7 +17,18 @@ export default function ErrorPage() {
 
   return (
     <div id="error-page">
-      <p>Sorry, an unexpected error has occurred.</p>
+      <p>
+        Sorry, an unexpected error has occurred. Eli has been notified (unless
+        that system is also broken).
+      </p>
+      <p>
+        In the meantime, check out his{" "}
+        <a href="https://github.com/berkowitze">Github</a>,{" "}
+        <a href="https://artstation.com/eliberkowitz">Artstation</a>, or{" "}
+        <a href="https://eliberkowitz.com/Eli_Berkowitz_Resume.pdf">Resume</a>!
+      </p>
+      <br />
+      <p>Error details:</p>
       <p>
         <i>{error.statusText || error.message}</i>
       </p>
