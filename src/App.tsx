@@ -73,10 +73,6 @@ const SECTION_ID_TO_SECTION = Object.fromEntries(
   ORDERED_SECTIONS.map((section) => [section.id, section])
 ) as Record<SectionId, Section>;
 
-function capitalize(s: string): string {
-  return (s[0]?.toUpperCase() ?? "") + s.slice(1);
-}
-
 function isValidSectionId(s: string): s is SectionId {
   return s in SECTION_ID_TO_SECTION;
 }
