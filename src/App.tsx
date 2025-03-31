@@ -10,36 +10,42 @@ import Games from "./sections/Games";
 
 const ORDERED_SECTIONS = [
   {
+    id: "games",
     name: "Games",
     color: "red",
     bg: "bg-my-red",
     Page: Games,
   },
   {
+    id: "code",
     name: "Code",
     color: "blue",
     bg: "bg-my-blue",
     Page: Code,
   },
   {
+    id: "art",
     name: "3D Art",
     color: "orange",
     bg: "bg-my-orange",
     Page: Art,
   },
   {
+    id: "about",
     name: "About",
     color: "purple",
     bg: "bg-my-purple",
     Page: About,
   },
   {
+    id: "blog",
     name: "Blog",
     color: "pink",
     bg: "bg-my-pink",
     Page: Blog,
   },
   {
+    id: "resume",
     name: "Resume",
     color: "green",
     bg: "bg-my-green",
@@ -53,6 +59,7 @@ const ORDERED_SECTIONS = [
   //   fullScreen: false,
   // },
 ] as const satisfies ReadonlyArray<{
+  id: string;
   name: string;
   color: string;
   bg: string;
@@ -60,18 +67,18 @@ const ORDERED_SECTIONS = [
 }>;
 
 export type Section = (typeof ORDERED_SECTIONS)[number];
-type SectionName = Section["name"];
+type SectionId = Section["id"];
 
-const SECTION_NAME_TO_SECTION = Object.fromEntries(
-  ORDERED_SECTIONS.map((section) => [section.name, section])
-) as Record<SectionName, Section>;
+const SECTION_ID_TO_SECTION = Object.fromEntries(
+  ORDERED_SECTIONS.map((section) => [section.id, section])
+) as Record<SectionId, Section>;
 
 function capitalize(s: string): string {
   return (s[0]?.toUpperCase() ?? "") + s.slice(1);
 }
 
-function isValidSectionName(s: string): s is SectionName {
-  return s in SECTION_NAME_TO_SECTION;
+function isValidSectionId(s: string): s is SectionId {
+  return s in SECTION_ID_TO_SECTION;
 }
 
 function useMostVisibleElement(
@@ -124,36 +131,45 @@ function useMostVisibleElement(
 }
 
 export default function App() {
-  const initialSectionName = useMemo(() => {
-    const hash = capitalize(window.location.hash.replace("#", ""));
-    return isValidSectionName(hash) ? hash : "Games";
+  const initialSectionId = useMemo(() => {
+    const hash = window.location.hash.replace("#", "").toLowerCase();
+    return isValidSectionId(hash) ? hash : "games";
   }, []);
 
-  const [selectedSectionName, setSelectedSectionName] =
-    useState<SectionName>(initialSectionName);
+  const [selectedSectionId, setSelectedSectionId] =
+    useState<SectionId>(initialSectionId);
+
+  // Scroll to the initial selected section on mount
+  useEffect(() => {
+    const element = document.getElementById(selectedSectionId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "instant",
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const mostVisibleElement = useMostVisibleElement(
-    ORDERED_SECTIONS.map((section) => `#${section.name}`),
+    ORDERED_SECTIONS.map((section) => `#${section.id}`),
     "#page-content"
   );
 
   useEffect(() => {
     if (mostVisibleElement) {
-      setSelectedSectionName(
-        mostVisibleElement.id.replace("#", "") as SectionName
-      );
+      setSelectedSectionId(mostVisibleElement.id.replace("#", "") as SectionId);
     }
   }, [mostVisibleElement]);
 
-  function handleChangeSectionName(
-    newSectionName: SectionName,
+  function handleChangeSectionId(
+    newSectionId: SectionId,
     scroll: boolean
   ): void {
-    setSelectedSectionName(newSectionName);
-    history.replaceState(null, "", `#${newSectionName}`);
-    // Scroll to `#${newSectionName}`
+    setSelectedSectionId(newSectionId);
+    history.replaceState(null, "", `#${newSectionId}`);
+    // Scroll to `#${newSectionId}`
     if (!scroll) return;
-    const element = document.getElementById(newSectionName);
+    const element = document.getElementById(newSectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
@@ -170,14 +186,12 @@ export default function App() {
       </div>
 
       <Nav
-        selectedSection={SECTION_NAME_TO_SECTION[selectedSectionName]}
-        onChangeSelectedSection={(newSectionName) => {
-          handleChangeSectionName(newSectionName, true);
+        selectedSection={SECTION_ID_TO_SECTION[selectedSectionId]}
+        onChangeSelectedSection={(newSectionId) => {
+          handleChangeSectionId(newSectionId, true);
         }}
       />
-      <MainContent
-        selectedSection={SECTION_NAME_TO_SECTION[selectedSectionName]}
-      />
+      <MainContent selectedSection={SECTION_ID_TO_SECTION[selectedSectionId]} />
     </div>
   );
 }
@@ -187,23 +201,23 @@ function Nav({
   onChangeSelectedSection,
 }: {
   selectedSection: Section;
-  onChangeSelectedSection: (newSectionName: SectionName) => void;
+  onChangeSelectedSection: (newSectionId: SectionId) => void;
 }) {
   return (
     <div className="nav hidden grow-0 flex-col gap-4 md:flex">
-      {ORDERED_SECTIONS.map(({ name, color }) => (
+      {ORDERED_SECTIONS.map(({ id, name, color }) => (
         <div
           className="sliding-u-l-r-parent cursor-pointer"
           onClick={() => {
-            onChangeSelectedSection(name);
+            onChangeSelectedSection(id);
           }}
-          key={name}
+          key={id}
         >
           <div
             className={classNames(
               "text-2xl sliding-u-l-r w-fit nav-link",
               color,
-              selectedSection.name == name && "selected"
+              selectedSection.id == id && "selected"
             )}
           >
             {name}
@@ -226,8 +240,8 @@ function MainContent({ selectedSection }: { selectedSection: Section }) {
     >
       {ORDERED_SECTIONS.map((section) => (
         <div
-          id={section.name}
-          key={section.name}
+          id={section.id}
+          key={section.id}
           className={classNames("grow-1 w-full shadow-md")}
         >
           <div
