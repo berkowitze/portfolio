@@ -22,7 +22,7 @@ const ORDERED_SECTIONS = [
     Page: Code,
   },
   {
-    name: "Art",
+    name: "3D Art",
     color: "orange",
     bg: "bg-my-orange",
     Page: Art,
