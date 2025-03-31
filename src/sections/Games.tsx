@@ -27,12 +27,10 @@ const GAMES: ReadonlyArray<GameInfo> = [
 export default function Games() {
   return (
     <div className="flex flex-col gap-4 p-4">
-      {GAMES.map((game) => (
-        <div key={game.id} className="">
-          <div className={`border-l-2 ${game.borderColor} pl-2`}>
-            <game.Content />
-          </div>
-          <hr className="mt-4" />
+      {GAMES.map((game, index) => (
+        <div key={game.id}>
+          <game.Content />
+          {index !== GAMES.length - 1 && <hr className="mt-4" />}
         </div>
       ))}
     </div>

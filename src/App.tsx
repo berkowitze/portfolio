@@ -14,42 +14,36 @@ const ORDERED_SECTIONS = [
     color: "red",
     bg: "bg-my-red",
     Page: Games,
-    fullScreen: false,
   },
   {
     name: "Code",
     color: "blue",
     bg: "bg-my-blue",
     Page: Code,
-    fullScreen: false,
   },
   {
     name: "Art",
     color: "orange",
     bg: "bg-my-orange",
     Page: Art,
-    fullScreen: true,
-  },
-  {
-    name: "Blog",
-    color: "pink",
-    bg: "bg-my-pink",
-    Page: Blog,
-    fullScreen: false,
-  },
-  {
-    name: "Resume",
-    color: "green",
-    bg: "bg-my-green",
-    Page: Resume,
-    fullScreen: true,
   },
   {
     name: "About",
     color: "purple",
     bg: "bg-my-purple",
     Page: About,
-    fullScreen: false,
+  },
+  {
+    name: "Blog",
+    color: "pink",
+    bg: "bg-my-pink",
+    Page: Blog,
+  },
+  {
+    name: "Resume",
+    color: "green",
+    bg: "bg-my-green",
+    Page: Resume,
   },
   // {
   //   name: "Contact",
@@ -62,8 +56,7 @@ const ORDERED_SECTIONS = [
   name: string;
   color: string;
   bg: string;
-  Page: React.FC<{ active: boolean }>;
-  fullScreen: boolean;
+  Page: React.FC;
 }>;
 
 export type Section = (typeof ORDERED_SECTIONS)[number];
@@ -81,6 +74,55 @@ function isValidSectionName(s: string): s is SectionName {
   return s in SECTION_NAME_TO_SECTION;
 }
 
+function useMostVisibleElement(
+  selectors: string[],
+  rootSelector: string
+): HTMLElement | null {
+  const [mostVisible, setMostVisible] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    function getMostVisibleElement() {
+      const elements = document.querySelectorAll(selectors.join(","));
+      let maxVisibleArea = 0;
+      let mostVisibleElement = null;
+
+      elements.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        const visibleWidth = Math.max(
+          0,
+          Math.min(rect.right, window.innerWidth) - Math.max(rect.left, 0)
+        );
+        const visibleHeight = Math.max(
+          0,
+          Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0)
+        );
+        const visibleArea = visibleWidth * visibleHeight;
+
+        if (visibleArea > maxVisibleArea) {
+          maxVisibleArea = visibleArea;
+          mostVisibleElement = el;
+        }
+      });
+
+      setMostVisible(mostVisibleElement);
+    }
+
+    const root = document.querySelector(rootSelector);
+    if (!root) return;
+
+    root.addEventListener("scroll", getMostVisibleElement);
+    root.addEventListener("resize", getMostVisibleElement);
+    getMostVisibleElement(); // Initial check
+
+    return () => {
+      root.removeEventListener("scroll", getMostVisibleElement);
+      root.removeEventListener("resize", getMostVisibleElement);
+    };
+  }, [selectors, rootSelector]);
+
+  return mostVisible;
+}
+
 export default function App() {
   const initialSectionName = useMemo(() => {
     const hash = capitalize(window.location.hash.replace("#", ""));
@@ -90,17 +132,48 @@ export default function App() {
   const [selectedSectionName, setSelectedSectionName] =
     useState<SectionName>(initialSectionName);
 
-  function handleChangeSectionName(newSectionName: SectionName): void {
+  const mostVisibleElement = useMostVisibleElement(
+    ORDERED_SECTIONS.map((section) => `#${section.name}`),
+    "#page-content"
+  );
+
+  useEffect(() => {
+    if (mostVisibleElement) {
+      setSelectedSectionName(
+        mostVisibleElement.id.replace("#", "") as SectionName
+      );
+    }
+  }, [mostVisibleElement]);
+
+  function handleChangeSectionName(
+    newSectionName: SectionName,
+    scroll: boolean
+  ): void {
     setSelectedSectionName(newSectionName);
     history.replaceState(null, "", `#${newSectionName}`);
+    // Scroll to `#${newSectionName}`
+    if (!scroll) return;
+    const element = document.getElementById(newSectionName);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
   }
 
   return (
     <div id="app-root" className="grid h-full gap-4">
-      <div className="title grow-0 text-4xl">ELI BERKOWITZ</div>
+      <div className="title grow-0 text-4xl leading-7">
+        ELI BERKOWITZ
+        <br />
+        <span className="text-lg italic text-gray-600">
+          Full stack engineer turned video game artist
+        </span>
+      </div>
+
       <Nav
         selectedSection={SECTION_NAME_TO_SECTION[selectedSectionName]}
-        onChangeSelectedSection={handleChangeSectionName}
+        onChangeSelectedSection={(newSectionName) => {
+          handleChangeSectionName(newSectionName, true);
+        }}
       />
       <MainContent
         selectedSection={SECTION_NAME_TO_SECTION[selectedSectionName]}
@@ -146,40 +219,43 @@ function MainContent({ selectedSection }: { selectedSection: Section }) {
     document.title = `Eli Berkowitz - ${selectedSection.name}`;
   }, [selectedSection.name]);
 
-  const selectedSectionIndex = ORDERED_SECTIONS.findIndex(
-    (section) => section.name == selectedSection.name
-  );
-
   return (
-    <div className="content md:no-scrollbar relative flex grow flex-col gap-8 text-lg md:overflow-hidden">
-      {ORDERED_SECTIONS.map((section, index) => (
+    <div
+      className="content no-scrollbar flex grow flex-col gap-8 overflow-visible overflow-y-auto text-lg"
+      id="page-content"
+    >
+      {ORDERED_SECTIONS.map((section) => (
         <div
           id={section.name}
           key={section.name}
-          className={classNames(
-            "grow-1 bg-white w-full p-4 md:overflow-auto md:max-h-full rounded-[4px] shadow-md border-t-4 content-top-border transition-all duration-[800ms] relative md:absolute md:inset-0",
-            section.color,
-            selectedSection.name == section.name
-              ? "opacity-100"
-              : "md:opacity-0",
-            section.fullScreen ? "h-full" : "md:h-fit",
-            index < selectedSectionIndex // if the section is before the selected section, place it above the screen
-              ? "md:-translate-y-[100vh]"
-              : index > selectedSectionIndex
-              ? // if the section is after the selected section, place it below the screen
-                "md:translate-y-[100vh]"
-              : undefined
-          )}
+          className={classNames("grow-1 w-full shadow-md")}
         >
           <div
             className={classNames(
-              "absolute -translate-y-full top-0 text-white left-0 md:pt-16 text-sm py-1 px-2 rounded-t-md",
+              "text-white left-0 text-sm py-1 px-2 rounded-t-md w-fit relative top-1",
               section.bg
             )}
           >
             {section.name}
           </div>
-          {<section.Page active={index === selectedSectionIndex} />}
+          <div
+            className={classNames(
+              "content-top-border bg-white p-2 sm:p-6 rounded-[4px] border-t-4",
+              section.color
+            )}
+          >
+            <div className="flex h-fit gap-2">
+              <div
+                className={classNames(
+                  "h-[initial] border-r-2 content-top-border",
+                  section.color
+                )}
+              />
+              <div>
+                <section.Page />
+              </div>
+            </div>
+          </div>
         </div>
       ))}
     </div>

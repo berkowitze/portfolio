@@ -36,7 +36,11 @@ export default function Gallery({
           {inView &&
             piece.photos.map((photo, index) =>
               photo.endsWith(".mp4") ? (
-                <GalleryVideo active={index === currentIndex} src={photo} />
+                <GalleryVideo
+                  key={photo}
+                  active={index === currentIndex}
+                  src={photo}
+                />
               ) : (
                 <img
                   className={classNames(

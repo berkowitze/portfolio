@@ -72,6 +72,12 @@ export const ART_PIECES: ReadonlyArray<ArtPiece> = [
   },
   {
     artKind: ArtKind.PHOTO,
+    id: "smores",
+    src: "/Art/smores.jpg",
+    title: "S'mores",
+  },
+  {
+    artKind: ArtKind.PHOTO,
     src: "/Art/plant.jpg",
     id: "plant",
     title: "Plant",
@@ -113,12 +119,12 @@ export const ART_PIECES: ReadonlyArray<ArtPiece> = [
     id: "sunglasses",
     title: "Sunglasses",
   },
-  {
-    artKind: ArtKind.PHOTO,
-    id: "paperclip",
-    title: "Paperclip",
-    src: "/Art/paperclip.jpg",
-  },
+  // {
+  //   artKind: ArtKind.PHOTO,
+  //   id: "paperclip",
+  //   title: "Paperclip",
+  //   src: "/Art/paperclip.jpg",
+  // },
   {
     artKind: ArtKind.PHOTO,
     src: "/Art/snowman funeral.jpg",

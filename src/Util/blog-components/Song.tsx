@@ -11,6 +11,7 @@ export default function Song({ src }: { src: string }) {
       onClick={stopProp}
       src={src}
       preload="none"
+      className="w-full"
       controlsList="nodownload"
     />
   );

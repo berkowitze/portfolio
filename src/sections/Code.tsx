@@ -117,7 +117,7 @@ const CODE_PIECES: ReadonlyArray<CodePiece | "professional" | "hobby"> = [
   // "professional",
 ];
 
-export default function Code({ active }: { active: boolean }) {
+export default function Code() {
   const { ref, inView } = useInView({ triggerOnce: true });
   return (
     <div ref={ref} className="flex flex-col gap-8">
@@ -134,7 +134,7 @@ export default function Code({ active }: { active: boolean }) {
         ) : (
           <CodeProject
             key={codePiece.id}
-            loadImg={inView && active}
+            loadImg={inView}
             codePiece={codePiece}
           />
         )
@@ -155,7 +155,7 @@ function CodeProject({
       target={codePiece.url.startsWith("/") ? "_self" : "_blank"}
       key={codePiece.id}
       href={codePiece.url}
-      className="no-underline-ani flex grow basis-32 cursor-pointer flex-wrap items-center justify-between gap-8 rounded-[2px] border-my-blue/30 p-4 text-left transition-colors duration-300 hover:border-my-blue hover:bg-gray-100 md:border-l-2"
+      className="no-underline-ani flex grow basis-32 cursor-pointer flex-wrap items-center justify-between gap-8 rounded-[2px] p-4 text-left transition-colors duration-300 hover:bg-gray-100"
     >
       <div className="grow basis-96 self-start">
         <h3 className="flex items-center gap-2 text-2xl font-bold text-black">
