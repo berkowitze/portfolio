@@ -6,6 +6,9 @@ const TAGS = [
   "Coding",
   "Art",
   "Music",
+  "C++ Raytracer",
+  "C++ Rasterizer",
+  "Houdini",
 ] as const satisfies ReadonlyArray<string>;
 export type Tag = (typeof TAGS)[number];
 

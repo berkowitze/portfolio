@@ -66,7 +66,7 @@ export default function Post14() {
           figure it out if I go down the "Technical Artist" career path.
           <br />
           However, I do want to put more explicit effort into the art side,
-          because I enjoy it and want to get better at it. I'm hoping taking
+          because I enjoy it and want to get better at it. I'm hoping to take
           Procedural Art next semester will help me in that regard. I'm also
           considering auditing Environment Art.
         </li>

@@ -10,6 +10,13 @@ import Games from "./sections/Games";
 
 const ORDERED_SECTIONS = [
   {
+    id: "art",
+    name: "Art & VFX",
+    color: "orange",
+    bg: "bg-my-orange",
+    Page: Art,
+  },
+  {
     id: "games",
     name: "Games",
     color: "red",
@@ -22,13 +29,6 @@ const ORDERED_SECTIONS = [
     color: "blue",
     bg: "bg-my-blue",
     Page: Code,
-  },
-  {
-    id: "art",
-    name: "3D Art",
-    color: "orange",
-    bg: "bg-my-orange",
-    Page: Art,
   },
   {
     id: "about",
@@ -129,7 +129,7 @@ function useMostVisibleElement(
 export default function App() {
   const initialSectionId = useMemo(() => {
     const hash = window.location.hash.replace("#", "").toLowerCase();
-    return isValidSectionId(hash) ? hash : "games";
+    return isValidSectionId(hash) ? hash : ORDERED_SECTIONS[0].id;
   }, []);
 
   const [selectedSectionId, setSelectedSectionId] =

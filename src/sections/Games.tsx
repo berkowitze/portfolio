@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useInView } from "react-intersection-observer";
 
 interface GameInfo {
   id: string;
@@ -159,14 +160,22 @@ function GameImage({ src }: { src: string }) {
 }
 
 function GameVideo({ src, autoplay }: { src: string; autoplay?: boolean }) {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+  });
   return (
-    <div className="mb-2 flex justify-center">
-      <video
-        controls
-        className="w-full max-w-[800px]"
-        src={src}
-        autoPlay={autoplay}
-      />
+    <div className="mb-2 flex justify-center" ref={ref}>
+      {inView ? (
+        <video
+          controlsList="noplaybackrate"
+          controls
+          className="w-full max-w-[800px]"
+          src={src}
+          autoPlay={autoplay}
+        />
+      ) : (
+        <div className="aspect-video w-full max-w-[800px] bg-gray-200" />
+      )}
     </div>
   );
 }
