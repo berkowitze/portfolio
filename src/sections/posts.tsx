@@ -201,6 +201,14 @@ export const POSTS = {
     date: new Date("March 25, 2025"),
     tags: ["Coding", "Art"],
   },
+  "procedural-art": {
+    title: "Procedural Art Portfolio Pieces",
+    summary:
+      "Preparing some procedural art pieces for my portfolio and making some general portfolio improvements",
+    Content: lazy(() => import("../blog-posts/Post24")),
+    date: new Date("April 3, 2025"),
+    tags: ["Coding", "Art"],
+  },
 } as const satisfies Record<string, PostProps>;
 
 export type SlugName = keyof typeof POSTS;
