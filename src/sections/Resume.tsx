@@ -11,13 +11,10 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 export default function Resume() {
   return (
     <div className="size-full">
-      <Document
-        file={RESUME_LINK}
-        className="hidden h-full rounded-md p-2 md:block"
-      >
+      <Document file={RESUME_LINK} className="hidden rounded-md xl:block">
         <Page
-          className="resume-shadow mx-auto h-full w-fit overflow-auto rounded-md pr-4"
-          scale={1.5}
+          className="resume-shadow mx-auto overflow-auto rounded-md pr-4"
+          scale={1.3}
           pageNumber={1}
           renderAnnotationLayer={false}
         >
@@ -29,7 +26,7 @@ export default function Resume() {
           </a>
         </Page>
       </Document>
-      <div className="md:hidden">
+      <div className="xl:hidden">
         My Resume can be accessed <a href={RESUME_LINK}>here.</a>
       </div>
     </div>

@@ -30,7 +30,7 @@ export default function Gallery({
       <div
         ref={ref}
         onDoubleClick={handleFullScreen}
-        className="relative size-full"
+        className="relative size-full group"
       >
         <div className="relative size-full" ref={viewRef}>
           {inView &&
@@ -121,7 +121,7 @@ function GalleryControls({
         "flex w-full flex-col"
       )}
     >
-      <div className="mb-2 flex items-center gap-2 self-center rounded-md bg-gray-200/40 px-2 py-1">
+      <div className="mb-2 flex items-center gap-2 self-center rounded-md bg-gray-200/40 px-2 py-1 transition-all group-hover:bg-gray-200/60">
         {range(numPieces).map((index) => (
           <div
             key={index}

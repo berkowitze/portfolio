@@ -238,11 +238,11 @@ function MainContent({ selectedSection }: { selectedSection: Section }) {
         <div
           id={section.id}
           key={section.id}
-          className={classNames("grow-1 w-full shadow-md")}
+          className={classNames("grow-1 w-full")}
         >
           <div
             className={classNames(
-              "text-white left-0 text-sm py-1 px-2 rounded-t-md w-fit relative top-1",
+              "text-white left-0 text-sm py-1 px-2 rounded-t-md w-fit relative top-1 shadow-md",
               section.bg
             )}
           >
