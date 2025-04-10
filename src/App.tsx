@@ -12,15 +12,15 @@ const ORDERED_SECTIONS = [
   {
     id: "art-vfx",
     name: "Art & VFX",
-    color: "orange",
-    bg: "bg-my-orange",
+    color: "red",
+    bg: "bg-my-red",
     Page: Art,
   },
   {
     id: "games",
     name: "Games",
-    color: "red",
-    bg: "bg-my-red",
+    color: "orange",
+    bg: "bg-my-orange",
     Page: Games,
   },
   {

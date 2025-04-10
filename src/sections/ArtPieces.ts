@@ -4,9 +4,12 @@ export enum ArtKind {
   PHOTO,
 }
 
+export type SoftwareTitle = "Houdini" | "Maya" | "Blender" | "Substance Painter";
+
 export type ArtPiece = {
   title: string;
   id: string;
+  software: Array<SoftwareTitle>;
 } & (
   | {
       artKind: ArtKind.VIDEO;
@@ -29,6 +32,7 @@ export const ART_PIECES: ReadonlyArray<ArtPiece> = [
     src: "/Art/teashop.jpg",
     id: "teashop",
     title: "Teashop",
+    software: ["Maya"],
   },
   {
     artKind: ArtKind.VIDEO,
@@ -36,12 +40,14 @@ export const ART_PIECES: ReadonlyArray<ArtPiece> = [
     title: "Gumball Machine",
     src: "/Art/gumballs.mp4",
     loop: true,
+    software: ["Maya"],
   },
   {
     artKind: ArtKind.GALLERY,
-    title: "Bike (Houdini)",
+    title: "Bike",
     id: "bike",
     photos: ["/Blog/bike-base.jpeg", "/Blog/bike-rockets.jpeg"],
+    software: ["Houdini", "Substance Painter", "Maya"],
   },
   {
     artKind: ArtKind.VIDEO,
@@ -49,19 +55,22 @@ export const ART_PIECES: ReadonlyArray<ArtPiece> = [
     title: "Bubbles",
     src: "/Art/bubbles.mp4",
     loop: false,
+    software: ["Maya"],
   },
   {
     artKind: ArtKind.PHOTO,
     id: "tree",
     title: "Tree",
     src: "/Art/tree.jpg",
+    software: ["Maya"],
   },
   {
     artKind: ArtKind.VIDEO,
     id: "ladder",
-    title: "Ladder (Houdini)",
+    title: "Ladder",
     src: "/Art/ladder.mp4",
     loop: true,
+    software: ["Houdini"],
   },
   {
     artKind: ArtKind.VIDEO,
@@ -69,42 +78,49 @@ export const ART_PIECES: ReadonlyArray<ArtPiece> = [
     title: "Lewis Chess King",
     src: "/Art/chess.mp4",
     loop: true,
+    software: ["Maya"],
   },
   {
     artKind: ArtKind.GALLERY,
     id: "table",
-    title: "Industrial Table (Houdini)",
+    title: "Industrial Table",
     photos: ["/Art/table2.jpg", "/Art/table1.jpg", "/Art/table-anim.mp4"],
+    software: ["Houdini"],
   },
   {
     artKind: ArtKind.PHOTO,
     id: "smores",
     src: "/Art/smores.jpg",
     title: "S'mores",
+    software: ["Maya"],
   },
   {
     artKind: ArtKind.PHOTO,
     src: "/Art/plant.jpg",
     id: "plant",
     title: "Plant",
+    software: ["Maya"],
   },
   {
     artKind: ArtKind.PHOTO,
     src: "/Art/headphones.jpg",
     id: "headphones",
     title: "Headphones",
+    software: ["Maya"],
   },
   {
     artKind: ArtKind.GALLERY,
     id: "mushroom",
     title: "Mushroom House",
     photos: ["/Art/mushroom1.jpg", "/Art/mushroom2.jpg", "/Art/mushroom3.jpg"],
+    software: ["Maya"],
   },
   {
     artKind: ArtKind.PHOTO,
     src: "/Art/puzzle.jpg",
     id: "puzzle",
     title: "Puzzle",
+    software: ["Maya"],
   },
 
   {
@@ -112,18 +128,21 @@ export const ART_PIECES: ReadonlyArray<ArtPiece> = [
     src: "/Art/teapot.jpg",
     id: "teapot",
     title: "Teapot",
+    software: ["Maya"],
   },
   {
     artKind: ArtKind.PHOTO,
     src: "/Art/spoon.jpg",
     id: "spoon",
     title: "Spoon",
+    software: ["Maya"],
   },
   {
     artKind: ArtKind.PHOTO,
     src: "/Art/sunglasses.jpg",
     id: "sunglasses",
     title: "Sunglasses",
+    software: ["Maya"],
   },
   // {
   //   artKind: ArtKind.PHOTO,
@@ -136,5 +155,6 @@ export const ART_PIECES: ReadonlyArray<ArtPiece> = [
     src: "/Art/snowman funeral.jpg",
     id: "snowman funeral",
     title: "Snowman funeral - my first 3d model!",
+    software: ["Maya"],
   },
 ];

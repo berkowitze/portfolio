@@ -1,6 +1,6 @@
 import Gallery from "../Util/art-components/Gallery";
 import Photo from "../Util/art-components/Photo";
-import { ART_PIECES, ArtKind, type ArtPiece } from "./ArtPieces";
+import { ART_PIECES, ArtKind, SoftwareTitle, type ArtPiece } from "./ArtPieces";
 import { useInView } from "react-intersection-observer";
 
 export default function Art() {
@@ -21,7 +21,10 @@ export default function Art() {
 
 function Piece({ artPiece }: { artPiece: ArtPiece }) {
   return (
-    <div key={artPiece.id} className="h-[216px] grow-0 basis-[384px]">
+    <div
+      key={artPiece.id}
+      className="group relative h-[216px] grow-0 basis-[384px]"
+    >
       {artPiece.artKind === ArtKind.VIDEO ? (
         <Video piece={artPiece} />
       ) : artPiece.artKind === ArtKind.GALLERY ? (
@@ -30,7 +33,29 @@ function Piece({ artPiece }: { artPiece: ArtPiece }) {
         <Photo piece={artPiece} />
       ) : null}
       <div className="text-center">{artPiece.title}</div>
+      <div className="absolute right-2 top-2 flex gap-2">
+        {artPiece.software.map((software) => (
+          <Software software={software} key={software} />
+        ))}
+      </div>
     </div>
+  );
+}
+
+const SOFTWARE_TO_IMG: Record<SoftwareTitle, string> = {
+  Houdini: "/houdini-logo.png",
+  Maya: "/maya-logo.png",
+  Blender: "/blender-logo.png",
+  "Substance Painter": "/substance-painter-logo.png",
+};
+
+function Software({ software }: { software: SoftwareTitle }) {
+  return (
+    <img
+      src={SOFTWARE_TO_IMG[software]}
+      className="size-6 opacity-25 transition-opacity group-hover:opacity-75"
+      alt={software}
+    />
   );
 }
 
@@ -50,6 +75,7 @@ function Video({
           }}
           muted
           preload="auto"
+          autoPlay
           loop={piece.loop}
           controls
           src={`${piece.src}#t=0.000001`}
