@@ -25,13 +25,6 @@ export type ArtPiece = {
 
 export const ART_PIECES: ReadonlyArray<ArtPiece> = [
   {
-    artKind: ArtKind.VIDEO,
-    id: "bubbles",
-    title: "Bubbles",
-    src: "/Art/bubbles.mp4",
-    loop: false,
-  },
-  {
     artKind: ArtKind.PHOTO,
     src: "/Art/teashop.jpg",
     id: "teashop",
@@ -43,6 +36,25 @@ export const ART_PIECES: ReadonlyArray<ArtPiece> = [
     title: "Gumball Machine",
     src: "/Art/gumballs.mp4",
     loop: true,
+  },
+  {
+    artKind: ArtKind.GALLERY,
+    title: "Bike (Houdini)",
+    id: "bike",
+    photos: ["/Blog/bike-base.jpeg", "/Blog/bike-rockets.jpeg"],
+  },
+  {
+    artKind: ArtKind.VIDEO,
+    id: "bubbles",
+    title: "Bubbles",
+    src: "/Art/bubbles.mp4",
+    loop: false,
+  },
+  {
+    artKind: ArtKind.PHOTO,
+    id: "tree",
+    title: "Tree",
+    src: "/Art/tree.jpg",
   },
   {
     artKind: ArtKind.VIDEO,
@@ -57,12 +69,6 @@ export const ART_PIECES: ReadonlyArray<ArtPiece> = [
     title: "Lewis Chess King",
     src: "/Art/chess.mp4",
     loop: true,
-  },
-  {
-    artKind: ArtKind.PHOTO,
-    id: "tree",
-    title: "Tree",
-    src: "/Art/tree.jpg",
   },
   {
     artKind: ArtKind.GALLERY,

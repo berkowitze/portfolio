@@ -46,6 +46,11 @@ function Ouroboros() {
         <i>In progress</i>
       </div>
       <GameVideo src="/Games/ouroboros.mp4" autoplay />
+      <div className="mx-2 flex flex-wrap justify-around gap-4">
+        <GameImage src="/Games/ouro-1.png" />
+        <GameImage src="/Games/ouro-2.png" />
+        <GameImage src="/Games/ouro-3.png" />
+      </div>
       <p>
         A first-person rogue-like shooter with a focus on fast movement. I'm
         building this game with my studio group at Clark University as part of
@@ -96,11 +101,6 @@ function Ouroboros() {
             <li>Blender</li>
             <li>Substance Painter</li>
           </ul>
-          <div className="flex flex-wrap justify-around gap-4">
-            <GameImage src="/Games/ouro-1.png" />
-            <GameImage src="/Games/ouro-2.png" />
-            <GameImage src="/Games/ouro-3.png" />
-          </div>
         </div>
       )}
     </div>
@@ -163,7 +163,7 @@ function GameVideo({ src, autoplay }: { src: string; autoplay?: boolean }) {
     <div className="mb-2 flex justify-center">
       <video
         controls
-        className="w-full max-w-[800px]"
+        className="w-full max-w-[1200px]"
         src={src}
         autoPlay={autoplay}
       />
