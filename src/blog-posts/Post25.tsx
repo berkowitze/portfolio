@@ -1,7 +1,7 @@
 import { UnorderedList } from "../Util/blog-components/Markup";
 import Video from "../Util/blog-components/Video";
 
-export default function Post14() {
+export default function Post25() {
   return (
     <div className="flex flex-col gap-2">
       <p>

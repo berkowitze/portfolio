@@ -213,6 +213,14 @@ export const POSTS = {
     title: "Starting to learn Niagara VFX in Unreal Engine",
     summary: "Making some fireworks in Niagara after following a Udemy course",
     Content: lazy(() => import("../blog-posts/Post25")),
+    date: new Date("April 15, 2025"),
+    tags: ["Coding", "Art"],
+  },
+  "shattering-glass": {
+    title: "Houdini - Shattering Glass",
+    summary:
+      "Shattering glass in Houdini for the beginning of a Rube Goldberg machine simulation",
+    Content: lazy(() => import("../blog-posts/Post26")),
     date: new Date("April 16, 2025"),
     tags: ["Coding", "Art"],
   },
