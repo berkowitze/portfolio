@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { useInView } from "react-intersection-observer";
+import YoutubeEmbed from "../Util/blog-components/YoutubeEmbed";
 
 interface GameInfo {
   id: string;
@@ -39,23 +39,29 @@ export default function Games() {
 }
 
 function Ouroboros() {
-  const [expanded, setExpanded] = useState(false);
   return (
     <div>
       <h2 className="text-2xl font-bold">Ouroboros</h2>
       <div>
         <i>In progress</i>
       </div>
-      <GameVideo src="/Games/ouroboros.mp4" autoplay />
+      <div className="flex w-full justify-center">
+        <YoutubeEmbed videoId="sPk8WOXO5pc" title="Trailer" size="full" />
+      </div>
       <div className="mx-2 flex flex-wrap justify-around gap-4">
         <GameImage src="/Games/ouro-1.png" />
         <GameImage src="/Games/ouro-2.png" />
         <GameImage src="/Games/ouro-3.png" />
+        <GameImage src="/Games/ouro-4.png" />
+        <GameImage src="/Games/ouro-5.png" />
+        <GameImage src="/Games/ouro-6.png" />
+        <GameImage src="/Games/ouro-7.png" />
+        <GameImage src="/Games/ouro-8.png" />
       </div>
       <p>
-        A first-person rogue-like shooter with a focus on fast movement. I'm
-        building this game with my studio group at Clark University as part of
-        my Masters.
+        Ouroboros is a first-person rogue-like shooter with a focus on fast
+        movement. I'm building this game with my studio group at Clark
+        University as part of my Masters.
       </p>
       <div className="flex gap-2">
         <a href="https://drive.google.com/file/d/1ZsuYAtQDfuTU5nztH2XwTf_SyHrOcFin/view?usp=drive_link">
@@ -72,38 +78,29 @@ function Ouroboros() {
           </div>
         </a>
       </div>
-      <a
-        onClick={() => {
-          setExpanded((prev) => !prev);
-        }}
-        className="cursor-pointer italic !text-black"
-      >
-        Show {expanded ? "less" : "more"}
-      </a>
-      {expanded && (
-        <div className="mt-4 flex flex-col gap-2">
-          <p>
-            <b>Personal contributions:</b>
-          </p>
-          <ul className="list-inside list-disc pl-4">
-            <li>Player and camera movement</li>
-            <li>Weapon mechanics</li>
-            <li>Upgrade system</li>
-            <li>VFX</li>
-            <li>3D Props</li>
-            <li>UI/UX</li>
-          </ul>
-          <p>
-            <b>Tools used:</b>
-          </p>
-          <ul className="list-inside list-disc pl-4">
-            <li>Godot</li>
-            <li>C#</li>
-            <li>Blender</li>
-            <li>Substance Painter</li>
-          </ul>
-        </div>
-      )}
+
+      <div className="mt-4 flex flex-col gap-2">
+        <p>
+          <b>Personal contributions:</b>
+        </p>
+        <ul className="list-inside list-disc pl-4">
+          <li>Player and camera movement</li>
+          <li>Weapon mechanics</li>
+          <li>Upgrade system</li>
+          <li>VFX</li>
+          <li>3D Props</li>
+          <li>UI/UX</li>
+        </ul>
+        <p>
+          <b>Tools used:</b>
+        </p>
+        <ul className="list-inside list-disc pl-4">
+          <li>Godot</li>
+          <li>C#</li>
+          <li>Blender</li>
+          <li>Substance Painter</li>
+        </ul>
+      </div>
     </div>
   );
 }
@@ -156,7 +153,7 @@ function LoggerLasher() {
 }
 
 function GameImage({ src }: { src: string }) {
-  return <img src={src} className="max-w-[400px]" />;
+  return <img src={src} className="max-w-[600px]" />;
 }
 
 function GameVideo({ src, autoplay }: { src: string; autoplay?: boolean }) {
@@ -169,7 +166,7 @@ function GameVideo({ src, autoplay }: { src: string; autoplay?: boolean }) {
         <video
           controlsList="noplaybackrate"
           controls
-          className="w-full max-w-[800px]"
+          className="w-full max-w-[1200px]"
           src={src}
           autoPlay={autoplay}
         />
