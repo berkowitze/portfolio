@@ -30,7 +30,7 @@ export default function Gallery({
       <div
         ref={ref}
         onDoubleClick={handleFullScreen}
-        className="relative size-full group"
+        className="group relative size-full"
       >
         <div className="relative size-full" ref={viewRef}>
           {inView &&
