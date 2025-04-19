@@ -10,18 +10,18 @@ import Games from "./sections/Games";
 
 const ORDERED_SECTIONS = [
   {
-    id: "art-vfx",
-    name: "Art & VFX",
-    color: "red",
-    bg: "bg-my-red",
-    Page: Art,
-  },
-  {
     id: "games",
     name: "Games",
+    color: "red",
+    bg: "bg-my-red",
+    Page: Games,
+  },
+  {
+    id: "art-vfx",
+    name: "Art & VFX",
     color: "orange",
     bg: "bg-my-orange",
-    Page: Games,
+    Page: Art,
   },
   {
     id: "code",
@@ -177,7 +177,7 @@ export default function App() {
         ELI BERKOWITZ
         <br />
         <span className="text-lg italic text-gray-600">
-          Full stack engineer turned video game artist
+          Full stack engineer turned video game developer
         </span>
       </div>
 

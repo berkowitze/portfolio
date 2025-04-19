@@ -13,18 +13,19 @@ export interface PostProps {
 
 export const POSTS = {
   "seminar-project-reflections": {
-    title: "Seminar Project - Reflections",
-    summary: "Reflecting on the semester project",
+    title: "Reflections from the first semester",
+    summary: "Reflecting on the seminar project",
     Content: lazy(() => import("../blog-posts/Post14")),
     date: new Date("2024-12-03"),
-    tags: ["Coding", "Art"],
+    tags: ["Coding", "Art", "C++ Raytracer"],
   },
   "seminar-project-final": {
-    title: "Seminar Project - Wrapping Up",
-    summary: "Finishing up the semester project",
+    title: "Wrapping up the seminar project",
+    summary:
+      "Finishing up the raytracer and 3d models by adding raytracer support for smooth shading, various materials, lighting, and whipping up a final scene to render",
     Content: lazy(() => import("../blog-posts/Post13")),
     date: new Date("2024-11-17"),
-    tags: ["Coding", "Art"],
+    tags: ["Coding", "Art", "C++ Raytracer"],
   },
   "seminar-project-week-9": {
     title: "Seminar Project - Week 9",
@@ -59,18 +60,26 @@ export const POSTS = {
     summary: "Starting to implemnt glTF™️ support in the raytracer",
     Content: lazy(() => import("../blog-posts/Post8")),
     date: new Date("2024-10-08"),
-    tags: ["Coding"],
+    tags: ["Coding", "C++ Raytracer"],
   },
   "seminar-project-week-4": {
-    title: "Seminar Project - Week 4",
-    summary:
-      "Going through Ray Tracing - The Rest of Your Life, researching OpenPBR, and looking into how to import FBX files into C++",
+    title: '"Ray Tracing - The Rest of Your Life", FBX Parsing, and OpenPBR',
+    summary: (
+      <>
+        Going through{" "}
+        <a href="https://raytracing.github.io/books/RayTracingTheRestOfYourLife.html">
+          Ray Tracing - The Rest of Your Life
+        </a>
+        , researching OpenPBR, and looking into how to import FBX files into
+        C++.
+      </>
+    ),
     Content: lazy(() => import("../blog-posts/Post7")),
     date: new Date("2024-09-29"),
-    tags: ["Coding"],
+    tags: ["Coding", "C++ Raytracer"],
   },
   "seminar-project-week-3": {
-    title: "Seminar Project - Week 3",
+    title: '"Ray Tracing - The Next Week" and Blender Geometry Nodes',
     summary: (
       <>
         Finishing up the{" "}
@@ -82,23 +91,23 @@ export const POSTS = {
     ),
     Content: lazy(() => import("../blog-posts/Post6")),
     date: new Date("2024-09-23"),
-    tags: ["Coding", "Art"],
+    tags: ["Coding", "Art", "C++ Raytracer"],
   },
   "seminar-project-milestone-one": {
-    title: "Seminar Project - Week 2",
+    title: "Raytracer BVH, Materials, Camera Settings, and Motion Blur",
     summary:
-      "Finishing the first milestone of my seminar project by writing a functional raytracer with a BVH.",
+      "Adding raytracer support for lambertian diffuse, gamma correction, metal and dielectric materials, camera location and depth of field, and motion blur. Optimizing with a BVH.",
     Content: lazy(() => import("../blog-posts/Post5")),
     date: new Date("2024-09-16"),
-    tags: ["Coding"],
+    tags: ["Coding", "C++ Raytracer"],
   },
   "starting-seminar-project": {
-    title: "Seminar Project - Week 1",
+    title: "Basic Raytracer and Bookshelf Model",
     summary:
       "Starting off the seminar project with some 3D modeling and raytracing code.",
     Content: lazy(() => import("../blog-posts/Post4")),
     date: new Date("2024-09-09"),
-    tags: ["Coding", "Art"],
+    tags: ["Coding", "Art", "C++ Raytracer"],
   },
   "snowboard-song": {
     title: "Music Composition for Games - Snowboard song",
@@ -128,40 +137,41 @@ export const POSTS = {
     tags: ["Music"],
   },
   "seminar-project": {
-    title: "Seminar Project - Plan",
+    title: "First Semester Seminar Project Plan",
     summary:
-      "Plan for my first semester Seminar project in the MFA program at Clark University. Focus on raytracing and 3D modeling.",
+      "Plan for my first semester Seminar project in the MFA program at Clark University. I will focus on raytracing and 3D modeling.",
     Content: lazy(() => import("../blog-posts/Post1")),
     date: new Date("2024-09-02"),
     tags: ["Coding", "Art"],
   },
   "semester-2-week-1": {
-    title: "Kicking off the second semester of my MFA",
-    summary: "Switching gears from raytracing to rasterizing!",
+    title: "C++ Rasterizer",
+    summary:
+      "Kicking off my second semester seminar project by switching from writing a raytracer to writing a rasterizer in C++",
     Content: lazy(() => import("../blog-posts/Post15")),
     date: new Date("January 20, 2025"),
-    tags: ["Coding", "Art"],
+    tags: ["Coding", "Art", "C++ Rasterizer"],
   },
   "semester-2-week-2": {
     title: "Software Rasterizer - Part 1",
     summary: "Writing code to render lines and triangles",
     Content: lazy(() => import("../blog-posts/Post16")),
     date: new Date("January 28, 2025"),
-    tags: ["Coding"],
+    tags: ["Coding", "C++ Rasterizer"],
   },
   "semester-2-week-3": {
     title: "Software Rasterizer - Part 2",
     summary: "Z-buffer, using UVs for texturing, and projections",
     Content: lazy(() => import("../blog-posts/Post17")),
     date: new Date("February 4, 2025"),
-    tags: ["Coding"],
+    tags: ["Coding", "C++ Rasterizer"],
   },
   "semester-2-week-4": {
     title: "Software Rasterizer - Part 3",
     summary: "Smooth-shading and camera transformations",
     Content: lazy(() => import("../blog-posts/Post18")),
     date: new Date("February 12, 2025"),
-    tags: ["Coding"],
+    tags: ["Coding", "C++ Rasterizer"],
   },
   "semester-2-week-5": {
     title: "Software Rasterizer - Part 4",
@@ -169,7 +179,7 @@ export const POSTS = {
       "Finishing up the rasterizer and preparing a small linear algebra lesson for my milestone presentation",
     Content: lazy(() => import("../blog-posts/Post19")),
     date: new Date("February 17, 2025"),
-    tags: ["Coding"],
+    tags: ["Coding", "C++ Rasterizer"],
   },
   "semester-2-week-6": {
     title: "OpenGL and Fork",
@@ -179,11 +189,12 @@ export const POSTS = {
     tags: ["Coding", "Art"],
   },
   "semester-2-week-7": {
-    title: "Houdini!",
-    summary: "Starting to delve into VFX in Houdini",
+    title: "Houdini spaghetti simulation!",
+    summary:
+      "Starting to delve into VFX in Houdini by simulating spaghetti falling into a bowl",
     Content: lazy(() => import("../blog-posts/Post21")),
     date: new Date("March 11, 2025"),
-    tags: ["Coding", "Art"],
+    tags: ["Coding", "Art", "Houdini"],
   },
   "semester-2-week-8": {
     title: "Houdini - Patronus",
@@ -191,7 +202,7 @@ export const POSTS = {
       "Doing a patronus VFX effect in Houdini following a Youtube tutorial",
     Content: lazy(() => import("../blog-posts/Post22")),
     date: new Date("March 19, 2025"),
-    tags: ["Coding", "Art"],
+    tags: ["Coding", "Art", "Houdini"],
   },
   "semester-2-week-9": {
     title: "Houdini - Finishing the Patronus",
@@ -199,7 +210,7 @@ export const POSTS = {
       "Finishing the patronus VFX effect in Houdini and compositing it in Nuke",
     Content: lazy(() => import("../blog-posts/Post23")),
     date: new Date("March 25, 2025"),
-    tags: ["Coding", "Art"],
+    tags: ["Coding", "Art", "Houdini"],
   },
   "procedural-art": {
     title: "Procedural Art Portfolio Pieces",

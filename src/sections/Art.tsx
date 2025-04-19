@@ -10,7 +10,7 @@ export default function Art() {
         Check out my{" "}
         <a href="https://artstation.com/eliberkowitz">Artstation</a>.
       </div> */}
-      <div className="relative mb-8 flex flex-wrap justify-between gap-8 gap-y-12">
+      <div className="mb-8 flex flex-wrap justify-between gap-8 gap-y-12">
         {ART_PIECES.map((artPiece) => (
           <Piece key={artPiece.id} artPiece={artPiece} />
         ))}
@@ -78,6 +78,7 @@ function Video({
           autoPlay
           loop={piece.loop}
           controls
+          controlsList=""
           src={`${piece.src}#t=0.000001`}
         />
       )}
