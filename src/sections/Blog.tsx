@@ -22,7 +22,7 @@ export default function Blog() {
         University MFA program. I add new posts a few times a week.
       </div>
       <hr className="my-4" />
-      <div className="flex gap-4">
+      <div className="flex flex-wrap gap-4">
         {TAGS.map((tag) => (
           <Tag
             key={tag}
@@ -69,7 +69,7 @@ function Post({
     <a
       target="_self"
       href={`/blog/${slug}`}
-      className="no-underline-ani my-4 block rounded-sm p-4 transition-colors hover:bg-gray-100"
+      className="no-underline-ani my-4 block w-full rounded-sm p-4 transition-colors hover:bg-gray-100"
     >
       <h2 className="text-2xl">{title}</h2>
       <div className="flex items-center gap-4">

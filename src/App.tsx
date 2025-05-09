@@ -261,7 +261,7 @@ function MainContent({ selectedSection }: { selectedSection: Section }) {
                   section.color
                 )}
               />
-              <div>
+              <div className="w-full">
                 <section.Page />
               </div>
             </div>

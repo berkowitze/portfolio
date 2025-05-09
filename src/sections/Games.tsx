@@ -153,7 +153,7 @@ function LoggerLasher() {
 }
 
 function GameImage({ src }: { src: string }) {
-  return <img src={src} className="max-w-[600px]" />;
+  return <img src={src} className="w-full max-w-[500px]" />;
 }
 
 function GameVideo({ src, autoplay }: { src: string; autoplay?: boolean }) {
