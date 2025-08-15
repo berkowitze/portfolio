@@ -111,7 +111,7 @@ const CODE_PIECES: ReadonlyArray<CodePiece | "professional" | "hobby"> = [
     title: "Life Percent Calculator",
     video: "/Code/lifepercent.mp4",
     description:
-      "My first ever website! Shows a ticking estimate of the percentage of your life that has passed.",
+      "Shows a ticking estimate of the percentage of your life that has passed.",
     stack: "HTML, CSS, JavaScript",
   },
   // "professional",

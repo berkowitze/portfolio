@@ -9,6 +9,11 @@ interface GameInfo {
 
 const GAMES: ReadonlyArray<GameInfo> = [
   {
+    id: "unsent",
+    borderColor: "border-my-red",
+    Content: Unsent,
+  },
+  {
     id: "ouro",
     borderColor: "border-my-red",
     Content: Ouroboros,
@@ -38,15 +43,63 @@ export default function Games() {
   );
 }
 
+function Unsent() {
+  return (
+    <div>
+      <h2 className="text-2xl font-bold">Unsent</h2>
+      <p>
+        <i>In progress</i>
+      </p>
+      <div className="flex w-full justify-center">
+        <YoutubeEmbed videoId="3mhp3QdShNo" title="Trailer" size="xl" />
+      </div>
+      {/* <div className="mx-2 flex flex-wrap justify-around gap-4">
+        <GameImage src="/Games/unsent-1.png" />
+        <GameImage src="/Games/unsent-2.png" />
+        <GameImage src="/Games/unsent-3.png" />
+        <GameImage src="/Games/unsent-4.png" />
+        <GameImage src="/Games/unsent-5.png" />
+        <GameImage src="/Games/unsent-6.png" />
+        <GameImage src="/Games/unsent-7.png" />
+        <GameImage src="/Games/unsent-8.png" />
+      </div> */}
+      <p>
+        Unsent is a wacky 3D platformer set in a labyrinthine 1970's inspired
+        post office.
+      </p>
+      <p>
+        <a href="https://store.steampowered.com/app/3621930/Unsent/">
+          Free demo on Steam
+        </a>
+      </p>
+      <div className="mt-4 flex flex-col gap-2">
+        <p>
+          <b>Personal contributions:</b>
+        </p>
+        <ul className="list-inside list-disc pl-4">
+          <li>VFX</li>
+          <li>Collectible system rewrite</li>
+          <li>Dialogue system improvements</li>
+          <li>Movement improvements</li>
+        </ul>
+        <p>
+          <b>Tools used:</b>
+        </p>
+        <ul className="list-inside list-disc pl-4">
+          <li>Unreal Engine</li>
+          <li>Blender</li>
+        </ul>
+      </div>
+    </div>
+  );
+}
+
 function Ouroboros() {
   return (
     <div>
       <h2 className="text-2xl font-bold">Ouroboros</h2>
-      <div>
-        <i>In progress</i>
-      </div>
       <div className="flex w-full justify-center">
-        <YoutubeEmbed videoId="sPk8WOXO5pc" title="Trailer" size="full" />
+        <YoutubeEmbed videoId="sPk8WOXO5pc" title="Trailer" size="xl" />
       </div>
       <div className="mx-2 flex flex-wrap justify-around gap-4">
         <GameImage src="/Games/ouro-1.png" />
@@ -64,7 +117,7 @@ function Ouroboros() {
         University as part of my Masters.
       </p>
       <div className="flex gap-2">
-        <a href="https://drive.google.com/file/d/1ZsuYAtQDfuTU5nztH2XwTf_SyHrOcFin/view?usp=drive_link">
+        <a href="https://drive.google.com/file/d/1PkaMib7wKsHGV-YSSu1VWL7IOURVL9Y3/view">
           <div className="flex w-full items-center gap-1">
             <img src="/windows-logo.png" className="size-4" />
             Download (Windows)
@@ -141,10 +194,7 @@ function LoggerLasher() {
       <div className="text-2xl font-bold">Logger Lasher</div>
 
       <GameVideo src="/Games/loggerlasher.mp4" />
-      <p>
-        My first ever video game! Built with Unity, with some assets created in
-        Maya.
-      </p>
+      <p>Built with Unity, with some assets created in Maya.</p>
       <p>
         <a href="https://logger-lasher.netlify.app/">Play online</a>
       </p>

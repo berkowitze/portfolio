@@ -4,7 +4,11 @@ export enum ArtKind {
   PHOTO,
 }
 
-export type SoftwareTitle = "Houdini" | "Maya" | "Blender" | "Substance Painter";
+export type SoftwareTitle =
+  | "Houdini"
+  | "Maya"
+  | "Blender"
+  | "Substance Painter";
 
 export type ArtPiece = {
   title: string;
@@ -154,7 +158,7 @@ export const ART_PIECES: ReadonlyArray<ArtPiece> = [
     artKind: ArtKind.PHOTO,
     src: "/Art/snowman funeral.jpg",
     id: "snowman funeral",
-    title: "Snowman funeral - my first 3d model!",
+    title: "Snowman funeral (primitives only)",
     software: ["Maya"],
   },
 ];

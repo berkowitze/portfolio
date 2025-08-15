@@ -72,8 +72,7 @@ export default function Post14() {
       <p>
         I added some rockets to the bike (a nice quick exercise in 3d modeling
         and texturing in Substance Painter), and started doing a rocket fire
-        fluid sim in Houdini. This is my first pyro sim, so it's taking some
-        time to get right, but here's my progress right now:
+        fluid sim in Houdini. Here's my progress right now:
       </p>
       <Image
         large

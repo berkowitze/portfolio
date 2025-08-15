@@ -9,7 +9,7 @@ export default function YoutubeEmbed({
 }: {
   videoId: string;
   title: string;
-  size?: "small" | "large" | "full";
+  size?: "small" | "large" | "full" | "xl";
 }) {
   return (
     <div
@@ -19,6 +19,8 @@ export default function YoutubeEmbed({
           ? "max-w-[1200px]"
           : size == "small"
           ? "max-w-[400px]"
+          : size == "xl"
+          ? "max-w-[800px]"
           : "max-w-[500px]"
       )}
     >
