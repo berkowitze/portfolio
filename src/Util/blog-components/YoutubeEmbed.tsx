@@ -6,22 +6,23 @@ export default function YoutubeEmbed({
   videoId,
   title,
   size = "large",
+  center = false,
 }: {
   videoId: string;
   title: string;
-  size?: "small" | "large" | "full" | "xl";
+  size?: "small" | "large" | "full";
+  center?: boolean;
 }) {
   return (
     <div
       className={classNames(
         "w-full mb-1",
+        center && "mx-auto",
         size == "full"
           ? "max-w-[1200px]"
           : size == "small"
-          ? "max-w-[400px]"
-          : size == "xl"
-          ? "max-w-[800px]"
-          : "max-w-[500px]"
+          ? "max-w-[500px]"
+          : "max-w-[700px]"
       )}
     >
       <LiteYouTubeEmbed id={videoId} title={title} />

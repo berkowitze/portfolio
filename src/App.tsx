@@ -17,18 +17,18 @@ const ORDERED_SECTIONS = [
     Page: Games,
   },
   {
-    id: "art-vfx",
-    name: "Art & VFX",
-    color: "orange",
-    bg: "bg-my-orange",
-    Page: Art,
-  },
-  {
     id: "code",
     name: "Code",
     color: "blue",
     bg: "bg-my-blue",
     Page: Code,
+  },
+  {
+    id: "art",
+    name: "Art",
+    color: "orange",
+    bg: "bg-my-orange",
+    Page: Art,
   },
   {
     id: "about",
