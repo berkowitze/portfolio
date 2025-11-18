@@ -48,7 +48,11 @@ function Unsent() {
     <div>
       <h2 className="text-2xl font-bold">Unsent</h2>
       <p>
-        <i>In progress</i>
+        <i>
+          <a href="https://store.steampowered.com/app/3621930/Unsent/">
+            Early Access on Steam
+          </a>
+        </i>
       </p>
       <div className="flex w-full justify-center">
         <YoutubeEmbed videoId="3mhp3QdShNo" title="Trailer" size="xl" />
@@ -67,20 +71,20 @@ function Unsent() {
         Unsent is a wacky 3D platformer set in a labyrinthine 1970's inspired
         post office.
       </p>
-      <p>
-        <a href="https://store.steampowered.com/app/3621930/Unsent/">
-          Free demo on Steam
-        </a>
-      </p>
       <div className="mt-4 flex flex-col gap-2">
         <p>
-          <b>Personal contributions:</b>
+          <b>Contributions:</b>
         </p>
         <ul className="list-inside list-disc pl-4">
-          <li>VFX</li>
-          <li>Collectible system rewrite</li>
-          <li>Dialogue system improvements</li>
-          <li>Movement improvements</li>
+          <li>
+            Rewrote the collectible system and implemented related VFX and UI
+          </li>
+          <li>Overhauled the UI/UX for the game's shop, menus, HUD</li>
+          <li>Improved the dialogue system</li>
+          <li>
+            Improved platforming feel by introducing leniency mechanics like
+            coyote time and jump buffering
+          </li>
         </ul>
         <p>
           <b>Tools used:</b>
@@ -134,15 +138,15 @@ function Ouroboros() {
 
       <div className="mt-4 flex flex-col gap-2">
         <p>
-          <b>Personal contributions:</b>
+          <b>Contributions:</b>
         </p>
         <ul className="list-inside list-disc pl-4">
           <li>Player and camera movement</li>
           <li>Weapon mechanics</li>
           <li>Upgrade system</li>
-          <li>VFX</li>
-          <li>3D Props</li>
-          <li>UI/UX</li>
+          <li>VFX for weapons and enemies</li>
+          <li>3D environment assets</li>
+          <li>UI/UX for shop, HUD, and menus</li>
         </ul>
         <p>
           <b>Tools used:</b>
