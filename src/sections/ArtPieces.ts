@@ -158,7 +158,7 @@ export const ART_PIECES: ReadonlyArray<ArtPiece> = [
     artKind: ArtKind.PHOTO,
     src: "/Art/snowman funeral.jpg",
     id: "snowman funeral",
-    title: "Snowman funeral (primitives only)",
+    title: "Snowman funeral - primitives only",
     software: ["Maya"],
   },
 ];

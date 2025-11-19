@@ -33,12 +33,14 @@ export default function Video({
           src={url}
           className={classNames(
             "w-full",
-            large ? (fullWidth ? "" : "max-w-[700px]") : "max-w-[400px]"
+            large ? (fullWidth ? "" : "max-w-[700px]") : "max-w-[500px]"
           )}
           controls
           poster={poster}
           autoPlay={autoPlay}
           loop={loop}
+          muted
+          playsInline
         />
         <div className="text-sm">{caption}</div>
       </div>

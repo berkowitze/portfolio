@@ -80,6 +80,8 @@ function GalleryVideo({ active, src }: { active: boolean; src: string }) {
       )}
       autoPlay
       loop
+      muted
+      playsInline
       key={src}
       src={src}
     />

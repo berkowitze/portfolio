@@ -7,6 +7,7 @@ import Art from "./sections/Art";
 import Code from "./sections/Code";
 import Blog from "./sections/Blog";
 import Games from "./sections/Games";
+import { BlogFilterProvider } from "./contexts/BlogFilterContext";
 
 const ORDERED_SECTIONS = [
   {
@@ -17,18 +18,18 @@ const ORDERED_SECTIONS = [
     Page: Games,
   },
   {
-    id: "art-vfx",
-    name: "Art & VFX",
-    color: "orange",
-    bg: "bg-my-orange",
-    Page: Art,
-  },
-  {
     id: "code",
     name: "Code",
     color: "blue",
     bg: "bg-my-blue",
     Page: Code,
+  },
+  {
+    id: "art",
+    name: "Art",
+    color: "orange",
+    bg: "bg-my-orange",
+    Page: Art,
   },
   {
     id: "about",
@@ -129,7 +130,8 @@ function useMostVisibleElement(
 export default function App() {
   const initialSectionId = useMemo(() => {
     const hash = window.location.hash.replace("#", "").toLowerCase();
-    return isValidSectionId(hash) ? hash : ORDERED_SECTIONS[0].id;
+    const sectionId = hash.split("?")[0];
+    return isValidSectionId(sectionId) ? sectionId : ORDERED_SECTIONS[0].id;
   }, []);
 
   const [selectedSectionId, setSelectedSectionId] =
@@ -172,23 +174,27 @@ export default function App() {
   }
 
   return (
-    <div id="app-root" className="grid h-full gap-4">
-      <div className="title grow-0 text-4xl leading-7">
-        ELI BERKOWITZ
-        <br />
-        <span className="text-lg italic text-gray-600">
-          Full stack engineer turned video game developer
-        </span>
-      </div>
+    <BlogFilterProvider>
+      <div id="app-root" className="grid h-full gap-4">
+        <div className="title grow-0 text-4xl leading-7">
+          ELI BERKOWITZ
+          <br />
+          <span className="text-lg italic text-gray-600">
+            Full stack engineer turned video game developer
+          </span>
+        </div>
 
-      <Nav
-        selectedSection={SECTION_ID_TO_SECTION[selectedSectionId]}
-        onChangeSelectedSection={(newSectionId) => {
-          handleChangeSectionId(newSectionId, true);
-        }}
-      />
-      <MainContent selectedSection={SECTION_ID_TO_SECTION[selectedSectionId]} />
-    </div>
+        <Nav
+          selectedSection={SECTION_ID_TO_SECTION[selectedSectionId]}
+          onChangeSelectedSection={(newSectionId) => {
+            handleChangeSectionId(newSectionId, true);
+          }}
+        />
+        <MainContent
+          selectedSection={SECTION_ID_TO_SECTION[selectedSectionId]}
+        />
+      </div>
+    </BlogFilterProvider>
   );
 }
 

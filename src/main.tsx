@@ -8,6 +8,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import BlogApp from "./BlogApp.tsx";
+import GamesApp from "./GamesApp.tsx";
 
 import { useRouteError } from "react-router-dom";
 
@@ -50,6 +51,22 @@ const router = createBrowserRouter([
     path: "/blog",
     loader: async () => {
       return redirect("/#blog");
+    },
+  },
+  {
+    path: `/games/:slug`,
+    element: <GamesApp />,
+  },
+  {
+    path: "/games",
+    loader: async () => {
+      return redirect("/#games");
+    },
+  },
+  {
+    path: "/code",
+    loader: async () => {
+      return redirect("/#code");
     },
   },
 ]);

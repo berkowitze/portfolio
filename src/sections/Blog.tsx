@@ -1,6 +1,6 @@
 import classNames from "classnames";
-import { useState } from "react";
 import { POSTS, PostProps } from "./posts";
+import { useBlogFilter } from "../contexts/BlogFilterContext";
 
 const TAGS = [
   "Coding",
@@ -13,7 +13,7 @@ const TAGS = [
 export type Tag = (typeof TAGS)[number];
 
 export default function Blog() {
-  const [filteredTags, setFilteredTags] = useState<Set<string>>(new Set());
+  const { filteredTags, setFilteredTags } = useBlogFilter();
 
   return (
     <>
@@ -74,7 +74,7 @@ function Post({
       <h2 className="text-2xl">{title}</h2>
       <div className="flex items-center gap-4">
         <div className="text-sm text-gray-500">{date.toDateString()}</div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           {tags.map((tag) => (
             <SmallTag key={tag} tag={tag} />
           ))}
@@ -95,7 +95,7 @@ export function Tag({ tag, isSelected, onSelect }: TagProps) {
   return (
     <button
       className={classNames(
-        "cursor-pointer select-none rounded-full px-2 py-0.5 text-sm text-white transition-colors hover:bg-blue-600",
+        "cursor-pointer select-none rounded-full px-2 py-0.5 text-sm text-white transition-colors hover:bg-blue-600 whitespace-nowrap",
         isSelected ? "bg-blue-600" : "bg-blue-400"
       )}
       onClick={onSelect}
@@ -109,7 +109,7 @@ function SmallTag({ tag }: { tag: string }) {
   return (
     <div
       className={classNames(
-        "cursor-pointer select-none rounded-full px-2 py-0.5 text-sm transition-colors bg-blue-100 hover:bg-blue-300"
+        "cursor-pointer select-none rounded-full px-2 py-0.5 text-sm transition-colors bg-blue-100 hover:bg-blue-300 whitespace-nowrap"
       )}
     >
       {tag}

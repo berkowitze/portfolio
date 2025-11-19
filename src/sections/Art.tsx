@@ -80,6 +80,7 @@ function Video({
           controls
           controlsList=""
           src={`${piece.src}#t=0.000001`}
+          playsInline
         />
       )}
     </div>

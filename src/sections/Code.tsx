@@ -1,200 +1,140 @@
 import { useInView } from "react-intersection-observer";
-import { Fragment } from "react/jsx-runtime";
+import { CODE_PROJECTS, CodeSlug } from "./code-data";
+import { useBlogFilter } from "../contexts/BlogFilterContext";
 
-interface CodePiece {
-  id: string;
-  url: string;
-  title: string;
-  video: string;
-  description: string | JSX.Element;
-  stack?: string;
-  company?: "Benchling" | "Clark University MFA";
-}
-
-const CODE_PIECES: ReadonlyArray<CodePiece | "professional" | "hobby"> = [
-  // "hobby",
-  {
-    id: "raytracer",
-    url: "/blog",
-    title: "C++ Raytracer",
-    video: "/Code/raytracer.mp4",
-    description: (
-      <div>
-        For my Graduate Seminar class at Clark University, I'm writing a
-        raytracer from scratch in C++. At first, it is following the well-known{" "}
-        <a href="https://raytracing.github.io/">Ray Tracing in One Weekend</a>{" "}
-        tutorials.
-        <br />
-        Next, I am augmenting the raytracer with the ability to import and
-        render FBX files, including materials, from a Blender export.
-        <br />I also implemented multiprocessing and feature to preview
-        in-progress renders.
-        <br />
-        <a href="https://github.com/berkowitze/raytracer">Code</a>
-      </div>
-    ),
-    stack: "C++",
-    company: "Clark University MFA",
-  },
-  {
-    id: "analysis-tool",
-    url: "https://help.benchling.com/hc/en-us/articles/15322155422221-Creating-analysis-tables-from-a-Registry-schema",
-    title: "Analysis Tool",
-    video: "/Code/analysis-tool.mp4",
-    description: (
-      <div>
-        I worked on a new analysis platform for Benchling customers to transform
-        and analyze their data without having to write SQL. My work included:
-        <ul className="list-disc pl-6">
-          <li>
-            A tool to create datasets with only checkboxes, building up a
-            GraphQL query under the hood which was then transformed to a dataset
-          </li>
-          <li>
-            Tools for users to add transformations to their data, such as
-            aggregations and filters
-          </li>
-          <li>Scaffolding for the product</li>
-        </ul>
-      </div>
-    ),
-    stack: "React, TypeScript, Flask, SQLAlchemy, Postgres, Redis, S3",
-    company: "Benchling",
-  },
-  {
-    id: "entity-diagram",
-    url: "https://help.benchling.com/hc/en-us/articles/9684226168077-Search-for-schemas-to-use-in-Insights-queries#h_e8f23b880b",
-    title: "Database Diagram",
-    video: "/Code/entity-diagram.mp4",
-    description:
-      "Benchling customers have their own denormalized database schemas that they can query with SQL using the Insights product. This tool helps them understand how their data is structured and interrelated.",
-    stack: "React, TypeScript",
-    company: "Benchling",
-  },
-  {
-    id: "downup",
-    url: "https://downup.app",
-    title: "Downup",
-    video: "/Code/downup.mp4",
-    description: (
-      <span>
-        Hobby website for small communities to do goal-oriented challenges
-        together.
-        <br />
-        For example, a monthly pushup challenge where everyone chooses a number
-        of pushups to do each day.
-      </span>
-    ),
-    stack: "Next.js, Twilio, Redis, Postgres, Railway, Upstash",
-  },
-  // {
-  //   id: "logger-lasher",
-  //   url: "https://logger-lasher.netlify.app",
-  //   title: "Logger Lasher",
-  //   video: "/Code/loggerlasher.mp4",
-  //   description:
-  //     "My first foray into game development. A simple game where you keep the loggers away from the tree. Click to play!",
-  //   stack: "Unity",
-  // },
-  {
-    id: "exosim",
-    url: "https://exosim.netlify.app",
-    title: "Exosim",
-    video: "/Code/exosim.mp4",
-    description:
-      "A physics-based simulator for exoplanet systems. You can create your own system, and see a graph of the star's light intensity over time as planets pass in front of it.",
-    stack: "p5.js",
-  },
-  {
-    id: "life",
-    url: "https://yourlifepercent.com",
-    title: "Life Percent Calculator",
-    video: "/Code/lifepercent.mp4",
-    description:
-      "Shows a ticking estimate of the percentage of your life that has passed.",
-    stack: "HTML, CSS, JavaScript",
-  },
-  // "professional",
-];
+const NUM_CONTRIBUTIONS_TO_SHOW = 4;
 
 export default function Code() {
-  const { ref, inView } = useInView({ triggerOnce: true });
   return (
-    <div ref={ref} className="flex flex-col gap-8">
-      {CODE_PIECES.map((codePiece, index) =>
-        codePiece === "professional" || codePiece === "hobby" ? (
-          <Fragment key={index}>
-            {index > 0 && <hr />}
-            <h2 className="text-3xl font-bold text-black">
-              {codePiece === "professional"
-                ? "Professional work"
-                : "Hobby projects"}
-            </h2>
-          </Fragment>
-        ) : (
-          <CodeProject
-            key={codePiece.id}
-            loadImg={inView}
-            codePiece={codePiece}
-          />
-        )
-      )}
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {(Object.keys(CODE_PROJECTS) as CodeSlug[]).map((slug) => (
+        <CodeCard key={slug} slug={slug} />
+      ))}
     </div>
   );
 }
 
-function CodeProject({
-  codePiece,
-  loadImg,
-}: {
-  codePiece: CodePiece;
-  loadImg: boolean;
-}) {
-  return (
-    <a
-      target={codePiece.url.startsWith("/") ? "_self" : "_blank"}
-      key={codePiece.id}
-      href={codePiece.url}
-      className="no-underline-ani flex grow basis-32 cursor-pointer flex-wrap items-center justify-between gap-8 rounded-[2px] p-4 text-left transition-colors duration-300 hover:bg-gray-100"
-    >
-      <div className="grow basis-96 self-start">
-        <h3 className="flex items-center gap-2 text-2xl font-bold text-black">
-          {codePiece.company && `${codePiece.company} - `}
-          {codePiece.title}
-          <span className="hide-with-pointer translate-y-0.5 text-lg text-my-blue">
-            {" "}
-            &#8599;
-          </span>
-        </h3>
-        <div className="text-black">{codePiece.description}</div>
-        {codePiece.stack && <p>Stack: {codePiece.stack}</p>}
-      </div>
-      <CodeVideo src={codePiece.video} load={loadImg} />
-    </a>
-  );
-}
-
-function CodeVideo({ src, load }: { src: string; load: boolean }) {
+function CodeCard({ slug }: { slug: CodeSlug }) {
+  const project = CODE_PROJECTS[slug];
   const { ref, inView } = useInView({ triggerOnce: true });
+  const { setFilteredTags } = useBlogFilter();
+  const isExternal = project.url && !project.url.startsWith("/");
+  const hasTargetPage = Boolean(project.targetPageId);
+
+  const handleInternalNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+
+    project.onClick?.(setFilteredTags);
+
+    const element = document.getElementById(project.targetPageId!);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      history.replaceState(null, "", `#${project.targetPageId}`);
+    }
+  };
+
+  const cardContent = (
+    <>
+      <div
+        ref={ref}
+        className="relative aspect-video w-full overflow-hidden bg-gray-100"
+      >
+        {inView && (
+          <video
+            src={project.thumbnail}
+            className="size-full object-cover transition-transform group-hover:scale-105"
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+        )}
+      </div>
+      <div className="flex flex-col gap-2 p-4">
+        <div className="flex flex-col gap-1">
+          {project.company && (
+            <span className="text-xs font-semibold uppercase tracking-wide text-blue-600">
+              {project.company}
+            </span>
+          )}
+          <h3 className="text-xl font-bold text-black">{project.title}</h3>
+        </div>
+        <div className="flex flex-wrap gap-1">
+          {project.stack.map((tech) => (
+            <span
+              key={tech}
+              className="whitespace-nowrap rounded-full bg-blue-100 px-2 py-0.5 text-xs text-blue-800"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+        <p className="line-clamp-3 text-sm text-gray-600">
+          {typeof project.description === "string"
+            ? project.description
+            : "Click to learn more about this project"}
+        </p>
+        {project.contributions && (
+          <div className="mt-1">
+            <ul className="mt-1 list-inside list-disc text-sm text-gray-600">
+              {project.contributions
+                .slice(0, NUM_CONTRIBUTIONS_TO_SHOW)
+                .map((contribution, index) => (
+                  <li key={index}>{contribution}</li>
+                ))}
+              {project.contributions.length > NUM_CONTRIBUTIONS_TO_SHOW && (
+                <li className="text-gray-500">
+                  +{project.contributions.length - NUM_CONTRIBUTIONS_TO_SHOW}{" "}
+                  more...
+                </li>
+              )}
+            </ul>
+          </div>
+        )}
+        {(isExternal || hasTargetPage) && (
+          <div className="absolute bottom-0 right-0 p-4 text-right text-sm text-blue-600 transition-colors group-hover:text-blue-800">
+            {hasTargetPage ? (
+              "See more →"
+            ) : (
+              <>
+                Visit site <span className="translate-y-0.5">&#8599;</span>
+              </>
+            )}
+          </div>
+        )}
+      </div>
+    </>
+  );
+
+  if (isExternal) {
+    return (
+      <a
+        href={project.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="no-underline-ani group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md"
+      >
+        {cardContent}
+      </a>
+    );
+  }
+
+  if (hasTargetPage) {
+    return (
+      <a
+        href={`/#${project.targetPageId}`}
+        target="_self"
+        onClick={handleInternalNavClick}
+        className="no-underline-ani group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md"
+      >
+        {cardContent}
+      </a>
+    );
+  }
+
   return (
-    <div ref={ref} className="size-56 flex-1">
-      {inView && load ? (
-        <video
-          src={src}
-          className="h-full max-h-64 grow-0"
-          loop
-          autoPlay
-          muted
-          playsInline
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-          }}
-          controls={false}
-        />
-      ) : (
-        <div className="object-cover" />
-      )}
+    <div className="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md">
+      {cardContent}
     </div>
   );
 }
