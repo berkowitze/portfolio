@@ -39,6 +39,8 @@ export default function Video({
           poster={poster}
           autoPlay={autoPlay}
           loop={loop}
+          muted
+          playsInline
         />
         <div className="text-sm">{caption}</div>
       </div>
