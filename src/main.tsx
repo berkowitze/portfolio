@@ -9,7 +9,6 @@ import {
 } from "react-router-dom";
 import BlogApp from "./BlogApp.tsx";
 import GamesApp from "./GamesApp.tsx";
-import CodeApp from "./CodeApp.tsx";
 
 import { useRouteError } from "react-router-dom";
 
@@ -63,10 +62,6 @@ const router = createBrowserRouter([
     loader: async () => {
       return redirect("/#games");
     },
-  },
-  {
-    path: `/code/:slug`,
-    element: <CodeApp />,
   },
   {
     path: "/code",

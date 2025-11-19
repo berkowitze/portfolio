@@ -54,7 +54,7 @@ function GameCard({ slug }: { slug: GameSlug }) {
           {game.tools.map((tool) => (
             <span
               key={tool}
-              className="rounded-full bg-blue-100 px-2 py-0.5 text-xs text-blue-800"
+              className="whitespace-nowrap rounded-full bg-blue-100 px-2 py-0.5 text-xs text-blue-800"
             >
               {tool}
             </span>

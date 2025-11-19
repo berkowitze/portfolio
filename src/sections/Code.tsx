@@ -1,5 +1,8 @@
 import { useInView } from "react-intersection-observer";
 import { CODE_PROJECTS, CodeSlug } from "./code-data";
+import { useBlogFilter } from "../contexts/BlogFilterContext";
+
+const NUM_CONTRIBUTIONS_TO_SHOW = 4;
 
 export default function Code() {
   return (
@@ -14,15 +17,24 @@ export default function Code() {
 function CodeCard({ slug }: { slug: CodeSlug }) {
   const project = CODE_PROJECTS[slug];
   const { ref, inView } = useInView({ triggerOnce: true });
-  const isExternal = !project.url.startsWith("/");
+  const { setFilteredTags } = useBlogFilter();
+  const isExternal = project.url && !project.url.startsWith("/");
+  const hasTargetPage = Boolean(project.targetPageId);
 
-  return (
-    <a
-      href={isExternal ? project.url : `/code/${slug}`}
-      target={isExternal ? "_blank" : "_self"}
-      rel={isExternal ? "noopener noreferrer" : undefined}
-      className="no-underline-ani group flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md"
-    >
+  const handleInternalNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+
+    project.onClick?.(setFilteredTags);
+
+    const element = document.getElementById(project.targetPageId!);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      history.replaceState(null, "", `#${project.targetPageId}`);
+    }
+  };
+
+  const cardContent = (
+    <>
       <div
         ref={ref}
         className="relative aspect-video w-full overflow-hidden bg-gray-100"
@@ -39,19 +51,19 @@ function CodeCard({ slug }: { slug: CodeSlug }) {
         )}
       </div>
       <div className="flex flex-col gap-2 p-4">
-        <h3 className="text-xl font-bold text-black">
+        <div className="flex flex-col gap-1">
           {project.company && (
-            <span className="text-base font-normal text-gray-600">
-              {project.company} -{" "}
+            <span className="text-xs font-semibold uppercase tracking-wide text-blue-600">
+              {project.company}
             </span>
           )}
-          {project.title}
-        </h3>
+          <h3 className="text-xl font-bold text-black">{project.title}</h3>
+        </div>
         <div className="flex flex-wrap gap-1">
           {project.stack.map((tech) => (
             <span
               key={tech}
-              className="rounded-full bg-blue-100 px-2 py-0.5 text-xs text-blue-800"
+              className="whitespace-nowrap rounded-full bg-blue-100 px-2 py-0.5 text-xs text-blue-800"
             >
               {tech}
             </span>
@@ -64,31 +76,65 @@ function CodeCard({ slug }: { slug: CodeSlug }) {
         </p>
         {project.contributions && (
           <div className="mt-1">
-            <div className="text-sm font-semibold text-gray-700">
-              Contributions:
-            </div>
             <ul className="mt-1 list-inside list-disc text-sm text-gray-600">
-              {project.contributions.slice(0, 2).map((contribution, index) => (
-                <li key={index}>{contribution}</li>
-              ))}
-              {project.contributions.length > 2 && (
+              {project.contributions
+                .slice(0, NUM_CONTRIBUTIONS_TO_SHOW)
+                .map((contribution, index) => (
+                  <li key={index}>{contribution}</li>
+                ))}
+              {project.contributions.length > NUM_CONTRIBUTIONS_TO_SHOW && (
                 <li className="text-gray-500">
-                  +{project.contributions.length - 2} more...
+                  +{project.contributions.length - NUM_CONTRIBUTIONS_TO_SHOW}{" "}
+                  more...
                 </li>
               )}
             </ul>
           </div>
         )}
-        <div className="mt-auto pt-2 text-right text-sm text-blue-600 transition-colors group-hover:text-blue-800">
-          {isExternal ? (
-            <>
-              Visit site <span className="translate-y-0.5">&#8599;</span>
-            </>
-          ) : (
-            "See more →"
-          )}
-        </div>
+        {(isExternal || hasTargetPage) && (
+          <div className="absolute bottom-0 right-0 p-4 text-right text-sm text-blue-600 transition-colors group-hover:text-blue-800">
+            {hasTargetPage ? (
+              "See more →"
+            ) : (
+              <>
+                Visit site <span className="translate-y-0.5">&#8599;</span>
+              </>
+            )}
+          </div>
+        )}
       </div>
-    </a>
+    </>
+  );
+
+  if (isExternal) {
+    return (
+      <a
+        href={project.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="no-underline-ani group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md"
+      >
+        {cardContent}
+      </a>
+    );
+  }
+
+  if (hasTargetPage) {
+    return (
+      <a
+        href={`/#${project.targetPageId}`}
+        target="_self"
+        onClick={handleInternalNavClick}
+        className="no-underline-ani group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md"
+      >
+        {cardContent}
+      </a>
+    );
+  }
+
+  return (
+    <div className="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md">
+      {cardContent}
+    </div>
   );
 }
