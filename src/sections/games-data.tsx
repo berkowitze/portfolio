@@ -43,42 +43,84 @@ export const GAMES: Record<string, GameInfo> = {
   },
   ouro: {
     title: "Ouroboros",
-    thumbnail: "/Games/ouro-1.png",
+    thumbnail: "/Games/ouro-logo.png",
+    status: (
+      <a href="https://nyan617.itch.io/ouroboros" target="_blank">
+        Download on itch.io
+      </a>
+    ),
     contributions: [
       "Player and camera movement",
       "Weapon mechanics",
       "Upgrade system",
-      "VFX",
       "3D Props",
-      "UI/UX",
+      "Bar and main menu UI/UX",
     ],
     tools: ["Godot", "C#", "Blender", "Substance Painter"],
-    links: [
-      {
-        label: "Download (Windows)",
-        href: "https://drive.google.com/file/d/1ZsuYAtQDfuTU5nztH2XwTf_SyHrOcFin/view?usp=drive_link",
-      },
-      {
-        label: "Download (Mac)",
-        href: "https://drive.google.com/file/d/1Z90QSXis96q8WgWkGxi4k6y3cV3_m98-/view?usp=drive_link",
-      },
-    ],
     Content: OuroborosContent,
   },
-  elsewhere: {
-    title: "Elsewhere Creatures",
-    thumbnail: "/Games/Creatures/Creatures Logo.png",
+  // elsewhere: {
+  //   title: "Elsewhere Creatures",
+  //   thumbnail: "/Games/Creatures/Creatures Logo.png",
+  //   contributions: [
+  //     "Built entire game from scratch",
+  //     "Real-time multiplayer synchronization",
+  //     "Game logic and card mechanics",
+  //     "UI/UX design",
+  //     "Database design and API development",
+  //   ],
+  //   tools: ["React", "PostgreSQL", "Colyseus"],
+  //   Content: ElsewhereContent,
+  // },
+  cognitive: {
+    title: "Cognitive",
+    thumbnail: "/Games/Cognitive/Cognitive Logo.png",
+    status: "In development",
     contributions: [
-      "Built entire game from scratch",
-      "Real-time multiplayer synchronization",
-      "Game logic and card mechanics",
-      "UI/UX design",
-      "Database design and API development",
+      "Lead developer, implementing all gameplay systems",
+      "Producer, managing sprint planning and task allocation",
+      "Developing pipelines to bring artists' assets into the game",
+      "Mentoring people on the team in Unity and texturing development flows",
     ],
-    tools: ["React", "PostgreSQL", "Colyseus"],
-    Content: ElsewhereContent,
+    tools: ["Unity", "C#", "Blender", "Substance Painter"],
+    Content: CognitiveContent,
   },
 };
+
+function CognitiveContent() {
+  return (
+    <div className="flex flex-col gap-4">
+      <p>
+        <b>Cognitive</b> is a 3D puzzle platformer set in a dystopian future. It
+        is still in development as part of my Masters degree at Clark
+        University.
+      </p>
+      <h3 className="underline">Contributions</h3>
+      <p>
+        <strong>Lead developer</strong>: I am in charge of all gameplay systems,
+        including player movement, puzzle mechanics, interactions, cutscenes,
+        UI/UX, and art pipelines.
+      </p>
+      <p>
+        <strong>Producer</strong>: I manage the sprint planning and task
+        allocation for the 8-person team.
+      </p>
+      <p>
+        <strong>Mentoring</strong>: I mentor people on the team in use of Unity
+        (setting up prefabs, materials, etc.) and texturing development flows
+        using Substance Painter and Blender.
+      </p>
+      <div className="mx-2 flex flex-wrap justify-around gap-4">
+        <GameImage src="/Games/Cognitive/Cognitive 01.png" />
+        <GameImage src="/Games/Cognitive/Cognitive 02.png" />
+        <GameImage src="/Games/Cognitive/Cognitive 03.png" />
+        <GameImage src="/Games/Cognitive/Cognitive 04.png" />
+        <GameImage src="/Games/Cognitive/Cognitive 05.png" />
+        <GameImage src="/Games/Cognitive/Cognitive 06.png" />
+      </div>
+    </div>
+  );
+}
 
 function UnsentContent() {
   return (
@@ -156,15 +198,46 @@ export function isValidGameSlug(slug: string): slug is GameSlug {
 }
 
 function GameImage({ src }: { src: string }) {
-  return <img src={src} className="max-w-[600px]" />;
+  return <img src={src} className="max-w-[400px]" />;
 }
 
 // Content components for each game
 function OuroborosContent() {
   return (
     <div className="flex flex-col gap-4">
+      <p>
+        Set in a dark cyberpunk future, Ouroboros is a fast-paced roguelike
+        shooter with a retro webcore style.
+      </p>
+      <p>It was built as part of a Game Studio course at Clark University.</p>
+      <h3 className="underline">Contributions</h3>
+      <p>
+        <strong>Player and camera movement:</strong> I built the player and
+        camera movement systems, including: WASD movement, crouching, dashing,
+        jumping, wall slide/wall jump, and ground pound. I also added leniency
+        mechanics like input buffering and coyote frames.
+      </p>
+      <p>
+        <strong>Weapon mechanics:</strong> I built the weapon mechanics,
+        including the ability to fire weapons and the ability to reload.
+        Specific weapons I implemented were a "raycaster", katana, a shotgun, a
+        grenade launcher, and a kunai. Each weapon has unique primary and
+        secondary attacks.
+      </p>
+      <p>
+        <b>Upgrade system:</b> Coworking with another student on the team, we
+        built an upgrade system (bar drinks) with fun upgrades for each weapon
+        and the player's stats. The upgrades can be purchased at the bar or at
+        vending machines at the end of each level; I worked on the UI/UX for
+        both of these.
+      </p>
+      <p>
+        <b>Gameplay flow</b>: I worked on the overall flow of the game,
+        including the main menu, tablet for viewing upgrades, player
+        health/stamina/HUD, weapon swapping, item purchases, and more.
+      </p>
       <div className="flex w-full justify-center">
-        <YoutubeEmbed videoId="sPk8WOXO5pc" title="Trailer" size="full" />
+        <YoutubeEmbed videoId="sPk8WOXO5pc" title="Trailer" size="large" />
       </div>
       <div className="mx-2 flex flex-wrap justify-around gap-4">
         <GameImage src="/Games/ouro-1.png" />
@@ -176,24 +249,6 @@ function OuroborosContent() {
         <GameImage src="/Games/ouro-7.png" />
         <GameImage src="/Games/ouro-8.png" />
       </div>
-      <p>
-        Ouroboros is a first-person rogue-like shooter with a focus on fast
-        movement. I'm building this game with my studio group at Clark
-        University as part of my Masters.
-      </p>
-    </div>
-  );
-}
-
-function ElsewhereContent() {
-  return (
-    <div className="flex flex-col gap-4">
-      <p>
-        I built a 2D multiplayer web-based card game for{" "}
-        <a href="https://www.elsewhere.zone/">Elsewhere Communities</a> from
-        scratch, as a contracting job over the course of several months.
-      </p>
-      <p>The game is still in progress and is unreleased.</p>
     </div>
   );
 }

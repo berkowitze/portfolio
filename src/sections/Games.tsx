@@ -1,7 +1,7 @@
 import { useInView } from "react-intersection-observer";
 import { GAMES, GameSlug } from "./games-data";
 
-const NUM_CONTRIBUTIONS_TO_SHOW = 4;
+const NUM_CONTRIBUTIONS_TO_SHOW = 5;
 
 export default function Games() {
   return (
@@ -72,7 +72,7 @@ function GameCard({ slug }: { slug: GameSlug }) {
               ))}
             {game.contributions.length > NUM_CONTRIBUTIONS_TO_SHOW && (
               <li className="text-gray-500">
-                +{game.contributions.length - 3} more...
+                +{game.contributions.length - NUM_CONTRIBUTIONS_TO_SHOW} more...
               </li>
             )}
           </ul>
