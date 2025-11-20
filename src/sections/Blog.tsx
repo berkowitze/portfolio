@@ -19,7 +19,7 @@ export default function Blog() {
     <>
       <div>
         This is the blog of my progress and projects while at the Clark
-        University MFA program. I add new posts a few times a week.
+        University MFA program.
       </div>
       <hr className="my-4" />
       <div className="flex flex-wrap gap-4">
