@@ -45,7 +45,7 @@ function GameCard({ slug }: { slug: GameSlug }) {
             />
           ))}
       </div>
-      <div className="flex flex-col gap-2 p-4">
+      <div className="flex flex-1 flex-col gap-2 px-4 py-3">
         <h3 className="text-xl font-bold text-black">{game.title}</h3>
         {game.status && (
           <div className="text-sm italic text-gray-600">{game.status}</div>
@@ -77,7 +77,7 @@ function GameCard({ slug }: { slug: GameSlug }) {
             )}
           </ul>
         </div>
-        <div className="absolute bottom-0 right-0 p-4 text-right text-sm text-blue-600 transition-colors group-hover:text-blue-800">
+        <div className="mt-auto px-2 text-right text-sm text-blue-600 transition-colors group-hover:text-blue-800">
           See more →
         </div>
       </div>

@@ -50,7 +50,7 @@ function CodeCard({ slug }: { slug: CodeSlug }) {
           />
         )}
       </div>
-      <div className="flex flex-col gap-2 p-4">
+      <div className="flex flex-1 flex-col gap-2 px-4 py-3">
         <div className="flex flex-col gap-1">
           {project.company && (
             <span className="text-xs font-semibold uppercase tracking-wide text-blue-600">
@@ -92,7 +92,7 @@ function CodeCard({ slug }: { slug: CodeSlug }) {
           </div>
         )}
         {(isExternal || hasTargetPage) && (
-          <div className="absolute bottom-0 right-0 p-4 text-right text-sm text-blue-600 transition-colors group-hover:text-blue-800">
+          <div className="mt-auto px-2 text-right text-sm text-blue-600 transition-colors group-hover:text-blue-800">
             {hasTargetPage ? (
               "See more →"
             ) : (
