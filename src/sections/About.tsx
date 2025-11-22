@@ -26,7 +26,6 @@ export default function About(): JSX.Element {
           <li>I enjoy hiking, biking, and backpacking.</li>
           <li>I play classical piano and flute.</li>
         </ol>
-        <p>Please hire me.</p>
         <div className="flex flex-col gap-2">
           <div>
             Email: <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
