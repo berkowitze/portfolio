@@ -70,14 +70,14 @@ export default function Cognitive() {
           />
         </div>
         <div className="flex flex-wrap justify-center gap-4">
-          <div className="flex flex-col items-center gap-1">
-            <GameImage src="/Games/Cognitive/Pickup Breakable Inspector.png" />
-            <p className="text-center text-sm">Inspector Tools</p>
-          </div>
-          <div className="flex flex-col items-center gap-1">
-            <GameImage src="/Games/Cognitive/Pickup documentation.png" />
-            <p className="text-center text-sm">Pickup Setup Documentation</p>
-          </div>
+          <GameImage
+            src="/Games/Cognitive/Pickup Breakable Inspector.png"
+            caption="Inspector Tools"
+          />
+          <GameImage
+            src="/Games/Cognitive/Pickup documentation.png"
+            caption="Pickup Setup Documentation"
+          />
         </div>
       </Section>
 
