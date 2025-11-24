@@ -123,9 +123,23 @@ export default function Cognitive() {
           team switched to Google Docs for planning due to familiarity and ease
           of use.
         </p>
-        <div className="flex flex-col items-center gap-2">
-          <GameImage src="/Games/Cognitive/Task List.png" />
-          <p className="text-center text-sm">Team Task List</p>
+        <p>
+          I also organize the game's dialog lines and music asset list, making
+          sure the writer, audio producer, and I are all on the same page.
+        </p>
+        <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-col items-center gap-2">
+            <GameImage src="/Games/Cognitive/Task List.png" />
+            <p className="text-center text-sm">Team Task List</p>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <GameImage src="/Games/Cognitive/Audio Sheet.png" />
+            <p className="text-center text-sm">SFX Asset List</p>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <GameImage src="/Games/Cognitive/Dialog Sheet.png" />
+            <p className="text-center text-sm">Dialog Lines</p>
+          </div>
         </div>
       </Section>
 
