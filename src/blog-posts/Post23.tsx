@@ -91,8 +91,7 @@ export default function Post23() {
       </p>
       <Video
         preload
-        fullWidth
-        large
+        size="full"
         loop
         url="/Blog/stag/final-render.mp4"
         caption="Final render of the stag with all effects composited together"

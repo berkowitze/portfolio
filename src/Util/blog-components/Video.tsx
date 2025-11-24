@@ -8,8 +8,7 @@ export default function Video({
   autoPlay,
   loop,
   preload,
-  large,
-  fullWidth = true,
+  size = "medium",
 }: {
   url: string;
   poster?: string;
@@ -17,14 +16,13 @@ export default function Video({
   autoPlay?: boolean;
   preload?: boolean;
   loop?: boolean;
-  large?: boolean;
-  fullWidth?: boolean;
+  size?: "small" | "medium" | "large" | "full";
 }) {
   return (
     <div
       className={classNames(
         "mb-4 flex justify-center text-center",
-        fullWidth && "w-full"
+        size === "full" && "w-full"
       )}
     >
       <div className="flex flex-col gap-1">
@@ -32,8 +30,13 @@ export default function Video({
           preload={preload || autoPlay ? "all" : "none"}
           src={url}
           className={classNames(
-            "w-full",
-            large ? (fullWidth ? "" : "max-w-[700px]") : "max-w-[500px]"
+            size === "full"
+              ? "w-full"
+              : size === "large"
+              ? "max-w-[700px]"
+              : size === "medium"
+              ? "max-w-[500px]"
+              : "max-w-[400px]"
           )}
           controls
           poster={poster}

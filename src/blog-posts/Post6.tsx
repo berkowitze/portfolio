@@ -50,7 +50,7 @@ export default function Post6() {
           caption="Video of the bookshelf node in action"
           loop
           autoPlay
-          large
+          size="large"
         />
         <Header2>Raytracer</Header2>
         <p>

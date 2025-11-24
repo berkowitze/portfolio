@@ -15,7 +15,7 @@ export default function Post25() {
       </p>
       <Video
         url="/Blog/niagara-rocket.mp4"
-        large
+        size="large"
         autoPlay
         caption="A rocket effect created in Unreal Engine using Niagara VFX"
       />
@@ -25,7 +25,7 @@ export default function Post25() {
       </p>
       <Video
         url="/Blog/niagara-fireworks.mp4"
-        large
+        size="large"
         autoPlay
         caption="A fireworks effect created in Unreal Engine using Niagara VFX"
       />

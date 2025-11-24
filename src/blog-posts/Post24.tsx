@@ -26,8 +26,7 @@ export default function Post14() {
         url="/Art/ladder.mp4"
         caption="Rendered ladder animation"
         loop
-        fullWidth
-        large
+        size="full"
         autoPlay
       />
       <p>
@@ -48,8 +47,7 @@ export default function Post14() {
         caption="Rendered table animation"
         autoPlay
         loop
-        fullWidth
-        large
+        size="full"
       />
       <p>There's a few things I'll clean up on the next pass:</p>
       <UnorderedList>

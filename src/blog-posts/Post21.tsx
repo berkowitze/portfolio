@@ -62,7 +62,7 @@ export default function Post21() {
           altText="Vellum network for simulating spaghetti"
         />
         <Video
-          fullWidth={false}
+          size="large"
           url="/Blog/spaghetti-hair.mp4"
           caption="Video of simulated spaghetti falling into a bowl"
           preload
@@ -96,7 +96,7 @@ export default function Post21() {
         <Video
           url="/Blog/spaghetti-1.mp4"
           caption="Video of spaghetti falling into a bowl"
-          large
+          size="large"
           preload
           loop
         />

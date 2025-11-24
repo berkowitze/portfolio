@@ -19,6 +19,7 @@ export function BlogFilterProvider({ children }: { children: ReactNode }) {
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useBlogFilter() {
   const context = useContext(BlogFilterContext);
   if (context === undefined) {
@@ -26,4 +27,3 @@ export function useBlogFilter() {
   }
   return context;
 }
-

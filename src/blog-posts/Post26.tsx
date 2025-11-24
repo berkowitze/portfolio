@@ -83,7 +83,7 @@ export default function Post26() {
           <p>With those solved, I did a quick render:</p>
           <Video
             url="/Blog/rube/glass-shatter.mp4"
-            large
+            size="large"
             autoPlay
             caption="The cup rolling off a table plane and smashing on the ground plane"
           />
