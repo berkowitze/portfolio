@@ -1,11 +1,12 @@
 import Video from "../Util/blog-components/Video";
 import YoutubeEmbed from "../Util/blog-components/YoutubeEmbed";
 import GameImage from "./GameImage";
+import GamePage from "./GamePage";
 import Section from "./Section";
 
 export default function Unsent() {
   return (
-    <div className="mx-auto flex max-w-5xl flex-col gap-8">
+    <GamePage>
       <Section isCollapsible={false}>
         <p className="text-lg">
           <strong>Unsent</strong> is a wacky 3D platformer set in a labyrinthine
@@ -88,6 +89,6 @@ export default function Unsent() {
           title="Unsent Launch Trailer"
         />
       </Section>
-    </div>
+    </GamePage>
   );
 }

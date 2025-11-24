@@ -1,10 +1,11 @@
 import YoutubeEmbed from "../Util/blog-components/YoutubeEmbed";
 import GameImage from "./GameImage";
+import GamePage from "./GamePage";
 import Section from "./Section";
 
 export default function Ouroboros() {
   return (
-    <div className="mx-auto flex max-w-5xl flex-col gap-8">
+    <GamePage>
       <Section isCollapsible={false}>
         <p className="text-lg">
           Set in a dark cyberpunk future, <strong>Ouroboros</strong> is a
@@ -68,7 +69,7 @@ export default function Ouroboros() {
       </Section>
 
       <Section title="Gallery">
-        <div className="mx-2 flex flex-wrap justify-around gap-4">
+        <div className="flex flex-wrap justify-center gap-4">
           {[
             "ouro-1.png",
             "ouro-2.png",
@@ -83,6 +84,6 @@ export default function Ouroboros() {
           ))}
         </div>
       </Section>
-    </div>
+    </GamePage>
   );
 }

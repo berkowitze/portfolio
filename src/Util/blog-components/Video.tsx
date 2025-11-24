@@ -30,6 +30,7 @@ export default function Video({
           preload={preload || autoPlay ? "all" : "none"}
           src={url}
           className={classNames(
+            "max-w-full",
             size === "full"
               ? "w-full"
               : size === "large"

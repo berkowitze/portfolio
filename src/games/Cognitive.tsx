@@ -1,10 +1,11 @@
 import Video from "../Util/blog-components/Video";
 import GameImage from "./GameImage";
+import GamePage from "./GamePage";
 import Section from "./Section";
 
 export default function Cognitive() {
   return (
-    <div className="mx-auto flex max-w-5xl flex-col gap-8">
+    <GamePage>
       {/* Hero / Intro */}
       <Section isCollapsible={false}>
         <p className="text-lg">
@@ -130,7 +131,7 @@ export default function Cognitive() {
 
       {/* Gallery */}
       <Section title="Gallery">
-        <div className="mx-2 flex flex-wrap justify-around gap-4">
+        <div className="flex flex-wrap justify-center gap-4">
           {[
             "Cognitive 01.png",
             "Cognitive 02.png",
@@ -143,6 +144,6 @@ export default function Cognitive() {
           ))}
         </div>
       </Section>
-    </div>
+    </GamePage>
   );
 }
