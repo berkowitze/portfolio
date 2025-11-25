@@ -1,4 +1,8 @@
-export default function GamePage({ children }: { children: React.ReactNode }) {
+export default function GameDetailLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4">
       {children}

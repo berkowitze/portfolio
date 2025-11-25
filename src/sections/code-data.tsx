@@ -52,7 +52,7 @@ export const CODE_PROJECTS: Record<string, CodeProjectInfo> = {
     title: "Benchling Insights",
     thumbnail: "/Code/analysis-tool.mp4",
     description:
-      "A no-code data analysis platform for Benchling customers to transform and analyze data without writing SQL.",
+      "A no-code data analysis platform for Benchling customers to transform and analyze data.",
     stack: [
       "React",
       "TypeScript",

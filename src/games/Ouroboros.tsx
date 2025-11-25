@@ -1,11 +1,11 @@
 import YoutubeEmbed from "../Util/blog-components/YoutubeEmbed";
 import GameImage from "./GameImage";
-import GamePage from "./GamePage";
+import GameDetailLayout from "./GameDetailLayout";
 import Section from "./Section";
 
 export default function Ouroboros() {
   return (
-    <GamePage>
+    <GameDetailLayout>
       <Section isCollapsible={false}>
         <p className="text-lg">
           Set in a dark cyberpunk future, <strong>Ouroboros</strong> is a
@@ -84,6 +84,6 @@ export default function Ouroboros() {
           ))}
         </div>
       </Section>
-    </GamePage>
+    </GameDetailLayout>
   );
 }

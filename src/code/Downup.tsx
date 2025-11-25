@@ -1,11 +1,11 @@
 import Video from "../Util/blog-components/Video";
-import CodePage from "./CodePage";
+import CodeDetailLayout from "./CodeDetailLayout";
 import Section from "../games/Section";
 import Image from "../Util/blog-components/Image";
 
 export default function Downup() {
   return (
-    <CodePage>
+    <CodeDetailLayout>
       <Section isCollapsible={false}>
         <p className="text-lg">
           Downup is a hobby website for small communities to do goal-oriented
@@ -60,6 +60,6 @@ export default function Downup() {
           caption="Settings Dashboard"
         />
       </div>
-    </CodePage>
+    </CodeDetailLayout>
   );
 }

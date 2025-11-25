@@ -1,10 +1,10 @@
 import Video from "../Util/blog-components/Video";
-import CodePage from "./CodePage";
+import CodeDetailLayout from "./CodeDetailLayout";
 import Section from "../games/Section";
 
 export default function AnalysisTool() {
   return (
-    <CodePage>
+    <CodeDetailLayout>
       <Section isCollapsible={false}>
         <p className="text-lg">
           <strong>Benchling Insights</strong> is a no-code data analysis
@@ -55,6 +55,6 @@ export default function AnalysisTool() {
           caption="Insights demo"
         />
       </Section>
-    </CodePage>
+    </CodeDetailLayout>
   );
 }
