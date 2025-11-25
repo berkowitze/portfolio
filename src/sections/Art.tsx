@@ -4,6 +4,9 @@ import { ART_PIECES, ArtKind, SoftwareTitle, type ArtPiece } from "./ArtPieces";
 import { useInView } from "react-intersection-observer";
 
 export default function Art() {
+  // Show only the first 9 art pieces
+  const displayedPieces = ART_PIECES.slice(0, 9);
+
   return (
     <>
       {/* <div className="mb-2">
@@ -11,19 +14,28 @@ export default function Art() {
         <a href="https://artstation.com/eliberkowitz">Artstation</a>.
       </div> */}
       <div className="mb-8 flex flex-wrap justify-between gap-8 gap-y-12">
-        {ART_PIECES.map((artPiece) => (
+        {displayedPieces.map((artPiece) => (
           <Piece key={artPiece.id} artPiece={artPiece} />
         ))}
+      </div>
+      <div className="mt-6">
+        <a
+          href="/art"
+          target="_self"
+          className="no-underline-ani text-lg text-blue-600 hover:text-blue-800 hover:underline"
+        >
+          See all art →
+        </a>
       </div>
     </>
   );
 }
 
-function Piece({ artPiece }: { artPiece: ArtPiece }) {
+export function Piece({ artPiece, className }: { artPiece: ArtPiece; className?: string }) {
   return (
     <div
       key={artPiece.id}
-      className="group relative h-[216px] grow-0 basis-[384px]"
+      className={`group relative h-[216px] grow-0 basis-[384px] ${className || ""}`}
     >
       {artPiece.artKind === ArtKind.VIDEO ? (
         <Video piece={artPiece} />

@@ -12,6 +12,7 @@ import BlogPage from "./BlogPage.tsx";
 import GamesApp from "./GamesApp.tsx";
 import CodePage from "./CodePage.tsx";
 import CodeApp from "./CodeApp.tsx";
+import ArtPage from "./ArtPage.tsx";
 
 import { useRouteError } from "react-router-dom";
 
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
   {
     path: `/code/:slug`,
     element: <CodeApp />,
+  },
+  {
+    path: "/art",
+    element: <ArtPage />,
   },
 ]);
 
