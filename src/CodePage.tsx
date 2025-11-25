@@ -1,34 +1,17 @@
 import { CODE_PROJECTS, CodeSlug } from "./sections/code-data";
 import Card from "./Util/Card";
 import { CardFooterStyle } from "./Util/CardFooterStyle";
+import PageLayout from "./Util/PageLayout";
 
 export default function CodePage() {
   return (
-    <div className="flex h-full flex-col gap-4">
-      <a
-        href="/"
-        target="_self"
-        className="title no-underline-ani grow-0 text-4xl"
-      >
-        ELI BERKOWITZ
-      </a>
-      <div className="grow overflow-y-auto text-lg">
-        <div className="mx-auto my-0 h-full max-w-[1000px] overflow-auto rounded-md bg-gray-50 p-4 shadow-md">
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl">Code Projects</h2>
-            <a href="/" target="_self" className="text-gray-500">
-              Back
-            </a>
-          </div>
-          <hr className="my-4" />
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {(Object.keys(CODE_PROJECTS) as CodeSlug[]).map((slug) => (
-              <CodeCard key={slug} slug={slug} />
-            ))}
-          </div>
-        </div>
+    <PageLayout title="Code Projects">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {(Object.keys(CODE_PROJECTS) as CodeSlug[]).map((slug) => (
+          <CodeCard key={slug} slug={slug} />
+        ))}
       </div>
-    </div>
+    </PageLayout>
   );
 }
 

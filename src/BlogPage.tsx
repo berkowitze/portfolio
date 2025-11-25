@@ -25,15 +25,8 @@ function BlogPageContent() {
   }, []);
 
   return (
-    <PageLayout>
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl">Blog</h2>
-        <a href="/" target="_self" className="text-gray-500">
-          Back
-        </a>
-      </div>
-      <hr className="my-4" />
-      <div className="flex flex-wrap gap-4">
+    <PageLayout title="Blog">
+      <div className="mb-6 flex flex-wrap gap-4">
         {TAGS.map((tag) => (
           <Tag
             key={tag}
@@ -51,7 +44,7 @@ function BlogPageContent() {
           />
         ))}
       </div>
-      <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {Object.entries(POSTS)
           .sort((p1, p2) => p2[1].date.getTime() - p1[1].date.getTime())
           .map(([slug, post]) => {

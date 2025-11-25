@@ -9,11 +9,18 @@ interface DetailPageLayoutProps<
   isValidSlug: (slug: string) => boolean;
   backUrl: string;
   renderContent: (item: T) => React.ReactNode;
+  getSubheader?: (item: T) => ReactNode;
 }
 
 export default function DetailPageLayout<
   T extends { title: ReactNode; Content: React.ComponentType }
->({ items, isValidSlug, backUrl, renderContent }: DetailPageLayoutProps<T>) {
+>({
+  items,
+  isValidSlug,
+  backUrl,
+  renderContent,
+  getSubheader,
+}: DetailPageLayoutProps<T>) {
   const slug = useParams().slug;
 
   useEffect(() => {
@@ -32,5 +39,17 @@ export default function DetailPageLayout<
     }
   }, [item]);
 
-  return <PageLayout>{item && renderContent(item)}</PageLayout>;
+  const pageTitle = item
+    ? typeof item.title === "string"
+      ? item.title
+      : "Portfolio"
+    : "Portfolio";
+
+  const subheader = item && getSubheader ? getSubheader(item) : undefined;
+
+  return (
+    <PageLayout title={pageTitle} subheader={subheader}>
+      {item && renderContent(item)}
+    </PageLayout>
+  );
 }
