@@ -1,4 +1,4 @@
-export default function GameDetailLayout({
+export default function DetailPageLayout({
   children,
 }: {
   children: React.ReactNode;

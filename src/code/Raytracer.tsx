@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import Image from "../Util/blog-components/Image";
 import Video from "../Util/blog-components/Video";
-import CodeDetailLayout from "./CodeDetailLayout";
+import ItemDetailLayout from "../Util/ItemDetailLayout";
 import Section from "../games/Section";
 
 function MediaGallery({ children }: { children: ReactNode }) {
@@ -12,7 +12,7 @@ function MediaGallery({ children }: { children: ReactNode }) {
 
 export default function Raytracer() {
   return (
-    <CodeDetailLayout>
+    <ItemDetailLayout>
       <Section isCollapsible={false}>
         <p className="text-lg">
           I wrote a C++ raytracer during my MFA at Clark University. I initially
@@ -250,6 +250,6 @@ export default function Raytracer() {
           </div>
         </div>
       </Section>
-    </CodeDetailLayout>
+    </ItemDetailLayout>
   );
 }
