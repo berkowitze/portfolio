@@ -1,32 +1,34 @@
-import { CODE_PROJECTS, CodeSlug } from "./code-data";
-import Card from "../Util/Card";
-import { CardFooterStyle } from "../Util/CardFooterStyle";
+import { CODE_PROJECTS, CodeSlug } from "./sections/code-data";
+import Card from "./Util/Card";
+import { CardFooterStyle } from "./Util/CardFooterStyle";
 
-export default function Code() {
-  // Show only the first 3 projects: raytracer, downup, analysis-tool
-  const highlightedProjectSlugs: CodeSlug[] = [
-    "raytracer",
-    "downup",
-    "analysis-tool",
-  ];
-
+export default function CodePage() {
   return (
-    <>
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {highlightedProjectSlugs.map((slug) => (
-          <CodeCard key={slug} slug={slug} />
-        ))}
+    <div className="flex h-full flex-col gap-4">
+      <a
+        href="/"
+        target="_self"
+        className="title no-underline-ani grow-0 text-4xl"
+      >
+        ELI BERKOWITZ
+      </a>
+      <div className="grow overflow-y-auto text-lg">
+        <div className="mx-auto my-0 h-full max-w-[1000px] overflow-auto rounded-md bg-gray-50 p-4 shadow-md">
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl">Code Projects</h2>
+            <a href="/" target="_self" className="text-gray-500">
+              Back
+            </a>
+          </div>
+          <hr className="my-4" />
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {(Object.keys(CODE_PROJECTS) as CodeSlug[]).map((slug) => (
+              <CodeCard key={slug} slug={slug} />
+            ))}
+          </div>
+        </div>
       </div>
-      <div className="mt-6">
-        <a
-          href="/code"
-          target="_self"
-          className="no-underline-ani text-lg text-blue-600 hover:text-blue-800 hover:underline"
-        >
-          See all code projects →
-        </a>
-      </div>
-    </>
+    </div>
   );
 }
 
@@ -84,6 +86,9 @@ function CodeCard({ slug }: { slug: CodeSlug }) {
     );
   }
 
+  // For entity-diagram, don't show "See more" since it doesn't have a page
+  const isEntityDiagram = slug === "entity-diagram";
+  
   return (
     <Card
       thumbnail={project.thumbnail}
@@ -91,7 +96,8 @@ function CodeCard({ slug }: { slug: CodeSlug }) {
       tags={project.stack}
       description={description}
       contributions={project.contributions}
-      cardFooterStyle={CardFooterStyle.SEE_MORE}
+      cardFooterStyle={isEntityDiagram ? CardFooterStyle.NONE : CardFooterStyle.SEE_MORE}
     />
   );
 }
+

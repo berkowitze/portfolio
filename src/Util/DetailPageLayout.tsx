@@ -1,5 +1,6 @@
 import { useEffect, ReactNode } from "react";
 import { useParams } from "react-router-dom";
+import PageLayout from "./PageLayout";
 
 interface DetailPageLayoutProps<
   T extends { title: ReactNode; Content: React.ComponentType }
@@ -31,20 +32,5 @@ export default function DetailPageLayout<
     }
   }, [item]);
 
-  return (
-    <div className="flex h-full flex-col gap-4">
-      <a
-        href="/"
-        target="_self"
-        className="title no-underline-ani grow-0 text-4xl"
-      >
-        ELI BERKOWITZ
-      </a>
-      <div className="grow overflow-y-auto text-lg">
-        <div className="mx-auto my-0 h-full max-w-[1000px] overflow-auto rounded-md bg-gray-50 p-4 shadow-md">
-          {item && renderContent(item)}
-        </div>
-      </div>
-    </div>
-  );
+  return <PageLayout>{item && renderContent(item)}</PageLayout>;
 }

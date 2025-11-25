@@ -42,9 +42,9 @@ export default function Blog() {
         <a
           href="/blog"
           target="_self"
-          className="no-underline-ani text-lg font-semibold text-blue-600 hover:text-blue-800 hover:underline"
+          className="no-underline-ani text-lg text-blue-600 hover:text-blue-800 hover:underline"
         >
-          View all blog posts →
+          See all blog posts →
         </a>
       </div>
     </>

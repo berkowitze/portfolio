@@ -19,6 +19,7 @@ export const POSTS = {
     Content: lazy(() => import("../blog-posts/Post14")),
     date: new Date("2024-12-03"),
     tags: ["Coding", "Art", "C++ Raytracer"],
+    thumbnail: "/Blog/Final Render - My Raytracer.png",
   },
   "seminar-project-final": {
     title: "Wrapping up the C++ raytracer",
@@ -42,6 +43,7 @@ export const POSTS = {
     Content: lazy(() => import("../blog-posts/Post11")),
     date: new Date("2024-10-29"),
     tags: ["Art"],
+    thumbnail: "/Blog/Table.jpg",
   },
   "seminar-project-week-7": {
     title: "Seminar Project - Week 7",
@@ -49,6 +51,7 @@ export const POSTS = {
     Content: lazy(() => import("../blog-posts/Post10")),
     date: new Date("2024-10-26"),
     tags: ["Art"],
+    thumbnail: "/Blog/armchair.jpg",
   },
   "seminar-project-week-6": {
     title: "Seminar Project - Week 6",
@@ -56,6 +59,7 @@ export const POSTS = {
     Content: lazy(() => import("../blog-posts/Post9")),
     date: new Date("2024-10-15"),
     tags: ["Art"],
+    thumbnail: "/Blog/armchair start.png",
   },
   "seminar-project-week-5": {
     title: "Seminar Project - Week 5",
@@ -94,6 +98,7 @@ export const POSTS = {
     Content: lazy(() => import("../blog-posts/Post6")),
     date: new Date("2024-09-23"),
     tags: ["Coding", "Art", "C++ Raytracer"],
+    thumbnail: "/Blog/raytracer/07 - diffuse-good.png",
   },
   "seminar-project-milestone-one": {
     title: "Raytracer BVH, Materials, Camera Settings, and Motion Blur",
@@ -110,6 +115,7 @@ export const POSTS = {
     Content: lazy(() => import("../blog-posts/Post4")),
     date: new Date("2024-09-09"),
     tags: ["Coding", "Art", "C++ Raytracer"],
+    thumbnail: "/Blog/bookshelf.png",
   },
   "snowboard-song": {
     title: "Music Composition for Games - Snowboard song",
@@ -145,6 +151,7 @@ export const POSTS = {
     Content: lazy(() => import("../blog-posts/Post1")),
     date: new Date("2024-09-02"),
     tags: ["Coding", "Art"],
+    thumbnail: "/Art/teashop.jpg",
   },
   "semester-2-week-1": {
     title: "C++ Rasterizer",
@@ -190,6 +197,7 @@ export const POSTS = {
     Content: lazy(() => import("../blog-posts/Post20")),
     date: new Date("February 25, 2025"),
     tags: ["Coding", "Art"],
+    thumbnail: "/Blog/fork.jpg",
   },
   "semester-2-week-7": {
     title: "Houdini spaghetti simulation!",
@@ -198,6 +206,7 @@ export const POSTS = {
     Content: lazy(() => import("../blog-posts/Post21")),
     date: new Date("March 11, 2025"),
     tags: ["Coding", "Art", "Houdini"],
+    thumbnail: "/Blog/spaghetti-1.mp4",
   },
   "semester-2-week-8": {
     title: "Houdini - Patronus",
@@ -206,6 +215,7 @@ export const POSTS = {
     Content: lazy(() => import("../blog-posts/Post22")),
     date: new Date("March 19, 2025"),
     tags: ["Coding", "Art", "Houdini"],
+    thumbnail: "/Blog/stag/stag-retopo.mp4",
   },
   "semester-2-week-9": {
     title: "Houdini - Finishing the Patronus",
@@ -214,6 +224,7 @@ export const POSTS = {
     Content: lazy(() => import("../blog-posts/Post23")),
     date: new Date("March 25, 2025"),
     tags: ["Coding", "Art", "Houdini"],
+    thumbnail: "/Blog/stag/final-render.mp4",
   },
   "procedural-art": {
     title: "Procedural Art Portfolio Pieces",
@@ -222,7 +233,7 @@ export const POSTS = {
     Content: lazy(() => import("../blog-posts/Post24")),
     date: new Date("April 3, 2025"),
     tags: ["Coding", "Art"],
-    thumbnail: "/Art/table-anim.mp4",
+    thumbnail: "/Blog/bike-rockets.jpeg",
   },
   "starting-unreal-vfx": {
     title: "Starting to learn Niagara VFX in Unreal Engine",

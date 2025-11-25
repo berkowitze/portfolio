@@ -1,7 +1,11 @@
 import classNames from "classnames";
+import { useEffect } from "react";
 import { POSTS, PostProps } from "./sections/posts";
 import { useBlogFilter } from "./contexts/BlogFilterContext";
 import { BlogFilterProvider } from "./contexts/BlogFilterContext";
+import Card from "./Util/Card";
+import { CardFooterStyle } from "./Util/CardFooterStyle";
+import PageLayout from "./Util/PageLayout";
 
 const TAGS = [
   "Coding",
@@ -16,61 +20,52 @@ export type Tag = (typeof TAGS)[number];
 function BlogPageContent() {
   const { filteredTags, setFilteredTags } = useBlogFilter();
 
+  useEffect(() => {
+    document.title = "Eli Berkowitz - Blog";
+  }, []);
+
   return (
-    <div className="flex h-full flex-col gap-4">
-      <a
-        href="/"
-        target="_self"
-        className="title no-underline-ani grow-0 text-4xl"
-      >
-        ELI BERKOWITZ
-      </a>
-      <div className="grow overflow-y-auto text-lg">
-        <div className="mx-auto my-0 h-full max-w-[1000px] overflow-auto rounded-md bg-gray-50 p-4 shadow-md">
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl">Blog</h2>
-            <a href="/" target="_self" className="text-gray-500">
-              Back
-            </a>
-          </div>
-          <hr className="my-4" />
-          <div className="flex flex-wrap gap-4">
-            {TAGS.map((tag) => (
-              <Tag
-                key={tag}
-                tag={tag}
-                isSelected={filteredTags.has(tag)}
-                onSelect={() => {
-                  const newTags = new Set(filteredTags);
-                  if (newTags.has(tag)) {
-                    newTags.delete(tag);
-                  } else {
-                    newTags.add(tag);
-                  }
-                  setFilteredTags(newTags);
-                }}
-              />
-            ))}
-          </div>
-          <div>
-            {Object.entries(POSTS)
-              .sort((p1, p2) => p2[1].date.getTime() - p1[1].date.getTime())
-              .map(([slug, post]) => {
-                if (
-                  filteredTags.size === 0 ||
-                  post.tags.some((tag) => filteredTags.has(tag))
-                ) {
-                  return (
-                    <Post key={post.title.toString()} {...post} slug={slug} />
-                  );
-                } else {
-                  return null;
-                }
-              })}
-          </div>
-        </div>
+    <PageLayout>
+      <div className="flex items-center justify-between">
+        <h2 className="text-2xl">Blog</h2>
+        <a href="/" target="_self" className="text-gray-500">
+          Back
+        </a>
       </div>
-    </div>
+      <hr className="my-4" />
+      <div className="flex flex-wrap gap-4">
+        {TAGS.map((tag) => (
+          <Tag
+            key={tag}
+            tag={tag}
+            isSelected={filteredTags.has(tag)}
+            onSelect={() => {
+              const newTags = new Set(filteredTags);
+              if (newTags.has(tag)) {
+                newTags.delete(tag);
+              } else {
+                newTags.add(tag);
+              }
+              setFilteredTags(newTags);
+            }}
+          />
+        ))}
+      </div>
+      <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {Object.entries(POSTS)
+          .sort((p1, p2) => p2[1].date.getTime() - p1[1].date.getTime())
+          .map(([slug, post]) => {
+            if (
+              filteredTags.size === 0 ||
+              post.tags.some((tag) => filteredTags.has(tag))
+            ) {
+              return <Post key={post.title.toString()} {...post} slug={slug} />;
+            } else {
+              return null;
+            }
+          })}
+      </div>
+    </PageLayout>
   );
 }
 
@@ -88,24 +83,19 @@ function Post({
   tags,
   date,
   summary,
+  thumbnail,
 }: PostProps & { slug: string }) {
   return (
-    <a
-      target="_self"
+    <Card
       href={`/blog/${slug}`}
-      className="no-underline-ani my-4 block w-full rounded-sm p-4 transition-colors hover:bg-gray-100"
-    >
-      <h2 className="text-2xl">{title}</h2>
-      <div className="flex items-center gap-4">
-        <div className="text-sm text-gray-500">{date.toDateString()}</div>
-        <div className="flex flex-wrap gap-2">
-          {tags.map((tag) => (
-            <SmallTag key={tag} tag={tag} />
-          ))}
-        </div>
-      </div>
-      <div>{summary}</div>
-    </a>
+      thumbnail={thumbnail}
+      thumbnailAlt={typeof title === "string" ? title : "Blog post thumbnail"}
+      title={title}
+      subtitle={date.toDateString()}
+      tags={tags}
+      description={summary}
+      cardFooterStyle={CardFooterStyle.SEE_MORE}
+    />
   );
 }
 
@@ -126,17 +116,5 @@ export function Tag({ tag, isSelected, onSelect }: TagProps) {
     >
       {tag}
     </button>
-  );
-}
-
-function SmallTag({ tag }: { tag: string }) {
-  return (
-    <div
-      className={classNames(
-        "cursor-pointer select-none rounded-full px-2 py-0.5 text-sm transition-colors bg-blue-100 hover:bg-blue-300 whitespace-nowrap"
-      )}
-    >
-      {tag}
-    </div>
   );
 }

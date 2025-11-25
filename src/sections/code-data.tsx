@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { ReactNode } from "react";
+import { lazy, ReactNode } from "react";
 import { useInView } from "react-intersection-observer";
 
 export interface CodeProjectInfo {
@@ -11,6 +11,7 @@ export interface CodeProjectInfo {
   url?: string;
   targetPageId?: string; // For internal navigation to sections like "blog", "art", etc.
   onClick?: (setFilteredTags: (tags: Set<string>) => void) => void;
+  Content?: React.FC; // For individual project pages
 }
 
 export const CODE_PROJECTS: Record<string, CodeProjectInfo> = {
@@ -30,6 +31,7 @@ export const CODE_PROJECTS: Record<string, CodeProjectInfo> = {
     onClick: (setFilteredTags) => {
       setFilteredTags(new Set(["C++ Raytracer"]));
     },
+    Content: lazy(() => import("../code/Raytracer")),
   },
   downup: {
     title: "Downup",
@@ -44,18 +46,7 @@ export const CODE_PROJECTS: Record<string, CodeProjectInfo> = {
       "Community challenge management",
     ],
     url: "https://downup.app",
-  },
-  "entity-diagram": {
-    title: "Benchling Database Diagram",
-    thumbnail: "/Code/entity-diagram.mp4",
-    description:
-      "Interactive visualization tool to help Benchling customers understand their denormalized database schemas.",
-    stack: ["React", "TypeScript"],
-    contributions: [
-      "Built interactive database schema visualization",
-      "Schema relationship mapping",
-      "Search and navigation features",
-    ],
+    Content: lazy(() => import("../code/Downup")),
   },
   "analysis-tool": {
     title: "Benchling Analysis Tool",
@@ -76,6 +67,19 @@ export const CODE_PROJECTS: Record<string, CodeProjectInfo> = {
       "Tool to create datasets with checkboxes, building GraphQL queries",
       "Data transformation tools (aggregations, filters)",
       "Product scaffolding and architecture",
+    ],
+    Content: lazy(() => import("../code/AnalysisTool")),
+  },
+  "entity-diagram": {
+    title: "Benchling Database Diagram",
+    thumbnail: "/Code/entity-diagram.mp4",
+    description:
+      "Interactive visualization tool to help Benchling customers understand their denormalized database schemas.",
+    stack: ["React", "TypeScript"],
+    contributions: [
+      "Built interactive database schema visualization",
+      "Schema relationship mapping",
+      "Search and navigation features",
     ],
   },
   exosim: {
