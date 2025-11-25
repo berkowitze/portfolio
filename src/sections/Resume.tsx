@@ -14,7 +14,7 @@ export default function Resume() {
       <Document file={RESUME_LINK} className="hidden rounded-md xl:block">
         <Page
           className="resume-shadow mx-auto overflow-auto rounded-md pr-4"
-          scale={1.3}
+          scale={1.25}
           pageNumber={1}
           renderAnnotationLayer={false}
         >

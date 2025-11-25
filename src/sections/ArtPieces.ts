@@ -84,13 +84,7 @@ export const ART_PIECES: ReadonlyArray<ArtPiece> = [
     loop: true,
     software: ["Maya"],
   },
-  {
-    artKind: ArtKind.GALLERY,
-    id: "table",
-    title: "Industrial Table",
-    photos: ["/Art/table2.jpg", "/Art/table1.jpg", "/Art/table-anim.mp4"],
-    software: ["Houdini"],
-  },
+
   {
     artKind: ArtKind.PHOTO,
     id: "smores",
@@ -126,7 +120,13 @@ export const ART_PIECES: ReadonlyArray<ArtPiece> = [
     title: "Puzzle",
     software: ["Maya"],
   },
-
+  {
+    artKind: ArtKind.GALLERY,
+    id: "table",
+    title: "Industrial Table",
+    photos: ["/Art/table2.jpg", "/Art/table1.jpg", "/Art/table-anim.mp4"],
+    software: ["Houdini"],
+  },
   {
     artKind: ArtKind.PHOTO,
     src: "/Art/teapot.jpg",

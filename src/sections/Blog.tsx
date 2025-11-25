@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import { POSTS, PostProps } from "./posts";
-import { useBlogFilter } from "../contexts/BlogFilterContext";
+import Card from "../Util/Card";
+import { CardFooterStyle } from "../Util/CardFooterStyle";
 
 const TAGS = [
   "Coding",
@@ -13,46 +14,38 @@ const TAGS = [
 export type Tag = (typeof TAGS)[number];
 
 export default function Blog() {
-  const { filteredTags, setFilteredTags } = useBlogFilter();
+  // Select specific highlighted posts: raytracer, rasterizer, and houdini
+  const highlightedPostSlugs = [
+    "seminar-project-final", // Raytracer
+    "semester-2-week-4", // Rasterizer
+    "shattering-glass", // Houdini
+  ] as const;
+
+  const highlightedPosts = highlightedPostSlugs
+    .map((slug) => [slug, POSTS[slug]] as const)
+    .filter(([, post]) => post !== undefined);
 
   return (
     <>
-      <div>
+      {/* <div>
         This is the blog of my progress and projects while at the Clark
         University MFA program.
-      </div>
-      <hr className="my-4" />
-      <div className="flex flex-wrap gap-4">
-        {TAGS.map((tag) => (
-          <Tag
-            key={tag}
-            tag={tag}
-            isSelected={filteredTags.has(tag)}
-            onSelect={() => {
-              const newTags = new Set(filteredTags);
-              if (newTags.has(tag)) {
-                newTags.delete(tag);
-              } else {
-                newTags.add(tag);
-              }
-              setFilteredTags(newTags);
-            }}
-          />
+      </div> */}
+      {/* <hr className="my-4" /> */}
+      {/* <h3 className="mb-4 text-xl font-semibold">Highlighted Blog Posts</h3> */}
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {highlightedPosts.map(([slug, post]) => (
+          <Post key={post.title.toString()} {...post} slug={slug} />
         ))}
       </div>
-      <div>
-        {Object.entries(POSTS)
-          .sort((p1, p2) => p2[1].date.getTime() - p1[1].date.getTime())
-          .map(([slug, post]) => {
-            if (
-              filteredTags.size === 0 ||
-              post.tags.some((tag) => filteredTags.has(tag))
-            ) {
-              return <Post key={post.title.toString()} {...post} slug={slug} />;
-            } else {
-              return null;
-            }
-          })}
+      <div className="mt-6">
+        <a
+          href="/blog"
+          target="_self"
+          className="no-underline-ani text-lg text-blue-600 hover:text-blue-800 hover:underline"
+        >
+          See all blog posts →
+        </a>
       </div>
     </>
   );
@@ -64,24 +57,19 @@ function Post({
   tags,
   date,
   summary,
+  thumbnail,
 }: PostProps & { slug: string }) {
   return (
-    <a
-      target="_self"
+    <Card
       href={`/blog/${slug}`}
-      className="no-underline-ani my-4 block w-full rounded-sm p-4 transition-colors hover:bg-gray-100"
-    >
-      <h2 className="text-2xl">{title}</h2>
-      <div className="flex items-center gap-4">
-        <div className="text-sm text-gray-500">{date.toDateString()}</div>
-        <div className="flex flex-wrap gap-2">
-          {tags.map((tag) => (
-            <SmallTag key={tag} tag={tag} />
-          ))}
-        </div>
-      </div>
-      <div>{summary}</div>
-    </a>
+      thumbnail={thumbnail}
+      thumbnailAlt={typeof title === "string" ? title : "Blog post thumbnail"}
+      title={title}
+      subtitle={date.toDateString()}
+      tags={tags}
+      description={summary}
+      cardFooterStyle={CardFooterStyle.SEE_MORE}
+    />
   );
 }
 
@@ -102,17 +90,5 @@ export function Tag({ tag, isSelected, onSelect }: TagProps) {
     >
       {tag}
     </button>
-  );
-}
-
-function SmallTag({ tag }: { tag: string }) {
-  return (
-    <div
-      className={classNames(
-        "cursor-pointer select-none rounded-full px-2 py-0.5 text-sm transition-colors bg-blue-100 hover:bg-blue-300 whitespace-nowrap"
-      )}
-    >
-      {tag}
-    </div>
   );
 }

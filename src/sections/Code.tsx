@@ -1,140 +1,97 @@
-import { useInView } from "react-intersection-observer";
 import { CODE_PROJECTS, CodeSlug } from "./code-data";
-import { useBlogFilter } from "../contexts/BlogFilterContext";
-
-const NUM_CONTRIBUTIONS_TO_SHOW = 4;
+import Card from "../Util/Card";
+import { CardFooterStyle } from "../Util/CardFooterStyle";
 
 export default function Code() {
+  // Show only the first 3 projects: raytracer, downup, analysis-tool
+  const highlightedProjectSlugs: CodeSlug[] = [
+    "raytracer",
+    "downup",
+    "analysis-tool",
+  ];
+
   return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {(Object.keys(CODE_PROJECTS) as CodeSlug[]).map((slug) => (
-        <CodeCard key={slug} slug={slug} />
-      ))}
-    </div>
+    <>
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {highlightedProjectSlugs.map((slug) => (
+          <CodeCard key={slug} slug={slug} />
+        ))}
+      </div>
+      <div className="mt-6">
+        <a
+          href="/code"
+          target="_self"
+          className="no-underline-ani text-lg text-blue-600 hover:text-blue-800 hover:underline"
+        >
+          See all code projects →
+        </a>
+      </div>
+    </>
   );
 }
 
 function CodeCard({ slug }: { slug: CodeSlug }) {
   const project = CODE_PROJECTS[slug];
-  const { ref, inView } = useInView({ triggerOnce: true });
-  const { setFilteredTags } = useBlogFilter();
   const isExternal = project.url && !project.url.startsWith("/");
   const hasTargetPage = Boolean(project.targetPageId);
+  const hasContent = Boolean(project.Content);
 
-  const handleInternalNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
+  const description =
+    typeof project.description === "string"
+      ? project.description
+      : "Click to learn more about this project";
 
-    project.onClick?.(setFilteredTags);
-
-    const element = document.getElementById(project.targetPageId!);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      history.replaceState(null, "", `#${project.targetPageId}`);
-    }
-  };
-
-  const cardContent = (
-    <>
-      <div
-        ref={ref}
-        className="relative aspect-video w-full overflow-hidden bg-gray-100"
-      >
-        {inView && (
-          <video
-            src={project.thumbnail}
-            className="size-full object-cover transition-transform group-hover:scale-105"
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
-        )}
-      </div>
-      <div className="flex flex-1 flex-col gap-2 px-4 py-3">
-        <div className="flex flex-col gap-1">
-          {project.company && (
-            <span className="text-xs font-semibold uppercase tracking-wide text-blue-600">
-              {project.company}
-            </span>
-          )}
-          <h3 className="text-xl font-bold text-black">{project.title}</h3>
-        </div>
-        <div className="flex flex-wrap gap-1">
-          {project.stack.map((tech) => (
-            <span
-              key={tech}
-              className="whitespace-nowrap rounded-full bg-blue-100 px-2 py-0.5 text-xs text-blue-800"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-        <p className="line-clamp-3 text-sm text-gray-600">
-          {typeof project.description === "string"
-            ? project.description
-            : "Click to learn more about this project"}
-        </p>
-        {project.contributions && (
-          <div className="mt-1">
-            <ul className="mt-1 list-inside list-disc text-sm text-gray-600">
-              {project.contributions
-                .slice(0, NUM_CONTRIBUTIONS_TO_SHOW)
-                .map((contribution, index) => (
-                  <li key={index}>{contribution}</li>
-                ))}
-              {project.contributions.length > NUM_CONTRIBUTIONS_TO_SHOW && (
-                <li className="text-gray-500">
-                  +{project.contributions.length - NUM_CONTRIBUTIONS_TO_SHOW}{" "}
-                  more...
-                </li>
-              )}
-            </ul>
-          </div>
-        )}
-        {(isExternal || hasTargetPage) && (
-          <div className="mt-auto px-2 text-right text-sm text-blue-600 transition-colors group-hover:text-blue-800">
-            {hasTargetPage ? (
-              "See more →"
-            ) : (
-              <>
-                Visit site <span className="translate-y-0.5">&#8599;</span>
-              </>
-            )}
-          </div>
-        )}
-      </div>
-    </>
-  );
+  // If project has Content component, link to individual page
+  if (hasContent) {
+    return (
+      <Card
+        href={`/code/${slug}`}
+        thumbnail={project.thumbnail}
+        title={project.title}
+        tags={project.stack}
+        description={description}
+        contributions={project.contributions}
+        cardFooterStyle={CardFooterStyle.SEE_MORE}
+      />
+    );
+  }
 
   if (isExternal) {
     return (
-      <a
+      <Card
         href={project.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="no-underline-ani group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md"
-      >
-        {cardContent}
-      </a>
+        thumbnail={project.thumbnail}
+        title={project.title}
+        tags={project.stack}
+        description={description}
+        contributions={project.contributions}
+        cardFooterStyle={CardFooterStyle.OPEN_SITE}
+      />
     );
   }
 
   if (hasTargetPage) {
     return (
-      <a
+      <Card
         href={`/#${project.targetPageId}`}
-        target="_self"
-        onClick={handleInternalNavClick}
-        className="no-underline-ani group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md"
-      >
-        {cardContent}
-      </a>
+        thumbnail={project.thumbnail}
+        title={project.title}
+        tags={project.stack}
+        description={description}
+        contributions={project.contributions}
+        cardFooterStyle={CardFooterStyle.SEE_MORE}
+      />
     );
   }
 
   return (
-    <div className="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md">
-      {cardContent}
-    </div>
+    <Card
+      thumbnail={project.thumbnail}
+      title={project.title}
+      tags={project.stack}
+      description={description}
+      contributions={project.contributions}
+      cardFooterStyle={CardFooterStyle.SEE_MORE}
+    />
   );
 }

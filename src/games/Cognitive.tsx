@@ -1,11 +1,11 @@
 import Video from "../Util/blog-components/Video";
 import GameImage from "./GameImage";
-import GamePage from "./GamePage";
+import ItemDetailLayout from "../Util/ItemDetailLayout";
 import Section from "./Section";
 
 export default function Cognitive() {
   return (
-    <GamePage>
+    <ItemDetailLayout>
       {/* Hero / Intro */}
       <Section isCollapsible={false}>
         <p className="text-lg">
@@ -158,6 +158,6 @@ export default function Cognitive() {
           ))}
         </div>
       </Section>
-    </GamePage>
+    </ItemDetailLayout>
   );
 }

@@ -8,7 +8,11 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import BlogApp from "./BlogApp.tsx";
+import BlogPage from "./BlogPage.tsx";
 import GamesApp from "./GamesApp.tsx";
+import CodePage from "./CodePage.tsx";
+import CodeApp from "./CodeApp.tsx";
+import ArtPage from "./ArtPage.tsx";
 
 import { useRouteError } from "react-router-dom";
 
@@ -49,9 +53,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/blog",
-    loader: async () => {
-      return redirect("/#blog");
-    },
+    element: <BlogPage />,
   },
   {
     path: `/games/:slug`,
@@ -65,9 +67,15 @@ const router = createBrowserRouter([
   },
   {
     path: "/code",
-    loader: async () => {
-      return redirect("/#code");
-    },
+    element: <CodePage />,
+  },
+  {
+    path: `/code/:slug`,
+    element: <CodeApp />,
+  },
+  {
+    path: "/art",
+    element: <ArtPage />,
   },
 ]);
 

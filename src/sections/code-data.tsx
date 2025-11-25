@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { ReactNode } from "react";
+import { lazy, ReactNode } from "react";
 import { useInView } from "react-intersection-observer";
 
 export interface CodeProjectInfo {
@@ -7,18 +7,19 @@ export interface CodeProjectInfo {
   thumbnail: string;
   description: ReactNode;
   stack: string[];
-  company?: "Benchling" | "Clark University MFA";
   contributions?: string[];
   url?: string;
   targetPageId?: string; // For internal navigation to sections like "blog", "art", etc.
   onClick?: (setFilteredTags: (tags: Set<string>) => void) => void;
+  Content?: React.FC; // For individual project pages
 }
 
 export const CODE_PROJECTS: Record<string, CodeProjectInfo> = {
   raytracer: {
     title: "C++ Raytracer",
     thumbnail: "/Code/raytracer.mp4",
-    description: "A raytracer written from scratch in C++.",
+    description:
+      "A raytracer written in C++ during my MFA at Clark University.",
     stack: ["C++", "Blender"],
     contributions: [
       "Support for diffuse, metallic, dielectric, and volumetric materials",
@@ -26,11 +27,11 @@ export const CODE_PROJECTS: Record<string, CodeProjectInfo> = {
       "Multiprocessing and live-preview rendering",
       "Initially followed the Ray Tracing in One Weekend book",
     ],
-    company: "Clark University MFA",
     targetPageId: "blog",
     onClick: (setFilteredTags) => {
       setFilteredTags(new Set(["C++ Raytracer"]));
     },
+    Content: lazy(() => import("../code/Raytracer")),
   },
   downup: {
     title: "Downup",
@@ -45,25 +46,13 @@ export const CODE_PROJECTS: Record<string, CodeProjectInfo> = {
       "Community challenge management",
     ],
     url: "https://downup.app",
-  },
-  "entity-diagram": {
-    title: "Database Diagram",
-    thumbnail: "/Code/entity-diagram.mp4",
-    description:
-      "Interactive visualization tool to help Benchling customers understand their denormalized database schemas.",
-    stack: ["React", "TypeScript"],
-    company: "Benchling",
-    contributions: [
-      "Built interactive database schema visualization",
-      "Schema relationship mapping",
-      "Search and navigation features",
-    ],
+    Content: lazy(() => import("../code/Downup")),
   },
   "analysis-tool": {
-    title: "Analysis Tool",
+    title: "Benchling Insights",
     thumbnail: "/Code/analysis-tool.mp4",
     description:
-      "A no-code data analysis platform for Benchling customers to transform and analyze data without writing SQL.",
+      "A no-code data analysis platform for Benchling customers to transform and analyze data.",
     stack: [
       "React",
       "TypeScript",
@@ -74,11 +63,23 @@ export const CODE_PROJECTS: Record<string, CodeProjectInfo> = {
       "Redis",
       "S3",
     ],
-    company: "Benchling",
     contributions: [
       "Tool to create datasets with checkboxes, building GraphQL queries",
       "Data transformation tools (aggregations, filters)",
       "Product scaffolding and architecture",
+    ],
+    Content: lazy(() => import("../code/AnalysisTool")),
+  },
+  "entity-diagram": {
+    title: "Benchling Database Diagram",
+    thumbnail: "/Code/entity-diagram.mp4",
+    description:
+      "Interactive visualization tool to help Benchling customers understand their denormalized database schemas.",
+    stack: ["React", "TypeScript"],
+    contributions: [
+      "Built interactive database schema visualization",
+      "Schema relationship mapping",
+      "Search and navigation features",
     ],
   },
   exosim: {
