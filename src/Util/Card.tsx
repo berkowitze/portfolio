@@ -86,7 +86,7 @@ export default function Card({
         {contributions && contributions.length > 0 && (
           <div className="mt-1">
             <div className="text-sm font-semibold text-gray-700">
-              Contributions:
+              Highlights
             </div>
             <ul className="mt-1 list-inside list-disc text-sm text-gray-600">
               {contributions.map((contribution, index) => (
