@@ -18,7 +18,6 @@ export default function CodePage() {
 function CodeCard({ slug }: { slug: CodeSlug }) {
   const project = CODE_PROJECTS[slug];
   const isExternal = project.url && !project.url.startsWith("/");
-  const hasTargetPage = Boolean(project.targetPageId);
   const hasContent = Boolean(project.Content);
 
   const description =
@@ -26,61 +25,34 @@ function CodeCard({ slug }: { slug: CodeSlug }) {
       ? project.description
       : "Click to learn more about this project";
 
-  // If project has Content component, link to individual page
+  // Determine href and footer style based on project properties
+  let href: string | undefined;
+  let cardFooterStyle: CardFooterStyle;
+
   if (hasContent) {
-    return (
-      <Card
-        href={`/code/${slug}`}
-        thumbnail={project.thumbnail}
-        title={project.title}
-        tags={project.stack}
-        description={description}
-        contributions={project.contributions}
-        cardFooterStyle={CardFooterStyle.SEE_MORE}
-      />
-    );
+    href = `/code/${slug}`;
+    cardFooterStyle = CardFooterStyle.SEE_MORE;
+  } else if (isExternal) {
+    href = project.url;
+    cardFooterStyle = CardFooterStyle.OPEN_SITE;
+  } else if (project.targetPageId) {
+    href = `/#${project.targetPageId}`;
+    cardFooterStyle = CardFooterStyle.SEE_MORE;
+  } else {
+    // No link available
+    href = undefined;
+    cardFooterStyle = CardFooterStyle.NONE;
   }
 
-  if (isExternal) {
-    return (
-      <Card
-        href={project.url}
-        thumbnail={project.thumbnail}
-        title={project.title}
-        tags={project.stack}
-        description={description}
-        contributions={project.contributions}
-        cardFooterStyle={CardFooterStyle.OPEN_SITE}
-      />
-    );
-  }
-
-  if (hasTargetPage) {
-    return (
-      <Card
-        href={`/#${project.targetPageId}`}
-        thumbnail={project.thumbnail}
-        title={project.title}
-        tags={project.stack}
-        description={description}
-        contributions={project.contributions}
-        cardFooterStyle={CardFooterStyle.SEE_MORE}
-      />
-    );
-  }
-
-  // For entity-diagram, don't show "See more" since it doesn't have a page
-  const isEntityDiagram = slug === "entity-diagram";
-  
   return (
     <Card
+      href={href}
       thumbnail={project.thumbnail}
       title={project.title}
       tags={project.stack}
       description={description}
       contributions={project.contributions}
-      cardFooterStyle={isEntityDiagram ? CardFooterStyle.NONE : CardFooterStyle.SEE_MORE}
+      cardFooterStyle={cardFooterStyle}
     />
   );
 }
-
