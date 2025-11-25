@@ -5,4 +5,3 @@ export default function CodePage({ children }: { children: React.ReactNode }) {
     </div>
   );
 }
-
