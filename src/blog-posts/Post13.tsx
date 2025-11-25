@@ -18,7 +18,7 @@ export default function Post13() {
           vertex normals, rather than using face-perpendicular normals.
         </li>
         <li>
-          Alpha transparency, by having rays have <code>alpha</code> probability
+          Alpha transparency, so that rays have <code>alpha</code> probability
           of not hitting objects.
         </li>
         <li>
@@ -83,10 +83,9 @@ export default function Post13() {
         altText="Final render of the reading nook, rendered with Blender"
       />
       <p>
-        My render is way noisier, took <i>way</i> longer, and has some color
-        issues (the floor is messed up for some reason). But I'm really proud of
-        how well it turned out given that I wrote the entire raytracer from
-        scratch!
+        My render is noisier, took far longer to render, and the floor's color
+        is messed up for some reason. But I'm really happy with how well it
+        turned out!
       </p>
     </div>
   );

@@ -8,6 +8,7 @@ import Code from "./sections/Code";
 import Blog from "./sections/Blog";
 import Games from "./sections/Games";
 import { BlogFilterProvider } from "./contexts/BlogFilterContext";
+import SocialIcons from "./Util/SocialIcons";
 
 const ORDERED_SECTIONS = [
   {
@@ -52,13 +53,6 @@ const ORDERED_SECTIONS = [
     bg: "bg-my-green",
     Page: Resume,
   },
-  // {
-  //   name: "Contact",
-  //   color: "purple",
-  //   bg: "bg-my-purple",
-  //   Page: Contact,
-  //   fullScreen: false,
-  // },
 ] as const satisfies ReadonlyArray<{
   id: string;
   name: string;
@@ -179,9 +173,12 @@ export default function App() {
         <div className="title grow-0 text-4xl leading-7">
           ELI BERKOWITZ
           <br />
-          <span className="text-lg italic text-gray-600">
-            Full stack engineer turned video game developer
-          </span>
+          <div className="mt-2 flex flex-nowrap items-center gap-2 md:flex-wrap">
+            <span className="text-lg italic text-gray-600">
+              Full stack engineer turned video game developer
+            </span>
+            <SocialIcons className="shrink-0 md:hidden" />
+          </div>
         </div>
 
         <Nav
@@ -226,6 +223,7 @@ function Nav({
           </div>
         </div>
       ))}
+      <SocialIcons className="mt-auto" />
     </div>
   );
 }

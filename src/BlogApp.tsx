@@ -6,12 +6,12 @@ export default function BlogApp() {
     <DetailPageLayout
       items={POSTS}
       isValidSlug={isValidSlugName}
-      backUrl="/#blog"
+      backUrl="/blog"
       renderContent={(post) => (
         <div>
           <div className="flex w-full justify-between">
             <h2 className="text-2xl">{post.title}</h2>
-            <a target="_self" href="/#blog">
+            <a target="_self" href="/blog">
               Back
             </a>
           </div>

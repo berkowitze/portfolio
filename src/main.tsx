@@ -8,6 +8,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import BlogApp from "./BlogApp.tsx";
+import BlogPage from "./BlogPage.tsx";
 import GamesApp from "./GamesApp.tsx";
 
 import { useRouteError } from "react-router-dom";
@@ -49,9 +50,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/blog",
-    loader: async () => {
-      return redirect("/#blog");
-    },
+    element: <BlogPage />,
   },
   {
     path: `/games/:slug`,
