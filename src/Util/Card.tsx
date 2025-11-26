@@ -41,7 +41,7 @@ export default function Card({
             (isVideo ? (
               <video
                 src={thumbnail}
-                className="size-full object-cover transition-transform group-hover:scale-105"
+                className="size-full object-cover"
                 autoPlay
                 loop
                 muted
@@ -54,7 +54,7 @@ export default function Card({
                   thumbnailAlt ||
                   (typeof title === "string" ? title : "Card thumbnail")
                 }
-                className="size-full object-cover transition-transform group-hover:scale-105"
+                className="size-full object-cover"
               />
             ))}
         </div>
@@ -85,9 +85,9 @@ export default function Card({
         )}
         {contributions && contributions.length > 0 && (
           <div className="mt-1">
-            <div className="text-sm font-semibold text-gray-700">
+            {/* <div className="text-sm font-semibold text-gray-700">
               Highlights
-            </div>
+            </div> */}
             <ul className="mt-1 list-inside list-disc text-sm text-gray-600">
               {contributions.map((contribution, index) => (
                 <li key={index}>{contribution}</li>
@@ -95,17 +95,19 @@ export default function Card({
             </ul>
           </div>
         )}
-        {cardFooterStyle !== CardFooterStyle.NONE && (
-          <div className="mt-auto px-2 text-right text-sm text-blue-600 transition-colors group-hover:text-blue-800">
-            {cardFooterStyle === CardFooterStyle.SEE_MORE && (
-              <span>See more →</span>
-            )}
-            {cardFooterStyle === CardFooterStyle.OPEN_SITE && (
-              <span>Open site →</span>
-            )}
-          </div>
-        )}
       </div>
+      {cardFooterStyle !== CardFooterStyle.NONE && (
+        <>
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent"></div>
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 overflow-hidden">
+            <div className="translate-y-full whitespace-nowrap rounded-t-md bg-gray-800/50 px-2 py-px text-lg font-bold text-white backdrop-blur-sm transition-transform duration-300 ease-out [font-variant:small-caps] group-hover:translate-y-0">
+              {cardFooterStyle === CardFooterStyle.SEE_MORE
+                ? "see more"
+                : "open site"}
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 
